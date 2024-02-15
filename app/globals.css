@@ -2,32 +2,361 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CUSTOM CSS TO BREAK THE APP FOR LEARNING PURPOSES */
+
+@font-face {
+  font-family: 'white-angelica';
+  src: url('/fonts/subset-WhiteAngelicaRegular.woff2') format('woff2'),
+      url('/fonts/subset-WhiteAngelicaRegular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* RESET */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/* RESET */
+
+/* VARIABLES */
+
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --font-h1-size: clamp(2.2rem, 8vw, 3.55rem);
+  --font-h2-size: 1rem;
+  --font-h3-size: 1rem;
+  --font-p-size: 0.6rem;
+  --widget-max-height: 180px;
+  --font-bigger: 3rem;
+  --font-smaller: 0.95rem;
+  --grid-widget-width: 17rem;
+  --grid-gap: 0.4rem;
+  --widget-background: rgba(0, 0, 0, 60%);
 }
 
-@media (prefers-color-scheme: dark) {
+/* ELEMENTS CSS */
+
+html, body { 
+  background: url(/images/background.jpg) no-repeat center center fixed, black; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Quicksand', system-ui, sans-serif;
+  font-weight: 300;
+  color: gainsboro;
+  margin: 0;
+  padding: 0.4rem; 
+}
+
+nav {
+  display: none;
+  cursor: pointer;
+}
+
+menu {
+  display: flex;
+  justify-content: space-between;
+margin: 0;
+padding: 0.5rem 0;    
+}
+
+h1 {
+  font-family: white-angelica;
+  font-weight: 200;
+  font-size: var(--font-h1-size);
+  color: white;
+  text-align: center;
+margin: 0;
+padding: 0;
+}
+
+h2 {
+  font-weight: 350;
+  font-size: var(--font-h2-size);
+  margin: 0;
+padding: 0;
+}
+
+h3 {
+  font-weight: 400;
+  font-size: var(--font-h3-size);
+margin: 0;
+padding: 0;
+
+}
+
+p {
+  font-size: var(--font-p-size);
+margin: 0;
+padding: 0;
+  text-transform: uppercase;
+  color: silver;
+  font-weight: 600;
+}
+
+main {	
+
+  margin-top: 0.2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer {
+  max-height: 1rem;
+  margin-top: auto;
+  vertical-align: middle;
+  position: absolute; 
+  bottom: 0; 
+  left: 40%; 
+  z-index: 2;
+font-size: 10px;
+margin-left: auto;
+margin-right: auto;
+  display: none;
+}
+
+canvas {
+  max-width: 100%;
+}
+
+.title {
+  padding: 1.5rem 0;
+  cursor: pointer;
+}
+
+.quickview-div {
+  display: flex;
+}
+
+.quickview-item {
+  display: grid;
+}
+
+.time {
+  grid-area: time;
+}
+
+.time-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 0.5rem;
+  max-width: 20rem;
+  min-width: clamp(17rem, 48vw, 25rem);
+}
+
+.time-main {
+  display: none;
+}
+
+.img-latest {
+  filter: brightness(80%) hue-rotate(18deg) grayscale(30%);
+  border-radius: 0.4rem;
+  display: block;
+  width: 100%;
+}
+
+.info-icon {
+  position: absolute;
+  top: 57%;
+  right: -1.3rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.info-icon-kp {
+  position: absolute;
+  cursor: pointer;
+}
+
+.menu-btn {
+font-size: 2.2rem;
+grid-area: menu;
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.grouped-widget {
+  display: grid;
+  gap: var(--grid-gap);
+}
+
+.graph {
+  display: flex;
+  padding: 0.7rem;
+}
+
+.img-graph {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+/* UTILITY CLASSES */
+
+.relative {
+position: relative;
+}
+
+.bigger-font {
+  font-size: var(--font-bigger);
+}
+
+.center {
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--grid-widget-width), 1fr));
+  gap: var(--grid-gap);
+}
+
+.widget {
+  background: var(--widget-background);
+  border-radius: 8px;
+  box-sizing: border-box;    
+}
+
+.widget-for-small {
+  background: var(--widget-background);
+  border-radius: 0.3rem;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.heigth-100 {
+  height: 100%;
+}
+
+.padding-small {
+  padding: 3.5%;
+} 
+
+.margin-sm-btm {
+  margin-bottom: 5%;
+}
+
+.margin-xs-btm {
+  margin-bottom: 3%;
+}
+
+.padding-sm-btm {
+  padding-bottom: 6%;
+}
+
+.padding-xs-btm {
+  padding-bottom: 0.5%;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.font-h2 {
+  font-size: smaller;
+  font-weight: 600;
+  color: gray;
+}
+
+.font-smaller {
+  font-size: var(--font-smaller);
+}
+
+.padding-sm-r {
+  padding-right: 0.5rem;
+}
+
+.height-max-widget {
+  max-height: var(--widget-max-height);
+}
+
+/* MEDIA QUERIES */
+
+@media (min-width: 768px) {
+  
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+      --font-h2-size: 1.1rem;
+      --font-h3-size: 1.2rem;
+      --font-p-size: 0.7rem;
+      --widget-max-height: 150px;
+      --font-bigger: 3.5rem;
+      --font-smaller: 1.1rem;
+      --grid-gap: 0.5rem;
+  }
+  
+  nav {
+      max-width: 768px;
+      display: flex;
+      justify-content: space-around;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0.5em 0;
+      margin-bottom: 0.7em;
+  }
+  
+  menu {
+      display: none;
+  }
+  
+  main {
+      max-width: 768px;
+  }
+  
+  .time-main {
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5rem;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@media (min-width: 1024px) { 
+          :root {
+      --font-h2-size: 1.2rem;
+      --font-h3-size: 1.3rem;
+      --font-p-size: 0.75rem;
+      --widget-max-height: 190px;
+      --font-bigger: 3.5rem;
+      --font-smaller: 1.2rem;
   }
 }
+
+@media (min-width: 1280px) {
+  
+  nav {
+      max-width: 769px;
+  }
+  main {
+      max-width: clamp(769px, 60vw, 1024px);
+  }
+  
+      :root {
+      --font-h2-size: 1.2rem;
+      --font-h3-size: 1.34rem;
+      --font-p-size: 0.84rem;
+      --widget-max-height: 190px;
+      --font-bigger: 4rem;
+      --font-smaller: 1.28rem;
+  }
+  
+  .grid {
+      grid-template-columns: 1fr 1fr ;
+  }
+}
+
+
