@@ -1,9 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Clock from "./components/Clock";
+import { Graph } from "./components/Graph";
+import Comp from "./components/Comp";
 
 export default function Dashboard() {
     const now = new Date();
-    const tmzAbrr = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const tmzAbrr = "Europe/Bratislava";
     return (
         <>
             <div className="grid">
@@ -14,7 +18,7 @@ export default function Dashboard() {
                             <p className="relative padding-xs-btm">
                                 Kp index
                                 <span className="material-symbols-outlined info-icon">
-                                    <Image src="/icons/info.svg" alt="info icon" width={16} height={16} />
+                                    <Comp />
                                 </span>
                             </p>
                             <h3 className="bigger-font">3</h3>
@@ -65,7 +69,6 @@ export default function Dashboard() {
                         <Clock className="font-smaller" time={now.getTime()} tmzAbrr={tmzAbrr} />
                         <Clock className="font-smaller" time={now.getTime()} timezone="UTC" tmzAbrr={tmzAbrr} />
                     </div>
-
                     <div className="widget center padding-small">
                         <h2 className="uppercase margin-xs-btm font-h2">Weather</h2>
                         <div className="quickview-div center">
@@ -83,19 +86,11 @@ export default function Dashboard() {
                             </div>
                         </div>
                     </div>
-
                     <div className="widget center graph hidden">
                         <Image src="/images/graph.png" alt="Graph with forecast of KP number for today, hourly" className="img-graph" width={160} height={160} />
                     </div>
 
-                    <div className="widget center padding-small grid-item width-100">
-                        <h2 className="uppercase margin-xs-btm font-h2 relative">
-                            KP index forecast
-                            <span className="material-symbols-outlined info-icon-kp">
-                                <Image src="/icons/info-gray.svg" alt="info icon" width={16} height={16} />
-                            </span>
-                        </h2>
-                    </div>
+                    <Graph />
                 </div>
 
                 <div className="widget center padding-small grid-item">
