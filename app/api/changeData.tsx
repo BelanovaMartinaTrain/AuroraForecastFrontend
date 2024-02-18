@@ -1,21 +1,20 @@
-import fetchData from "./fetchData";
+"use server";
 
-export let xValues: string[];
+export default async function fetchAndChangeGraphData(url: string) {
+    const res = await fetch(url, { next: { revalidate: 30 } });
+    const data = await res.json();
 
-async function getNewData() {
-    const myData = await fetchData();
-    const newArray = myData.filter((dat: string[]) => dat[2] === "estimated" || dat[2] === "predicted");
-    const labels = newArray.map((item: string[]) => {
+    const filteredData = data.filter((dat: string[]) => dat[2] === "estimated" || dat[2] === "predicted");
+    const labels: string[] = filteredData.map((item: string[]) => {
         const date = new Date(item[0]);
         const time = date.toLocaleTimeString([], { hour12: false, hour: "2-digit", minute: "2-digit" });
         const datum = date.toLocaleDateString("uk", {
             month: "numeric",
             day: "numeric",
         });
-        return `${datum} ${time}`;
+        return `${datum}. ${time}`;
     });
-    xValues = labels;
-    console.log(xValues);
+    const yValues: number[] = filteredData.map((item: string[]) => Number(item[1]));
+    console.log("fetch", labels, yValues);
+    return { labels, yValues };
 }
-const dunno = async () => await getNewData();
-console.log(dunno);

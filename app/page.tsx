@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Clock from "./components/Clock";
 import { Graph } from "./components/Graph";
