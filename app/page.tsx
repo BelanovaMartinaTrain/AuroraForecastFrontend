@@ -12,24 +12,24 @@ export default function Dashboard() {
     return (
         <>
             <div className="grid">
-                <BasicWidget className={"widget center padding-small height-max-widget"}>
+                <BasicWidget className={"widget center padding-small height-max-widget backdrop-blur-sm"}>
                     <WidgetAuroraActivity />
                 </BasicWidget>
-                <BasicWidget className={"widget center padding-small height-max-widget"}>
+                <BasicWidget className={"widget center padding-small height-max-widget backdrop-blur-sm"}>
                     <WidgetGeomagneticActivity />
                 </BasicWidget>
                 <BasicWidget className={"grouped-widget"}>
-                    <BasicWidget className={"widget heigth-100 time-main center"}>
+                    <BasicWidget className={"widget heigth-100 time-main center backdrop-blur-sm"}>
                         <Clock className="font-smaller" time={now.getTime()} tmzAbrr={tmzAbrr} />
                         <Clock className="font-smaller" time={now.getTime()} timezone="UTC" tmzAbrr={tmzAbrr} />
                     </BasicWidget>
-                    <BasicWidget className={"widget center padding-small"}>
+                    <BasicWidget className={"widget center padding-small backdrop-blur-sm"}>
                         <WidgetWeather />
                     </BasicWidget>
                     <Graph />
                 </BasicWidget>
 
-                <div className="widget center padding-small grid-item">
+                <div className="widget center padding-small grid-item backdrop-blur-sm">
                     <h3 className="img-text uppercase margin-xs-btm">Northern Hemisphere</h3>
                     <img src="https://services.swpc.noaa.gov/images/aurora-forecast-northern-hemisphere.jpg" alt="image of the latest aurora activity" className="img-latest " />
                 </div>

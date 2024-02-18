@@ -6,7 +6,7 @@ export default function Menu() {
     const tmzAbrr = Intl.DateTimeFormat().resolvedOptions().timeZone;
     return (
         <menu className="">
-            <span className="material-symbols-outlined menu-btn widget-for-small ">
+            <span className="material-symbols-outlined menu-btn widget-for-small backdrop-blur-sm ">
                 <Image src="/icons/menu.svg" alt="menu icon" className="center" width={35.2} height={35.2} />
             </span>
 
