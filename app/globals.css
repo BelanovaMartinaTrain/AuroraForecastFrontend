@@ -18,6 +18,7 @@
 *:before,
 *:after {
   box-sizing: border-box;
+  line-height: normal;
 }
 
 /* RESET */
@@ -29,7 +30,7 @@
   --font-h2-size: 1rem;
   --font-h3-size: 1rem;
   --font-p-size: 0.6rem;
-  --widget-max-height: 180px;
+  --widget-max-height: 200px;
   --font-bigger: 3rem;
   --font-smaller: 0.95rem;
   --grid-widget-width: 17rem;

@@ -9,6 +9,12 @@ import fetchAndChangeGraphData from "../api/changeData";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, BarController);
 
 export const options = {
+    indexAxis: "y" as const,
+    elements: {
+        bar: {
+            borderWidth: 1,
+        },
+    },
     responsive: true,
     plugins: {
         legend: {
@@ -20,23 +26,23 @@ export const options = {
     },
 };
 
-const xValues = ["00-03", "03-06", "06-09", "09-12", "12-15", "15-18", "18-21", "21-00"];
-const yValues = ["1", "3", "3", "1", "1", "6", "9", "5", "2"];
+// const xValues = ["00-03", "03-06", "06-09", "09-12", "12-15", "15-18", "18-21", "21-00"];
+// const yValues = ["1", "3", "3", "1", "1", "6", "9", "5", "2"];
 
-export const initialGraphGata = {
-    labels: xValues,
-    datasets: [
-        {
-            data: yValues,
-        },
-    ],
-};
+// export const initialGraphGata = {
+//     labels: xValues,
+//     datasets: [
+//         {
+//             data: yValues,
+//         },
+//     ],
+// };
 
 function createGradient(ctx: CanvasRenderingContext2D) {
-    const gradient = ctx.createLinearGradient(0, -50, 0, 237);
-    gradient.addColorStop(0, "red");
-    gradient.addColorStop(0.5, "SpringGreen");
-    gradient.addColorStop(1, "purple");
+    const gradient = ctx.createLinearGradient(0, -50, 470, 0);
+    gradient.addColorStop(0, "purple");
+    gradient.addColorStop(0.7, "SpringGreen");
+    gradient.addColorStop(1, "yellowGreen");
     return gradient;
 }
 
@@ -47,28 +53,6 @@ export function Graph() {
     });
     const [labels, setLabels] = useState<string[]>();
     const [yValues, setYValues] = useState<number[]>();
-    let firstRender = useRef(true);
-
-    useEffect(() => {
-        const chart = chartRef.current;
-        if (!chart) {
-            return;
-        }
-        if (!!labels && !!yValues) {
-            const chartData = {
-                ...initialGraphGata,
-                labels: labels,
-                datasets: [
-                    {
-                        backgroundColor: createGradient(chart.ctx),
-                        data: yValues,
-                    },
-                ],
-            };
-            console.log("second hook run");
-            setChartData(chartData);
-        }
-    }, [labels, yValues]);
 
     useEffect(() => {
         async function fetchData() {
@@ -79,10 +63,30 @@ export function Graph() {
         }
 
         fetchData();
+        const intervalID = setInterval(() => {
+            fetchData();
+        }, 3600000); //fetch every hour
+        return () => clearInterval(intervalID);
     }, []);
 
-    console.log(labels, yValues);
-    console.log("rendered");
+    useEffect(() => {
+        const chart = chartRef.current;
+        if (!chart) {
+            return;
+        }
+        if (!!labels && !!yValues) {
+            const chartData = {
+                labels: labels,
+                datasets: [
+                    {
+                        backgroundColor: createGradient(chart.ctx),
+                        data: yValues,
+                    },
+                ],
+            };
+            setChartData(chartData);
+        }
+    }, [labels, yValues]);
 
     return (
         <div className="widget center padding-small grid-item width-100 ">
