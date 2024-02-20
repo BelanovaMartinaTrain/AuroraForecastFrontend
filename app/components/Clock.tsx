@@ -22,13 +22,13 @@ export default function Clock(props: Props) {
     }, []);
 
     return props.timezone ? (
-        <h2>
-            {time.toLocaleTimeString([], { timeZone: `${props.timezone}`, hour12: false, hour: "2-digit", minute: "2-digit" })}
+        <h2 suppressHydrationWarning>
+            {time.toLocaleTimeString([], { timeZone: `${props.timezone}`, hourCycle: "h23", hour: "2-digit", minute: "2-digit" })}
             {" UTC"}
         </h2>
     ) : (
-        <h2>
-            {time.toLocaleTimeString([], { hour12: false, hour: "2-digit", minute: "2-digit" })}
+        <h2 suppressHydrationWarning>
+            {time.toLocaleTimeString([], { hourCycle: "h23", hour: "2-digit", minute: "2-digit" })}
             {` ${timezoneAbbreviation}`}
         </h2>
     );

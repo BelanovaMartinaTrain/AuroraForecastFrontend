@@ -126,7 +126,6 @@ canvas {
 
 .title {
   padding: 1.5rem 0;
-  cursor: pointer;
 }
 
 .quickview-div {
@@ -195,6 +194,7 @@ grid-area: menu;
   display: block;
   width: 100%;
   padding: 0.5rem;
+
 }
 
 /* UTILITY CLASSES */

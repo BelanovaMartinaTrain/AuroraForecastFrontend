@@ -10,6 +10,15 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, BarController)
 
 export const options = {
     indexAxis: "y" as const,
+    scales: {
+        x: {
+            min: 0,
+            max: 9,
+            ticks: {
+                stepSize: 1,
+            },
+        },
+    },
     elements: {
         bar: {
             borderWidth: 1,
@@ -26,23 +35,12 @@ export const options = {
     },
 };
 
-// const xValues = ["00-03", "03-06", "06-09", "09-12", "12-15", "15-18", "18-21", "21-00"];
-// const yValues = ["1", "3", "3", "1", "1", "6", "9", "5", "2"];
-
-// export const initialGraphGata = {
-//     labels: xValues,
-//     datasets: [
-//         {
-//             data: yValues,
-//         },
-//     ],
-// };
-
 function createGradient(ctx: CanvasRenderingContext2D) {
     const gradient = ctx.createLinearGradient(0, -50, 470, 0);
     gradient.addColorStop(0, "purple");
-    gradient.addColorStop(0.7, "SpringGreen");
-    gradient.addColorStop(1, "yellowGreen");
+    gradient.addColorStop(0.4, "SpringGreen");
+    gradient.addColorStop(0.7, "yellowGreen");
+    gradient.addColorStop(1, "orangeRed");
     return gradient;
 }
 

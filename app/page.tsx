@@ -5,6 +5,7 @@ import BasicWidget from "./components/BasicWidget";
 import WidgetAuroraActivity from "./components/WidgetAuroraActivity";
 import WidgetGeomagneticActivity from "./components/WidgetGeomagneticActivity";
 import WidgetWeather from "./components/WidgetWeather";
+import { GraphTest } from "./components/GraphTest";
 
 export default function Dashboard() {
     const now = new Date();
