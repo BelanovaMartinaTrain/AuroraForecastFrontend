@@ -15,17 +15,17 @@ export default function WidgetWeather() {
     });
     const [isLocation, setIsLocation] = useState(false);
 
-    // useEffect(() => {
-    //     async function checkPerm() {
-    //         navigator.permissions.query({ name: "geolocation" }).then((result) => {
-    //             if (result.state === "granted") {
-    //                 setIsLocation(true);
-    //                 getLocation();
-    //             }
-    //         });
-    //     }
-    //     checkPerm();
-    // }, []);
+    useEffect(() => {
+        async function checkPerm() {
+            navigator.permissions.query({ name: "geolocation" }).then((result) => {
+                if (result.state === "granted") {
+                    setIsLocation(true);
+                    getLocation();
+                }
+            });
+        }
+        checkPerm();
+    }, []);
 
     function getLocation() {
         navigator.geolocation.getCurrentPosition(
