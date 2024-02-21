@@ -46,7 +46,7 @@ export default function WidgetWeather() {
     useEffect(() => {
         async function fetchWeather() {
             if (!!location.lat || !!location.lon) {
-                const weather = await fetchData(`http:localhost:5176/api/yr-met-weather/${location.lat}/${location.lon}`);
+                const weather = await fetchData(`http://165.227.128.185:8080/api/yr-met-weather/${location.lat}/${location.lon}`);
                 console.log(weather);
                 setWeather(weather.properties.timeseries[0].data.instant.details);
             }

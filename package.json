@@ -1,5 +1,4 @@
 {
-  "proxy": "http://localhost:5176",
   "name": "aurora-forecast",
   "version": "0.1.0",
   "private": true,
