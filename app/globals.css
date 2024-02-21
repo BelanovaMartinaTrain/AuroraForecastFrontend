@@ -197,6 +197,12 @@ grid-area: menu;
 
 }
 
+.input-shadow {
+  border-radius: 3px;
+  box-shadow: inset 3px 3px 10px black,
+  inset -5px -5px 5px #161b1b;
+}
+
 /* UTILITY CLASSES */
 
 .relative {

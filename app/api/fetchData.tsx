@@ -1,7 +1,7 @@
 "use server";
 
-export default async function fetchData() {
-    const res = await fetch("http:localhost:5176/api/planetary-k-3h" /*, { next: { revalidate: 30 } }*/);
+export default async function fetchData(url: string) {
+    const res = await fetch(url, { next: { revalidate: 60 } });
     const data = await res.json();
 
     return data;
