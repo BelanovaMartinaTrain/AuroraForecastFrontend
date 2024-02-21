@@ -1,11 +1,10 @@
-import Image from "next/image";
 import Clock from "./components/Clock";
 import { Graph } from "./components/Graph";
 import BasicWidget from "./components/BasicWidget";
 import WidgetAuroraActivity from "./components/WidgetAuroraActivity";
 import WidgetGeomagneticActivity from "./components/WidgetGeomagneticActivity";
 import WidgetWeather from "./components/WidgetWeather";
-import { GraphTest } from "./components/GraphTest";
+import WidgetImage from "./components/WidgetImage";
 
 export default function Dashboard() {
     const now = new Date();
@@ -29,11 +28,7 @@ export default function Dashboard() {
                     </BasicWidget>
                     <Graph />
                 </BasicWidget>
-
-                <div className="widget center padding-small grid-item backdrop-blur-sm">
-                    <h3 className="img-text uppercase margin-xs-btm">Northern Hemisphere</h3>
-                    <img src="https://services.swpc.noaa.gov/images/aurora-forecast-northern-hemisphere.jpg" alt="image of the latest aurora activity" className="img-latest " />
-                </div>
+                <WidgetImage />
             </div>
         </>
     );

@@ -1,7 +1,7 @@
 "use server";
 
 export default async function fetchAndChangeGraphData(url: string) {
-    const res = await fetch(url, { next: { revalidate: 1800 } });
+    const res = await fetch(url);
     const data = await res.json();
 
     const filteredData = data.filter((dat: string[]) => dat[2] === "estimated" || dat[2] === "predicted");

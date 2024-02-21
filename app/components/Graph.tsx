@@ -54,7 +54,7 @@ export function Graph() {
 
     useEffect(() => {
         async function fetchData() {
-            const graphValues = await fetchAndChangeGraphData("http:localhost:5176/api/planetary-k-3h");
+            const graphValues = await fetchAndChangeGraphData("http://165.227.128.185:8080/api/planetary-k-3h");
             const { labels, yValues } = graphValues;
             setLabels(labels);
             setYValues(yValues);
