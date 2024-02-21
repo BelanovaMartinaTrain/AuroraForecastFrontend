@@ -15,31 +15,17 @@ export default function WidgetWeather() {
     });
     const [isLocation, setIsLocation] = useState(false);
 
-    useEffect(() => {
-        async function checkPerm() {
-            navigator.permissions.query({ name: "geolocation" }).then((result) => {
-                if (result.state === "granted") {
-                    setIsLocation(true);
-                    getLocation();
-                }
-            });
-            //     (position) => {
-            //         setIsLocation(true);
-            //         const lat = Math.round(position.coords.latitude * 10) / 10;
-            //         const lon = Math.round(position.coords.longitude * 10) / 10;
-            //         console.log("POSITION", lat, lon);
-            //         setLocation({
-            //             lat: lat,
-            //             lon: lon,
-            //         });
-            //     },
-            //     (error) => {
-            //         setIsLocation(false);
-            //     }
-            // );
-        }
-        checkPerm();
-    }, []);
+    // useEffect(() => {
+    //     async function checkPerm() {
+    //         navigator.permissions.query({ name: "geolocation" }).then((result) => {
+    //             if (result.state === "granted") {
+    //                 setIsLocation(true);
+    //                 getLocation();
+    //             }
+    //         });
+    //     }
+    //     checkPerm();
+    // }, []);
 
     function getLocation() {
         navigator.geolocation.getCurrentPosition(
