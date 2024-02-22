@@ -33,9 +33,8 @@ export default function WidgetViewWeather(location: weatherProps) {
             if (!!lat || !!lon) {
                 try {
                     const weatherData = await fetchData(`http://165.227.128.185:8080/api/yr-met-weather/${lat}/${lon}`);
-                    console.log("weather", weatherData);
                     if (weatherData.cause) {
-                        console.log("error", weatherData.cause);
+                        console.error("error", weatherData.cause);
                     } else {
                         setWeather(weatherData.properties.timeseries[0].data.instant.details);
                     }
