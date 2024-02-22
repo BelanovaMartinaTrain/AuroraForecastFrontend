@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import fetchData from "../api/fetchData";
 
 type weatherProps = {
@@ -9,7 +9,9 @@ type weatherProps = {
 };
 
 export default function WidgetViewWeather(location: weatherProps) {
-    const { lat, lon } = location;
+    let { lat, lon } = location;
+    const [isLoading, setIsLoading] = useState(false);
+
     const [weather, setWeather] = useState({
         air_pressure_at_sea_level: 0,
         air_temperature: 0,
@@ -27,11 +29,19 @@ export default function WidgetViewWeather(location: weatherProps) {
 
     useEffect(() => {
         async function fetchWeather() {
-            if (!!location.lat || !!location.lon) {
-                const weather = await fetchData(`http://165.227.128.185:8080/api/yr-met-weather/${location.lat}/${location.lon}`);
-                console.log(weather);
-                setWeather(weather.properties.timeseries[0].data.instant.details);
+            setIsLoading(true);
+            if (!!lat || !!lon) {
+                try {
+                    const weatherData = await fetchData(`http://165.227.128.185:8080/api/yr-met-weather/${lat}/${lon}`);
+                    console.log("weather", weatherData);
+                    if (weatherData.cause) {
+                        console.log("error", weatherData.cause);
+                    } else {
+                        setWeather(weatherData.properties.timeseries[0].data.instant.details);
+                    }
+                } catch {}
             }
+            setIsLoading(false);
         }
 
         fetchWeather();
@@ -41,18 +51,16 @@ export default function WidgetViewWeather(location: weatherProps) {
         return () => clearInterval(intervalID);
     }, [location]);
 
-    console.log(weather);
-
     return (
         <>
             <div className="quickview-div center">
-                <div className={`center quickview-item width-100 padding-sm-btm ${location.lat && location.lon ? "" : "text-neutral-800"}`}>
+                <div className={`center quickview-item width-100 padding-sm-btm ${!!weather.air_pressure_at_sea_level ? "" : "text-neutral-800"}`}>
                     <p className="padding-xs-btm">Temperature</p>
                     <h3 className="padding-sm-btm">{Math.round(weather.air_temperature)} &#176;C</h3>
                     <p className="padding-xs-btm">Wind</p>
                     <h3>{Math.round(weather.wind_speed)} m/s </h3>
                 </div>
-                <div className={`center quickview-item width-100 padding-sm-btm ${location.lat && location.lon ? "" : "text-neutral-800"}`}>
+                <div className={`center quickview-item width-100 padding-sm-btm ${!!weather.air_pressure_at_sea_level ? "" : "text-neutral-800"}`}>
                     <p className="margin-sm-btm">Clouds </p>
                     <h3 className="font-smaller">Low: {Math.round(weather.cloud_area_fraction_low)} %</h3>
                     <h3 className="font-smaller">Middle: {Math.round(weather.cloud_area_fraction_medium)} %</h3>
@@ -60,6 +68,7 @@ export default function WidgetViewWeather(location: weatherProps) {
                     <h3 className="font-smaller">Fog: {Math.round(weather.fog_area_fraction)} %</h3>
                 </div>
             </div>
+            {!!weather.air_pressure_at_sea_level || !!isLoading ? "" : <p className="text-stone-600">Weather is not available</p>}
         </>
     );
 }
