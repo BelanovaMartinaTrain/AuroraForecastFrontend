@@ -3,18 +3,17 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-export default function WidgetImageTest() {
+export default function WidgetImage() {
     const [imageUrl, setImageUrl] = useState("https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg");
 
     useEffect(() => {
-        async function fetchImage() {
-            const res = await fetch("https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg", { next: { revalidate: 1 } });
-            const imageBlob = await res.blob();
-            const newUrl = URL.createObjectURL(imageBlob);
-            setImageUrl(newUrl);
+        function changeUrl() {
+            const timestamp = Math.floor(Date.now() / 1000);
+            setImageUrl(`https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg?${timestamp}`);
         }
+        changeUrl();
         const timer = setInterval(() => {
-            fetchImage();
+            changeUrl();
         }, 60000);
         return () => clearInterval(timer);
     }, [imageUrl]);
@@ -22,7 +21,7 @@ export default function WidgetImageTest() {
     return (
         <div className="widget center padding-small grid-item backdrop-blur-sm">
             <h3 className="img-text uppercase margin-xs-btm">Northern Hemisphere</h3>
-            <Image src={`${imageUrl}`} alt="image of the latest aurora activity" className="img-latest" width={800} height={800} priority={true} onLoad={() => URL.revokeObjectURL(`${imageUrl}`)} />
+            <Image src={`${imageUrl}`} alt="image of the latest aurora activity" className="img-latest" width={800} height={800} priority={true} />
         </div>
     );
 }
