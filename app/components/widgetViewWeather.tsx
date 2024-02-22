@@ -67,6 +67,7 @@ export default function WidgetViewWeather(location: weatherProps) {
                     <h3 className="font-smaller">Fog: {Math.round(weather.fog_area_fraction)} %</h3>
                 </div>
             </div>
+            {!!isLoading && <p className="text-stone-600">Loading...</p>}
             {!!weather.air_pressure_at_sea_level || !!isLoading ? "" : <p className="text-stone-600">Weather is not available</p>}
         </>
     );

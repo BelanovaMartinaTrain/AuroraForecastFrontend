@@ -23,7 +23,7 @@ export default function Dashboard() {
                         <Clock className="font-smaller" time={now.getTime()} tmzAbrr={tmzAbrr} />
                         <Clock className="font-smaller" time={now.getTime()} timezone="UTC" tmzAbrr={tmzAbrr} />
                     </BasicWidget>
-                    <BasicWidget className={"widget center padding-small backdrop-blur-sm"}>
+                    <BasicWidget className={"widget center padding-small backdrop-blur-sm min-h-48"}>
                         <WidgetWeather />
                     </BasicWidget>
                     <Graph />

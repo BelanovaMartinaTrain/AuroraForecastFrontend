@@ -9,6 +9,7 @@ export default function WidgetWeather() {
         lon: 0,
     });
     const [isLocation, setIsLocation] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         async function checkPerm() {
@@ -18,6 +19,7 @@ export default function WidgetWeather() {
                     getLocation();
                 }
             });
+            setIsLoading(false);
         }
         checkPerm();
     }, []);
@@ -45,7 +47,9 @@ export default function WidgetWeather() {
     return (
         <>
             <h2 className="uppercase margin-xs-btm font-h2">Weather</h2>
-            {isLocation ? (
+            {!!isLoading ? (
+                <p>Loading...</p>
+            ) : isLocation ? (
                 <WidgetViewWeather {...location} />
             ) : (
                 <button className="widget center padding-small focus:bg-black hover:bg-black" onClick={getLocation}>
