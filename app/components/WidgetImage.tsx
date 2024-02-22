@@ -8,7 +8,7 @@ export default function WidgetImage() {
 
     useEffect(() => {
         async function fetchImage() {
-            const res = await fetch("https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg");
+            const res = await fetch("https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg", { next: { revalidate: 1 } });
             const imageBlob = await res.blob();
             const newUrl = URL.createObjectURL(imageBlob);
             setImageUrl(newUrl);
