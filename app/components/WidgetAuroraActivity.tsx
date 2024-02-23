@@ -15,10 +15,10 @@ export default function WidgetAuroraActivity() {
 
             try {
                 const kpData = await fetchData(
-                    "http://localhost:5176/api/planetary-k-index-mod"
+                    "http://165.227.128.185:8080/api/planetary-k-index-mod"
                 );
                 const stormData = await fetchData(
-                    "http://localhost:5176/api/sunstorm-events"
+                    "http://165.227.128.185:8080/api/sunstorm-events"
                 );
 
                 setKp(kpData);

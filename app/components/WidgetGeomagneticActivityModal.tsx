@@ -30,13 +30,13 @@ export default function WidgetGeomagneticActivityModal() {
 
             try {
                 const windData = await fetchData(
-                    "http://localhost:5176/api/solar-wind"
+                    "http://165.227.128.185:8080/api/solar-wind"
                 );
                 const fluxData = await fetchData(
-                    "http://localhost:5176/api/flux"
+                    "http://165.227.128.185:8080/api/flux"
                 );
                 const magData = await fetchData(
-                    "http://localhost:5176/api/magnetic-field"
+                    "http://165.227.128.185:8080/api/magnetic-field"
                 );
 
                 setWind(windData.WindSpeed);
