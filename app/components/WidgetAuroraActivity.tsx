@@ -7,6 +7,7 @@ import ProgressBar from "../ui/ProgressBar";
 export default function WidgetAuroraActivity() {
     const [kp, setKp] = useState<string>();
     const [storm, setStorm] = useState<string>();
+    const [activity, setActivity] = useState<string>();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -25,10 +26,22 @@ export default function WidgetAuroraActivity() {
                 if (stormData[1].G.Text === "none") {
                     setStorm(stormData[0].G.Text);
                 } else {
-                    setStorm(stormData[0].G.Scale);
+                    setStorm(`G${stormData[0].G.Scale}`);
                 }
 
-                console.log(stormData);
+                console.log(Number(kpData));
+
+                if (Number(kpData) < 2) {
+                    setActivity("Low");
+                } else if (Number(kpData) >= 2 && Number(kp) < 5) {
+                    setActivity("Moderate");
+                } else if (Number(kpData) >= 5 && Number(kp) < 6) {
+                    setActivity("High");
+                } else if (Number(kpData) >= 6) {
+                    setActivity("Very high");
+                } else {
+                    setActivity("n/a");
+                }
 
                 // if (weatherData.cause) {
                 //     console.error("error", weatherData.cause);
@@ -76,7 +89,7 @@ export default function WidgetAuroraActivity() {
                     </div>
                     <div className="center quickview-item width-100 padding-sm-r">
                         <p className="relative padding-xs-btm">Activity</p>
-                        <h3 className="padding-sm-btm">Moderate</h3>
+                        <h3 className="padding-sm-btm">{activity}</h3>
                         <p className="relative padding-xs-btm">
                             Geomagnetic storm
                             <span className="material-symbols-outlined info-icon">

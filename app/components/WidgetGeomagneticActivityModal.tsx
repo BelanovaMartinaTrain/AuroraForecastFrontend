@@ -100,7 +100,7 @@ export default function WidgetGeomagneticActivityModal() {
             )}
 
             <Modal
-                placement="center"
+                placement="top"
                 backdrop="opaque"
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
