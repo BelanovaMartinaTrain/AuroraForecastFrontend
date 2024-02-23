@@ -5,6 +5,7 @@ import WidgetAuroraActivity from "./components/WidgetAuroraActivity";
 import WidgetGeomagneticActivity from "./components/WidgetGeomagneticActivity";
 import WidgetWeather from "./components/WidgetWeather";
 import WidgetImage from "./components/WidgetImage";
+import WidgetGeomagneticActivityModal from "./components/WidgetGeomagneticActivityModal";
 
 export default function Dashboard() {
     const now = new Date();
@@ -12,18 +13,43 @@ export default function Dashboard() {
     return (
         <>
             <div className="grid">
-                <BasicWidget className={"widget center padding-small height-max-widget backdrop-blur-sm"}>
+                <BasicWidget
+                    className={
+                        "widget center padding-small height-max-widget backdrop-blur-sm lg:min-h-40"
+                    }
+                >
                     <WidgetAuroraActivity />
                 </BasicWidget>
-                <BasicWidget className={"widget center padding-small height-max-widget backdrop-blur-sm"}>
-                    <WidgetGeomagneticActivity />
+                <BasicWidget
+                    className={
+                        "widget center padding-small height-max-widget backdrop-blur-sm lg:min-h-40"
+                    }
+                >
+                    <WidgetGeomagneticActivityModal />
                 </BasicWidget>
                 <BasicWidget className={"grouped-widget"}>
-                    <BasicWidget className={"widget heigth-100 time-main center backdrop-blur-sm"}>
-                        <Clock className="font-smaller" time={now.getTime()} tmzAbrr={tmzAbrr} />
-                        <Clock className="font-smaller" time={now.getTime()} timezone="UTC" tmzAbrr={tmzAbrr} />
+                    <BasicWidget
+                        className={
+                            "widget  time-main center backdrop-blur-sm max-h-10"
+                        }
+                    >
+                        <Clock
+                            className="font-smaller"
+                            time={now.getTime()}
+                            tmzAbrr={tmzAbrr}
+                        />
+                        <Clock
+                            className="font-smaller"
+                            time={now.getTime()}
+                            timezone="UTC"
+                            tmzAbrr={tmzAbrr}
+                        />
                     </BasicWidget>
-                    <BasicWidget className={"widget center padding-small backdrop-blur-sm min-h-48"}>
+                    <BasicWidget
+                        className={
+                            "widget center padding-small backdrop-blur-sm lg:min-h-[202px]"
+                        }
+                    >
                         <WidgetWeather />
                     </BasicWidget>
                     <Graph />

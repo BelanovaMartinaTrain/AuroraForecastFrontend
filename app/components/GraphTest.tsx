@@ -20,7 +20,8 @@ async function fetchAndChange() {
 }
 
 export async function GraphTest() {
-    const data: barGraphProps = await fetchAndChange();
+    let data: barGraphProps = await fetchAndChange();
+
     console.log(data);
     return (
         <div className="widget center padding-small grid-item width-100 ">
@@ -29,7 +30,7 @@ export async function GraphTest() {
                 <span className="material-symbols-outlined info-icon-kp">
                     <Image src="/icons/info-gray.svg" alt="info icon" width={16} height={16} />
                 </span>
-                <BarGraph {...data} />
+                <BarGraph data={data} />
             </h2>
         </div>
     );

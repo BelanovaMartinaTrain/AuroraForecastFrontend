@@ -38,20 +38,12 @@ export type barGraphProps = {
     values: number[];
 };
 
-export default function BarGraph(props: barGraphProps): JSX.Element {
-    const { labels, values } = props;
+export default function BarGraph({ data }: { data: barGraphProps }): JSX.Element {
+    const { labels, values } = data;
     const chartRef = useRef<ChartJS>(null);
     const [chartData, setChartData] = useState<ChartData<"bar">>({
         datasets: [],
     });
-    //const router = useRouter();
-
-    // useEffect(() => {
-    //     const timer = setInterval(() => {
-    //         router.refresh();
-    //     }, 10000);
-    //     return () => clearInterval(timer);
-    // }, [router]);
 
     useEffect(() => {
         const chart = chartRef.current;
@@ -70,7 +62,9 @@ export default function BarGraph(props: barGraphProps): JSX.Element {
             };
             setChartData(chartData);
         }
-    }, [labels, values]);
+    }, []);
+
+    console.log("rerender");
 
     return (
         <>
