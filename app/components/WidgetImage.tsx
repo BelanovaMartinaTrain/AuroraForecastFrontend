@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import ProgressBar from "../ui/ProgressBar";
+import Link from "next/link";
 
 export default function WidgetImage() {
     const [imageUrl, setImageUrl] = useState(
@@ -38,6 +39,13 @@ export default function WidgetImage() {
                 width={475}
                 height={475}
             />
+            <Link
+                href="https://www.swpc.noaa.gov/"
+                className={`${!!isLoading && "visibility-hidden"}`}
+                target="_blank"
+            >
+                <p className="mt-4 font-medium text-stone-500">NOAA</p>
+            </Link>
         </div>
     );
 }

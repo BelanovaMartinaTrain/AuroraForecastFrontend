@@ -12,6 +12,7 @@ import {
     Button,
     useDisclosure,
 } from "@nextui-org/react";
+import Link from "next/link";
 
 export default function WidgetAuroraActivity() {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -19,11 +20,12 @@ export default function WidgetAuroraActivity() {
     const [storm, setStorm] = useState<string>("none");
     const [activity, setActivity] = useState<string>("none");
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState("");
 
     useEffect(() => {
         async function fetchAuroraStats() {
             setIsLoading(true);
-
+            setError("");
             try {
                 const kpData = await fetchData(
                     "http://165.227.128.185:8080/api/planetary-k-index-mod"
@@ -32,6 +34,10 @@ export default function WidgetAuroraActivity() {
                     "http://165.227.128.185:8080/api/sunstorm-events"
                 );
 
+                console.log(kpData, stormData);
+                if (!!kpData.cause || !!stormData.cause) {
+                    throw new Error("Source is unreachable");
+                }
                 setKp(kpData);
                 if (stormData[1].G.Text === "none") {
                     setStorm(stormData[0].G.Text);
@@ -39,11 +45,9 @@ export default function WidgetAuroraActivity() {
                     setStorm(`G${stormData[0].G.Scale}`);
                 }
 
-                console.log(Number(kpData));
-
-                if (Number(kpData) < 2) {
+                if (Number(kpData) <= 2) {
                     setActivity("Low");
-                } else if (Number(kpData) >= 2 && Number(kp) < 5) {
+                } else if (Number(kpData) > 2 && Number(kp) < 5) {
                     setActivity("Moderate");
                 } else if (Number(kpData) >= 5 && Number(kp) < 6) {
                     setActivity("High");
@@ -60,8 +64,9 @@ export default function WidgetAuroraActivity() {
                 //         weatherData.properties.timeseries[0].data.instant
                 //             .details
                 //     );}
-            } catch {
-                console.log("Aurora Fetch was unsuccessful");
+            } catch (error) {
+                console.log(error);
+                setError(`${error}`);
             }
 
             setIsLoading(false);
@@ -97,8 +102,8 @@ export default function WidgetAuroraActivity() {
                 }`}
             >
                 <div className="center quickview-item width-100 padding-sm-r">
-                    <p className="relative padding-xs-btm">Kp index</p>
-                    <h3 className="bigger-font pb-2">{kp}</h3>
+                    <p className="relative padding-xs-btm mt-2">Kp index</p>
+                    <h3 className="bigger-font ">{kp}</h3>
                 </div>
                 <div className="center quickview-item width-100 padding-sm-r">
                     <p className="relative padding-xs-btm">Activity</p>
@@ -108,6 +113,17 @@ export default function WidgetAuroraActivity() {
                     <h3 className="padding-xs-btm pb-2">{storm}</h3>
                 </div>
             </div>
+            {!error ? (
+                <Link
+                    href="https://www.swpc.noaa.gov/"
+                    className={`${!!isLoading && "visibility-hidden"}`}
+                    target="_blank"
+                >
+                    <p className="mt-4 font-medium text-stone-500">NOAA</p>
+                </Link>
+            ) : (
+                <p className="text-rose-800">{error}</p>
+            )}
             <div className="">
                 <Modal
                     size="2xl"

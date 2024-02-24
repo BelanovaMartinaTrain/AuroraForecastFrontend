@@ -13,6 +13,7 @@ import {
 import { Chart } from "react-chartjs-2";
 import ProgressBar from "../ui/ProgressBar";
 import fetchAndChangeGraphData from "../api/changeData";
+import Link from "next/link";
 
 ChartJS.register(
     CategoryScale,
@@ -33,7 +34,7 @@ export const options = {
             },
         },
         // y: {
-        //     min: 15,
+        //     min: 0,
         //     max: 20,
         //     ticks: {
         //         stepSize: 5,
@@ -42,7 +43,7 @@ export const options = {
     },
     elements: {
         bar: {
-            borderWidth: 1,
+            borderWidth: 2,
         },
     },
     responsive: true,
@@ -65,6 +66,11 @@ function createGradient(ctx: CanvasRenderingContext2D) {
     return gradient;
 }
 
+type graphValType = {
+    labels: string[];
+    yValues: number[];
+};
+
 export function Graph() {
     const chartRef = useRef<ChartJS>(null);
     const [chartData, setChartData] = useState<ChartData<"bar">>({
@@ -76,13 +82,22 @@ export function Graph() {
 
     useEffect(() => {
         async function fetchData() {
-            const graphValues = await fetchAndChangeGraphData(
-                "http://165.227.128.185:8080/api/planetary-k-3h"
-            );
-            const { labels, yValues } = graphValues;
-            setLabels(labels);
-            setYValues(yValues);
-            setIsLoading(false);
+            try {
+                const graphValues = await fetchAndChangeGraphData(
+                    "http://165.227.128.185:8080/api/planetary-k-3h"
+                );
+                if (!graphValues.labels) {
+                    throw new Error("Source is unreachable");
+                } else {
+                    const { labels, yValues } = graphValues;
+                    setLabels(labels);
+                    setYValues(yValues);
+                    setIsLoading(false);
+                }
+            } catch (error) {
+                console.log(error);
+                setIsLoading(false);
+            }
         }
 
         fetchData();
@@ -115,14 +130,6 @@ export function Graph() {
         <div className="widget center padding-small grid-item width-100 backdrop-blur-sm min-h-[212px] xl:min-h-[300px]">
             <h2 className="uppercase margin-xs-btm font-h2 relative">
                 KP index forecast
-                <span className="material-symbols-outlined info-icon-kp">
-                    <img
-                        src="/icons/info-gray.svg"
-                        alt="info icon"
-                        width={18}
-                        height={18}
-                    />
-                </span>
             </h2>
             {!!isLoading ? (
                 <ProgressBar />
@@ -134,6 +141,13 @@ export function Graph() {
                     options={options}
                 />
             )}
+            <Link
+                href="https://www.swpc.noaa.gov/"
+                className={`${!!isLoading && "visibility-hidden"}`}
+                target="_blank"
+            >
+                <p className="mt-2 font-medium text-stone-500">NOAA</p>
+            </Link>
         </div>
     );
 }

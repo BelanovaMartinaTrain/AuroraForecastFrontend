@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import fetchData from "../api/fetchData";
 import ProgressBar from "../ui/ProgressBar";
+import Link from "next/link";
 
 type weatherProps = {
     lat: number;
@@ -92,11 +93,19 @@ export default function WidgetViewWeather(location: weatherProps) {
                     </h3>
                 </div>
             </div>
-            {!!isLoading && <ProgressBar />}
-            {!weather.air_pressure_at_sea_level && !isLoading ? (
-                <p className="text-stone-600">Weather is not available</p>
+
+            {!isLoading ? (
+                !weather.air_pressure_at_sea_level ? (
+                    <p className="text-stone-600">Weather is not available</p>
+                ) : (
+                    <Link href="https://www.yr.no/en" target="_blank">
+                        <p className=" font-medium text-stone-500">
+                            MET Norway
+                        </p>
+                    </Link>
+                )
             ) : (
-                ""
+                <ProgressBar />
             )}
         </>
     );
