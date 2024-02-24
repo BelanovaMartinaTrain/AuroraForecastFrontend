@@ -20,10 +20,10 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <meta
-                property="og:image"
-                content="https://cdn.pixabay.com/photo/2023/10/28/20/40/ai-generated-8348348_960_720.png"
-            />
+            <meta property="og:image" content="<generated>" />
+            <meta property="og:image:type" content="<generated>" />
+            <meta property="og:image:width" content="<generated>" />
+            <meta property="og:image:height" content="<generated>" />
 
             <body className={quicksand.className}>
                 <Providers>
