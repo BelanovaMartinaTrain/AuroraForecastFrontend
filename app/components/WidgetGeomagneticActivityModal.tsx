@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+
 import {
     Modal,
     ModalContent,
@@ -74,8 +74,8 @@ export default function WidgetGeomagneticActivityModal() {
                     <img
                         src="/icons/info-gray.svg"
                         alt="info icon"
-                        width={16}
-                        height={16}
+                        width={18}
+                        height={18}
                     />
                 </span>
             </h2>

@@ -27,6 +27,8 @@ export default function Dashboard() {
                 >
                     <WidgetGeomagneticActivityModal />
                 </BasicWidget>
+
+                <WidgetImage />
                 <BasicWidget className={"grouped-widget"}>
                     <BasicWidget
                         className={
@@ -54,7 +56,6 @@ export default function Dashboard() {
                     </BasicWidget>
                     <Graph />
                 </BasicWidget>
-                <WidgetImage />
             </div>
         </>
     );

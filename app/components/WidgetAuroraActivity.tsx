@@ -3,8 +3,18 @@
 import { useEffect, useState } from "react";
 import fetchData from "../api/fetchData";
 import ProgressBar from "../ui/ProgressBar";
+import {
+    Modal,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    Button,
+    useDisclosure,
+} from "@nextui-org/react";
 
 export default function WidgetAuroraActivity() {
+    const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [kp, setKp] = useState<string>("0");
     const [storm, setStorm] = useState<string>("none");
     const [activity, setActivity] = useState<string>("none");
@@ -67,7 +77,18 @@ export default function WidgetAuroraActivity() {
     return (
         <>
             <h2 className="center margin-xs-btm uppercase font-h2 ">
-                Aurora activity
+                Aurora activity{" "}
+                <span
+                    className="material-symbols-outlined info-icon-kp"
+                    onClick={onOpen}
+                >
+                    <img
+                        src="/icons/info-gray.svg"
+                        alt="info icon"
+                        width={18}
+                        height={18}
+                    />
+                </span>
             </h2>
             {!!isLoading && <ProgressBar />}
             <div
@@ -76,36 +97,59 @@ export default function WidgetAuroraActivity() {
                 }`}
             >
                 <div className="center quickview-item width-100 padding-sm-r">
-                    <p className="relative padding-xs-btm">
-                        Kp index
-                        <span className="material-symbols-outlined info-icon">
-                            <img
-                                src="/icons/info.svg"
-                                alt="info icon"
-                                width={16}
-                                height={16}
-                            />
-                        </span>
-                    </p>
+                    <p className="relative padding-xs-btm">Kp index</p>
                     <h3 className="bigger-font">{kp}</h3>
                 </div>
                 <div className="center quickview-item width-100 padding-sm-r">
                     <p className="relative padding-xs-btm">Activity</p>
                     <h3 className="padding-sm-btm ">{activity}</h3>
-                    <p className="relative padding-xs-btm">
-                        Geomagnetic storm
-                        <span className="material-symbols-outlined info-icon">
-                            <img
-                                src="/icons/info.svg"
-                                alt="info icon"
-                                width={16}
-                                height={16}
-                            />
-                        </span>
-                    </p>
+                    <p className="relative padding-xs-btm">Geomagnetic storm</p>
 
                     <h3 className="padding-xs-btm ">{storm}</h3>
                 </div>
+            </div>
+            <div className="">
+                <Modal
+                    size="2xl"
+                    placement="center"
+                    backdrop="opaque"
+                    isOpen={isOpen}
+                    onOpenChange={onOpenChange}
+                    isDismissable={true}
+                    className=" bg-black bg-opacity-95 rounded-xl text-sm md:text-lg center padding-small "
+                    disableAnimation={true}
+                >
+                    <ModalContent>
+                        {(onClose) => (
+                            <h4>
+                                SOLAR WIND The solar wind continuously flows
+                                outward from the Sun and consists mainly of
+                                protons and electrons in a state known as a
+                                plasma. Solar magnetic field is embedded in the
+                                plasma and flows outward with the solar wind.
+                                Different regions on the Sun produce solar wind
+                                of different speeds and densities. Coronal holes
+                                produce solar wind of high speed, ranging from
+                                500 to 800 kilometers per second. The north and
+                                south poles of the Sun have large, persistent
+                                coronal holes, so high latitudes are filled with
+                                fast solar wind. In the equatorial plane, where
+                                the Earth and the other planets orbit, the most
+                                common state of the solar wind is the slow speed
+                                very high densities and strong magnetic fields
+                                Above the current sheet, the higher speed solar
+                                wind typically has a dominant magnetic polarity
+                                in one direction and below the current sheet,
+                                the polarity is in the opposite direction. As
+                                the Earth moves through this evolving ballerina
+                                skirt, it is sometimes within the heliospheric
+                                current sheet, sometimes above it and sometime
+                                below it. When the magnetic field of the solar
+                                wind switches polarity, it is a strong
+                            </h4>
+                        )}
+                    </ModalContent>
+                </Modal>
             </div>
         </>
     );
