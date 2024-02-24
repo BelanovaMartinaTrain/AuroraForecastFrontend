@@ -93,10 +93,10 @@ export default function WidgetViewWeather(location: weatherProps) {
                 </div>
             </div>
             {!!isLoading && <ProgressBar />}
-            {!!weather.air_pressure_at_sea_level || !!isLoading ? (
-                ""
-            ) : (
+            {!weather.air_pressure_at_sea_level && !isLoading ? (
                 <p className="text-stone-600">Weather is not available</p>
+            ) : (
+                ""
             )}
         </>
     );
