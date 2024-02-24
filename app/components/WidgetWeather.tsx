@@ -25,6 +25,10 @@ export default function WidgetWeather() {
             setIsLoading(false);
         }
         checkPerm();
+        const timeout = setTimeout(() => {
+            setIsLoading(false);
+        }, 500);
+        return () => clearTimeout(timeout);
     }, []);
 
     function getLocation() {
