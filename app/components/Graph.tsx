@@ -112,7 +112,7 @@ export function Graph() {
     }, [labels, yValues]);
 
     return (
-        <div className="widget center padding-small grid-item width-100 backdrop-blur-sm xl:min-h-[300px]">
+        <div className="widget center padding-small grid-item width-100 backdrop-blur-sm min-h-[212px] xl:min-h-[300px]">
             <h2 className="uppercase margin-xs-btm font-h2 relative">
                 KP index forecast
                 <span className="material-symbols-outlined info-icon-kp">

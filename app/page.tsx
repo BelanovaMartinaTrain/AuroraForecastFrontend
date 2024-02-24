@@ -47,7 +47,7 @@ export default function Dashboard() {
                     </BasicWidget>
                     <BasicWidget
                         className={
-                            "widget center padding-small backdrop-blur-sm lg:min-h-[202px]"
+                            "widget center padding-small backdrop-blur-sm min-h-[152px] lg:min-h-[202px]"
                         }
                     >
                         <WidgetWeather />

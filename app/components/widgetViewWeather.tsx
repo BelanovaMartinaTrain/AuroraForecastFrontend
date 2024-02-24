@@ -61,9 +61,7 @@ export default function WidgetViewWeather(location: weatherProps) {
             <div className="quickview-div center">
                 <div
                     className={`center quickview-item width-100 padding-sm-btm ${
-                        !!weather.air_pressure_at_sea_level
-                            ? ""
-                            : "text-neutral-800"
+                        !weather.air_pressure_at_sea_level && "text-neutral-800"
                     }`}
                 >
                     <p className="padding-xs-btm">Temperature</p>
@@ -75,9 +73,7 @@ export default function WidgetViewWeather(location: weatherProps) {
                 </div>
                 <div
                     className={`center quickview-item width-100 margin-xs-btm ${
-                        !!weather.air_pressure_at_sea_level
-                            ? ""
-                            : "text-neutral-800"
+                        !weather.air_pressure_at_sea_level && "text-neutral-800"
                     }`}
                 >
                     <p className="margin-sm-btm">Clouds </p>

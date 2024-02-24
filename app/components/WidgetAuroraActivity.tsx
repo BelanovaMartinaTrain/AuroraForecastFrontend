@@ -5,9 +5,9 @@ import fetchData from "../api/fetchData";
 import ProgressBar from "../ui/ProgressBar";
 
 export default function WidgetAuroraActivity() {
-    const [kp, setKp] = useState<string>();
-    const [storm, setStorm] = useState<string>();
-    const [activity, setActivity] = useState<string>();
+    const [kp, setKp] = useState<string>("0");
+    const [storm, setStorm] = useState<string>("none");
+    const [activity, setActivity] = useState<string>("none");
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -69,43 +69,44 @@ export default function WidgetAuroraActivity() {
             <h2 className="center margin-xs-btm uppercase font-h2 ">
                 Aurora activity
             </h2>
-            {!!isLoading ? (
-                <ProgressBar />
-            ) : (
-                <div className="quickview-div grid-item padding-xs-btm ">
-                    <div className="center quickview-item width-100 padding-sm-r">
-                        <p className="relative padding-xs-btm">
-                            Kp index
-                            <span className="material-symbols-outlined info-icon">
-                                <img
-                                    src="/icons/info.svg"
-                                    alt="info icon"
-                                    width={16}
-                                    height={16}
-                                />
-                            </span>
-                        </p>
-                        <h3 className="bigger-font">{kp}</h3>
-                    </div>
-                    <div className="center quickview-item width-100 padding-sm-r">
-                        <p className="relative padding-xs-btm">Activity</p>
-                        <h3 className="padding-sm-btm">{activity}</h3>
-                        <p className="relative padding-xs-btm">
-                            Geomagnetic storm
-                            <span className="material-symbols-outlined info-icon">
-                                <img
-                                    src="/icons/info.svg"
-                                    alt="info icon"
-                                    width={16}
-                                    height={16}
-                                />
-                            </span>
-                        </p>
-
-                        <h3 className="padding-xs-btm">{storm}</h3>
-                    </div>
+            {!!isLoading && <ProgressBar />}
+            <div
+                className={`quickview-div grid-item padding-xs-btm ${
+                    !!isLoading && "visibility-hidden"
+                }`}
+            >
+                <div className="center quickview-item width-100 padding-sm-r">
+                    <p className="relative padding-xs-btm">
+                        Kp index
+                        <span className="material-symbols-outlined info-icon">
+                            <img
+                                src="/icons/info.svg"
+                                alt="info icon"
+                                width={16}
+                                height={16}
+                            />
+                        </span>
+                    </p>
+                    <h3 className="bigger-font">{kp}</h3>
                 </div>
-            )}
+                <div className="center quickview-item width-100 padding-sm-r">
+                    <p className="relative padding-xs-btm">Activity</p>
+                    <h3 className="padding-sm-btm ">{activity}</h3>
+                    <p className="relative padding-xs-btm">
+                        Geomagnetic storm
+                        <span className="material-symbols-outlined info-icon">
+                            <img
+                                src="/icons/info.svg"
+                                alt="info icon"
+                                width={16}
+                                height={16}
+                            />
+                        </span>
+                    </p>
+
+                    <h3 className="padding-xs-btm ">{storm}</h3>
+                </div>
+            </div>
         </>
     );
 }

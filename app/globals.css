@@ -292,6 +292,10 @@ canvas {
   max-height: var(--widget-max-height);
 }
 
+.visibility-hidden {
+  visibility: hidden;
+}
+
 /* MEDIA QUERIES */
 
 @media (min-width: 768px) {
