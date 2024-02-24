@@ -11,6 +11,8 @@ export const metadata: Metadata = {
     description:
         "Web-app to get accurate and easy to read aurora forecast data",
     icons: "/favicons/favicon.ico",
+
+    metadataBase: new URL("https://opengraph.b-cdn.net/production/documents"),
 };
 
 export default function RootLayout({
