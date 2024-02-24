@@ -65,7 +65,7 @@ export default function WidgetGeomagneticActivityModal() {
 
     return (
         <>
-            <h2 className="margin-xs-btm uppercase font-h2 ">
+            <h2 className="mb-2 uppercase font-h2 ">
                 Solar Wind{" "}
                 <span
                     className="material-symbols-outlined info-icon-kp"
@@ -92,12 +92,12 @@ export default function WidgetGeomagneticActivityModal() {
 
                     <p className="relative">Flux</p>
 
-                    <h3>{flux} sfu</h3>
+                    <h3 className="pb-2">{flux} sfu</h3>
                 </div>
-                <div className="center quickview-item width-100">
-                    <p className="relative margin-sm-btm">Magnetic field</p>
+                <div className=" center quickview-item width-100">
+                    <p className="relative ">Magnetic field</p>
                     <h3>Bt: {magField.Bt} nT</h3>
-                    <h3>Bz: {magField.Bz} nT</h3>
+                    <h3 className="pb-2">Bz: {magField.Bz} nT</h3>
                 </div>
             </div>
 

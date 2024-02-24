@@ -15,14 +15,14 @@ export default function Dashboard() {
             <div className="grid">
                 <BasicWidget
                     className={
-                        "widget center padding-small height-max-widget backdrop-blur-sm lg:min-h-40"
+                        "widget center padding-small height-max-widget backdrop-blur-sm lg:min-h-40 "
                     }
                 >
                     <WidgetAuroraActivity />
                 </BasicWidget>
                 <BasicWidget
                     className={
-                        "widget center padding-small height-max-widget backdrop-blur-sm lg:min-h-40"
+                        "widget center padding-small height-max-widget backdrop-blur-sm lg:min-h-40 "
                     }
                 >
                     <WidgetGeomagneticActivityModal />

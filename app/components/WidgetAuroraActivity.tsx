@@ -76,7 +76,7 @@ export default function WidgetAuroraActivity() {
 
     return (
         <>
-            <h2 className="center margin-xs-btm uppercase font-h2 ">
+            <h2 className="center mb-2 uppercase font-h2 ">
                 Aurora activity{" "}
                 <span
                     className="material-symbols-outlined info-icon-kp"
@@ -98,14 +98,14 @@ export default function WidgetAuroraActivity() {
             >
                 <div className="center quickview-item width-100 padding-sm-r">
                     <p className="relative padding-xs-btm">Kp index</p>
-                    <h3 className="bigger-font">{kp}</h3>
+                    <h3 className="bigger-font pb-2">{kp}</h3>
                 </div>
                 <div className="center quickview-item width-100 padding-sm-r">
                     <p className="relative padding-xs-btm">Activity</p>
                     <h3 className="padding-sm-btm ">{activity}</h3>
                     <p className="relative padding-xs-btm">Geomagnetic storm</p>
 
-                    <h3 className="padding-xs-btm ">{storm}</h3>
+                    <h3 className="padding-xs-btm pb-2">{storm}</h3>
                 </div>
             </div>
             <div className="">
