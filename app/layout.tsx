@@ -12,7 +12,7 @@ export const metadata: Metadata = {
         "Web-app to get accurate and easy to read aurora forecast data",
     icons: "/favicons/favicon.ico",
 
-    metadataBase: new URL("https://opengraph.b-cdn.net/production/documents"),
+    metadataBase: new URL("https://cdn.pixabay.com/"),
 };
 
 export default function RootLayout({
@@ -34,7 +34,7 @@ export default function RootLayout({
             />
             <meta
                 property="og:image"
-                content="https://opengraph.b-cdn.net/production/documents/a7a40c4a-83bd-4cb5-a18d-3913af33a64c.jpg?token=A-yvlxWcRMD7HWkI79fjuIt6B7s2-6NvKKLo70nCU7A&height=1500&width=1200&expires=33244787708"
+                content="https://cdn.pixabay.com/photo/2023/11/01/18/32/mountains-8358708_1280.jpg"
             />
 
             <meta name="twitter:card" content="summary_large_image" />
@@ -53,7 +53,7 @@ export default function RootLayout({
             />
             <meta
                 name="twitter:image"
-                content="https://opengraph.b-cdn.net/production/documents/a7a40c4a-83bd-4cb5-a18d-3913af33a64c.jpg?token=A-yvlxWcRMD7HWkI79fjuIt6B7s2-6NvKKLo70nCU7A&height=1500&width=1200&expires=33244787708"
+                content="https://cdn.pixabay.com/photo/2023/11/01/18/32/mountains-8358708_1280.jpg"
             />
 
             <body className={quicksand.className}>
