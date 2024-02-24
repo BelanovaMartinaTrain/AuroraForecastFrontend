@@ -45,6 +45,7 @@ export default function WidgetWeather() {
             }
         );
         setIsLocation(true);
+        setIsLoading(false);
     }
 
     return (
