@@ -42,11 +42,18 @@ export default function WidgetGeomagneticActivityModal() {
                 );
                 if (!!windData.cause || !!fluxData.cause || magData.cause) {
                     throw new Error("Source is unreachable");
+                } else {
+                    //console.log(
+                    //     windData.WindSpeed,
+                    //     fluxData.Flux,
+                    //     magData.Bt,
+                    //     magData.Bz
+                    // );
+                    setWind(windData.WindSpeed);
+                    setFlux(fluxData.Flux);
+                    setMagField({ Bt: magData.Bt, Bz: magData.Bz });
                 }
 
-                setWind(windData.WindSpeed);
-                setFlux(fluxData.Flux);
-                setMagField({ Bt: magData.Bt, Bz: magData.Bz });
                 // if (weatherData.cause) {
                 //     console.error("error", weatherData.cause);
                 // } else {
@@ -95,7 +102,7 @@ export default function WidgetGeomagneticActivityModal() {
                 >
                     <div className="center grid-item quickview-item width-100 ">
                         <p className="relative mt-2">Speed</p>
-                        <h3 className="padding-sm-btm">{wind} km/sec</h3>
+                        <h3 className="pb-2">{wind} km/sec</h3>
 
                         <p className="relative">Flux</p>
 
@@ -113,7 +120,7 @@ export default function WidgetGeomagneticActivityModal() {
                         className={`${!!isLoading && "visibility-hidden"}`}
                         target="_blank"
                     >
-                        <p className="mt-4 font-medium text-stone-500">NOAA</p>
+                        <p className="mt-2 font-medium text-stone-500">NOAA</p>
                     </Link>
                 ) : (
                     <p className="text-rose-800">{error}</p>

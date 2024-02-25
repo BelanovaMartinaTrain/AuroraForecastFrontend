@@ -39,7 +39,7 @@ export default function WidgetAuroraActivity() {
                     throw new Error("Source is unreachable");
                 }
                 setKp(kpData);
-                if (stormData[1].G.Text === "none") {
+                if (stormData[0].G.Text === "none") {
                     setStorm(stormData[0].G.Text);
                 } else {
                     setStorm(`G${stormData[0].G.Scale}`);
@@ -119,7 +119,7 @@ export default function WidgetAuroraActivity() {
                     className={`${!!isLoading && "visibility-hidden"}`}
                     target="_blank"
                 >
-                    <p className="mt-4 font-medium text-stone-500">NOAA</p>
+                    <p className="mt-2 font-medium text-stone-500">NOAA</p>
                 </Link>
             ) : (
                 <p className="text-rose-800">{error}</p>
@@ -132,37 +132,24 @@ export default function WidgetAuroraActivity() {
                     isOpen={isOpen}
                     onOpenChange={onOpenChange}
                     isDismissable={true}
-                    className=" bg-black bg-opacity-95 rounded-xl text-sm md:text-lg center padding-small "
+                    className=" bg-black bg-opacity-95 rounded-xl "
                     disableAnimation={true}
                 >
-                    <ModalContent>
+                    <ModalContent className="text-sm md:text-lg  p-4">
                         {(onClose) => (
-                            <h4>
-                                SOLAR WIND The solar wind continuously flows
-                                outward from the Sun and consists mainly of
-                                protons and electrons in a state known as a
-                                plasma. Solar magnetic field is embedded in the
-                                plasma and flows outward with the solar wind.
-                                Different regions on the Sun produce solar wind
-                                of different speeds and densities. Coronal holes
-                                produce solar wind of high speed, ranging from
-                                500 to 800 kilometers per second. The north and
-                                south poles of the Sun have large, persistent
-                                coronal holes, so high latitudes are filled with
-                                fast solar wind. In the equatorial plane, where
-                                the Earth and the other planets orbit, the most
-                                common state of the solar wind is the slow speed
-                                very high densities and strong magnetic fields
-                                Above the current sheet, the higher speed solar
-                                wind typically has a dominant magnetic polarity
-                                in one direction and below the current sheet,
-                                the polarity is in the opposite direction. As
-                                the Earth moves through this evolving ballerina
-                                skirt, it is sometimes within the heliospheric
-                                current sheet, sometimes above it and sometime
-                                below it. When the magnetic field of the solar
-                                wind switches polarity, it is a strong
-                            </h4>
+                            <>
+                                <ModalHeader className="center">
+                                    KP index
+                                </ModalHeader>
+                                <ModalBody className="pb-8">
+                                    The Kp number is used to measure aurora
+                                    strength. <br />
+                                    The range goes from 0 to 9 (0 being calm and
+                                    9 representing a major geomagnetic storm
+                                    with strong auroras visible). Any Kp 5 and
+                                    above is classified as a geomagnetic storm.
+                                </ModalBody>
+                            </>
                         )}
                     </ModalContent>
                 </Modal>
