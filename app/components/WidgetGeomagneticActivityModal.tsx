@@ -110,8 +110,8 @@ export default function WidgetGeomagneticActivityModal() {
                         <ModalContent className="text-sm md:text-base  p-2">
                             {(onClose) => (
                                 <>
-                                    <p className="center ">Solar Wind</p>
                                     <ModalBody>
+                                        <p className="center ">Solar Wind</p>
                                         Solar wind is a stream of charged particles that come from the corona, the outermost layer of the sun's
                                         atmosphere and produce the aurora.
                                         <p>Values 500km/sec and above are the most favorable for strong aurora</p>
