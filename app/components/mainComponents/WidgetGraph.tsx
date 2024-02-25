@@ -1,27 +1,13 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Tooltip,
-    ChartData,
-    BarController,
-} from "chart.js";
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip, ChartData, BarController } from "chart.js";
 import { Chart } from "react-chartjs-2";
-import ProgressBar from "../ui/ProgressBar";
-import fetchAndChangeGraphData from "../api/changeData";
+import ProgressBar from "../../ui/ProgressBar";
+import fetchAndChangeGraphData from "../../api/changeData";
 import Link from "next/link";
 
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Tooltip,
-    BarController
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, BarController);
 
 export const options = {
     indexAxis: "y" as const,
@@ -83,9 +69,7 @@ export function Graph() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const graphValues = await fetchAndChangeGraphData(
-                    "http://165.227.128.185:8080/api/planetary-k-3h"
-                );
+                const graphValues = await fetchAndChangeGraphData("http://165.227.128.185:8080/api/planetary-k-3h");
                 if (!graphValues.labels) {
                     throw new Error("Source is unreachable");
                 } else {
@@ -128,24 +112,9 @@ export function Graph() {
 
     return (
         <div className="widget center padding-small grid-item width-100 backdrop-blur-sm min-h-[212px] xl:min-h-[300px]">
-            <h2 className="uppercase margin-xs-btm font-h2 relative">
-                KP index forecast
-            </h2>
-            {!!isLoading ? (
-                <ProgressBar />
-            ) : (
-                <Chart
-                    ref={chartRef}
-                    type="bar"
-                    data={chartData}
-                    options={options}
-                />
-            )}
-            <Link
-                href="https://www.swpc.noaa.gov/"
-                className={`${!!isLoading && "visibility-hidden"}`}
-                target="_blank"
-            >
+            <h2 className="uppercase margin-xs-btm font-h2 relative">KP index forecast</h2>
+            {!!isLoading ? <ProgressBar /> : <Chart ref={chartRef} type="bar" data={chartData} options={options} />}
+            <Link href="https://www.swpc.noaa.gov/" className={`${!!isLoading && "visibility-hidden"}`} target="_blank">
                 <p className="mt-2 font-medium text-stone-500">NOAA</p>
             </Link>
         </div>

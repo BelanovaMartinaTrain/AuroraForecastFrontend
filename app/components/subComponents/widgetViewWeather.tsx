@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import fetchData from "../api/fetchData";
-import ProgressBar from "../ui/ProgressBar";
+import fetchData from "../../api/fetchData";
+import ProgressBar from "../../ui/ProgressBar";
 import Link from "next/link";
 
 type weatherProps = {
@@ -34,16 +34,11 @@ export default function WidgetViewWeather(location: weatherProps) {
             setIsLoading(true);
             if (!!lat || !!lon) {
                 try {
-                    const weatherData = await fetchData(
-                        `http://165.227.128.185:8080/api/yr-met-weather/${lat}/${lon}`
-                    );
+                    const weatherData = await fetchData(`http://165.227.128.185:8080/api/yr-met-weather/${lat}/${lon}`);
                     if (weatherData.cause) {
                         console.error("error", weatherData.cause);
                     } else {
-                        setWeather(
-                            weatherData.properties.timeseries[0].data.instant
-                                .details
-                        );
+                        setWeather(weatherData.properties.timeseries[0].data.instant.details);
                     }
                 } catch {}
             }
@@ -60,37 +55,18 @@ export default function WidgetViewWeather(location: weatherProps) {
     return (
         <>
             <div className="quickview-div center">
-                <div
-                    className={`center quickview-item width-100 padding-sm-btm ${
-                        !weather.air_pressure_at_sea_level && "text-neutral-800"
-                    }`}
-                >
+                <div className={`center quickview-item width-100 padding-sm-btm ${!weather.air_pressure_at_sea_level && "text-neutral-800"}`}>
                     <p className="padding-xs-btm">Temperature</p>
-                    <h3 className="padding-sm-btm">
-                        {Math.round(weather.air_temperature)} &#176;C
-                    </h3>
+                    <h3 className="padding-sm-btm">{Math.round(weather.air_temperature)} &#176;C</h3>
                     <p className="padding-xs-btm">Wind</p>
                     <h3>{Math.round(weather.wind_speed)} m/s </h3>
                 </div>
-                <div
-                    className={`center quickview-item width-100 margin-xs-btm ${
-                        !weather.air_pressure_at_sea_level && "text-neutral-800"
-                    }`}
-                >
+                <div className={`center quickview-item width-100 margin-xs-btm ${!weather.air_pressure_at_sea_level && "text-neutral-800"}`}>
                     <p className="margin-sm-btm">Clouds </p>
-                    <h3 className="font-smaller">
-                        Low: {Math.round(weather.cloud_area_fraction_low)} %
-                    </h3>
-                    <h3 className="font-smaller">
-                        Middle: {Math.round(weather.cloud_area_fraction_medium)}{" "}
-                        %
-                    </h3>
-                    <h3 className="font-smaller">
-                        High: {Math.round(weather.cloud_area_fraction_high)} %
-                    </h3>
-                    <h3 className="font-smaller">
-                        Fog: {Math.round(weather.fog_area_fraction)} %
-                    </h3>
+                    <h3 className="font-smaller">Low: {Math.round(weather.cloud_area_fraction_low)} %</h3>
+                    <h3 className="font-smaller">Middle: {Math.round(weather.cloud_area_fraction_medium)} %</h3>
+                    <h3 className="font-smaller">High: {Math.round(weather.cloud_area_fraction_high)} %</h3>
+                    <h3 className="font-smaller">Fog: {Math.round(weather.fog_area_fraction)} %</h3>
                 </div>
             </div>
 
@@ -99,9 +75,7 @@ export default function WidgetViewWeather(location: weatherProps) {
                     <p className="text-stone-600">Weather is not available</p>
                 ) : (
                     <Link href="https://www.yr.no/en" target="_blank">
-                        <p className=" font-medium text-stone-500">
-                            MET Norway
-                        </p>
+                        <p className=" font-medium text-stone-500">MET Norway</p>
                     </Link>
                 )
             ) : (

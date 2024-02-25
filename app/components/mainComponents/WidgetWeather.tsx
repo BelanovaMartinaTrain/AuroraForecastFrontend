@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import WidgetViewWeather from "./widgetViewWeather";
-import ProgressBar from "../ui/ProgressBar";
+import WidgetViewWeather from "../subComponents/widgetViewWeather";
+import ProgressBar from "../../ui/ProgressBar";
 
 export default function WidgetWeather() {
     const [location, setLocation] = useState({
@@ -14,14 +14,12 @@ export default function WidgetWeather() {
 
     useEffect(() => {
         async function checkPerm() {
-            navigator.permissions
-                .query({ name: "geolocation" })
-                .then((result) => {
-                    if (result.state === "granted") {
-                        setIsLocation(true);
-                        getLocation();
-                    }
-                });
+            navigator.permissions.query({ name: "geolocation" }).then((result) => {
+                if (result.state === "granted") {
+                    setIsLocation(true);
+                    getLocation();
+                }
+            });
             setIsLoading(false);
         }
         checkPerm();
@@ -60,10 +58,7 @@ export default function WidgetWeather() {
             ) : isLocation ? (
                 <WidgetViewWeather {...location} />
             ) : (
-                <button
-                    className="widget center padding-small focus:bg-black hover:bg-black"
-                    onClick={getLocation}
-                >
+                <button className="widget center padding-small focus:bg-black hover:bg-black" onClick={getLocation}>
                     Enable location
                 </button>
             )}

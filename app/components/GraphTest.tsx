@@ -1,5 +1,5 @@
 import Image from "next/image";
-import BarGraph, { barGraphProps } from "./BarGraph";
+import BarGraph, { barGraphProps } from "./subComponents/BarGraph";
 
 async function fetchAndChange() {
     const res = await fetch("http:localhost:5176/api/planetary-k-3h", { next: { revalidate: 30 } });

@@ -1,11 +1,10 @@
-import Clock from "./components/Clock";
-import { Graph } from "./components/Graph";
-import BasicWidget from "./components/BasicWidget";
-import WidgetAuroraActivity from "./components/WidgetAuroraActivity";
-import WidgetGeomagneticActivity from "./components/WidgetGeomagneticActivity";
-import WidgetWeather from "./components/WidgetWeather";
-import WidgetImage from "./components/WidgetImage";
-import WidgetGeomagneticActivityModal from "./components/WidgetGeomagneticActivityModal";
+import Clock from "./components/subComponents/Clock";
+import { Graph } from "./components/mainComponents/WidgetGraph";
+import BasicWidget from "./components/layoutComponents/BasicWidget";
+import WidgetAuroraActivity from "./components/mainComponents/WidgetAuroraActivity";
+import WidgetSolarWind from "./components/mainComponents/WidgetSolarWind";
+import WidgetWeather from "./components/mainComponents/WidgetWeather";
+import WidgetImage from "./components/mainComponents/WidgetImage";
 
 export default function Dashboard() {
     const now = new Date();
@@ -13,45 +12,20 @@ export default function Dashboard() {
     return (
         <>
             <div className="grid">
-                <BasicWidget
-                    className={
-                        "widget center padding-small height-max-widget backdrop-blur-sm lg:min-h-40 "
-                    }
-                >
+                <BasicWidget className={"widget center padding-small  backdrop-blur-sm lg:min-h-40 "}>
                     <WidgetAuroraActivity />
                 </BasicWidget>
-                <BasicWidget
-                    className={
-                        "widget center padding-small height-max-widget backdrop-blur-sm lg:min-h-40 "
-                    }
-                >
-                    <WidgetGeomagneticActivityModal />
+                <BasicWidget className={"widget center padding-small  backdrop-blur-sm lg:min-h-40 "}>
+                    <WidgetSolarWind />
                 </BasicWidget>
 
                 <WidgetImage />
                 <BasicWidget className={"grouped-widget"}>
-                    <BasicWidget
-                        className={
-                            "widget  time-main center backdrop-blur-sm max-h-10"
-                        }
-                    >
-                        <Clock
-                            className="font-smaller"
-                            time={now.getTime()}
-                            tmzAbrr={tmzAbrr}
-                        />
-                        <Clock
-                            className="font-smaller"
-                            time={now.getTime()}
-                            timezone="UTC"
-                            tmzAbrr={tmzAbrr}
-                        />
+                    <BasicWidget className={"widget  time-main center backdrop-blur-sm max-h-10"}>
+                        <Clock className="font-smaller" time={now.getTime()} tmzAbrr={tmzAbrr} />
+                        <Clock className="font-smaller" time={now.getTime()} timezone="UTC" tmzAbrr={tmzAbrr} />
                     </BasicWidget>
-                    <BasicWidget
-                        className={
-                            "widget center padding-small backdrop-blur-sm min-h-[152px] lg:min-h-[202px]"
-                        }
-                    >
+                    <BasicWidget className={"widget center padding-small backdrop-blur-sm min-h-[152px] lg:min-h-[202px]"}>
                         <WidgetWeather />
                     </BasicWidget>
                     <Graph />

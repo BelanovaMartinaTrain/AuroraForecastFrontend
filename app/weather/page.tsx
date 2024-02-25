@@ -1,6 +1,6 @@
 import Link from "next/link";
-import WidgetWeather from "../components/WidgetWeather";
-import BasicWidget from "../components/BasicWidget";
+import WidgetWeather from "../components/mainComponents/WidgetWeather";
+import BasicWidget from "../components/layoutComponents/BasicWidget";
 
 export default function Home() {
     return (

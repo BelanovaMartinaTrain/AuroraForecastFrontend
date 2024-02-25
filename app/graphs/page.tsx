@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Graph } from "../components/Graph";
+import { Graph } from "../components/mainComponents/WidgetGraph";
 
 export default function Home() {
     return (

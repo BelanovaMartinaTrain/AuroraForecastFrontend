@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Clock from "./Clock";
+import Clock from "../subComponents/Clock";
 
 export default function Menu() {
     const now = new Date();
