@@ -98,7 +98,7 @@ export default function WidgetAuroraActivity() {
             )}
             <div className="">
                 <Modal
-                    size="2xl"
+                    size="sm"
                     placement="center"
                     backdrop="opaque"
                     isOpen={isOpen}
@@ -106,8 +106,9 @@ export default function WidgetAuroraActivity() {
                     isDismissable={true}
                     className=" bg-black bg-opacity-95 rounded-xl "
                     disableAnimation={true}
+                    scrollBehavior="inside"
                 >
-                    <ModalContent className="text-sm md:text-base  p-4">
+                    <ModalContent className="text-sm md:text-base  p-2">
                         {(onClose) => (
                             <>
                                 <p className="center mt-5">KP index</p>

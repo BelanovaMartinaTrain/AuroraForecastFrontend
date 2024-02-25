@@ -97,7 +97,7 @@ export default function WidgetGeomagneticActivityModal() {
                 )}
                 <div className="">
                     <Modal
-                        size="2xl"
+                        size="md"
                         placement="center"
                         backdrop="opaque"
                         isOpen={isOpen}
@@ -105,8 +105,9 @@ export default function WidgetGeomagneticActivityModal() {
                         isDismissable={true}
                         className=" bg-black bg-opacity-95 rounded-xl  "
                         disableAnimation={true}
+                        scrollBehavior="inside"
                     >
-                        <ModalContent className="text-sm md:text-base  p-8">
+                        <ModalContent className="text-sm md:text-base  p-2">
                             {(onClose) => (
                                 <>
                                     <p className="center ">Solar Wind</p>
