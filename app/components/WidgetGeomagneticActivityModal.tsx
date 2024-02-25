@@ -1,14 +1,6 @@
 "use client";
 
-import {
-    Modal,
-    ModalContent,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
-    Button,
-    useDisclosure,
-} from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import fetchData from "../api/fetchData";
 import ProgressBar from "../ui/ProgressBar";
@@ -31,15 +23,9 @@ export default function WidgetGeomagneticActivityModal() {
             setIsLoading(true);
             setError("");
             try {
-                const windData = await fetchData(
-                    "http://165.227.128.185:8080/api/solar-wind"
-                );
-                const fluxData = await fetchData(
-                    "http://165.227.128.185:8080/api/flux"
-                );
-                const magData = await fetchData(
-                    "http://165.227.128.185:8080/api/magnetic-field"
-                );
+                const windData = await fetchData("http://165.227.128.185:8080/api/solar-wind");
+                const fluxData = await fetchData("http://165.227.128.185:8080/api/flux");
+                const magData = await fetchData("http://165.227.128.185:8080/api/magnetic-field");
                 if (!!windData.cause || !!fluxData.cause || magData.cause) {
                     throw new Error("Source is unreachable");
                 } else {
@@ -81,25 +67,13 @@ export default function WidgetGeomagneticActivityModal() {
             <>
                 <h2 className="mb-2 uppercase font-h2 ">
                     Solar Wind{" "}
-                    <span
-                        className="material-symbols-outlined info-icon-kp"
-                        onClick={onOpen}
-                    >
-                        <img
-                            src="/icons/info-gray.svg"
-                            alt="info icon"
-                            width={18}
-                            height={18}
-                        />
+                    <span className="material-symbols-outlined info-icon-kp" onClick={onOpen}>
+                        <img src="/icons/info-gray.svg" alt="info icon" width={18} height={18} />
                     </span>
                 </h2>
                 {!!isLoading && <ProgressBar />}
 
-                <div
-                    className={`quickview-div ${
-                        !!isLoading && "visibility-hidden"
-                    }`}
-                >
+                <div className={`quickview-div ${!!isLoading && "visibility-hidden"}`}>
                     <div className="center grid-item quickview-item width-100 ">
                         <p className="relative mt-2">Speed</p>
                         <h3 className="pb-2">{wind} km/sec</h3>
@@ -115,11 +89,7 @@ export default function WidgetGeomagneticActivityModal() {
                     </div>
                 </div>
                 {!error ? (
-                    <Link
-                        href="https://www.swpc.noaa.gov/"
-                        className={`${!!isLoading && "visibility-hidden"}`}
-                        target="_blank"
-                    >
+                    <Link href="https://www.swpc.noaa.gov/" className={`${!!isLoading && "visibility-hidden"}`} target="_blank">
                         <p className="mt-2 font-medium text-stone-500">NOAA</p>
                     </Link>
                 ) : (
@@ -133,40 +103,31 @@ export default function WidgetGeomagneticActivityModal() {
                         isOpen={isOpen}
                         onOpenChange={onOpenChange}
                         isDismissable={true}
-                        className=" bg-black bg-opacity-95 rounded-xl text-sm md:text-lg center padding-small "
+                        className=" bg-black bg-opacity-95 rounded-xl  "
                         disableAnimation={true}
                     >
-                        <ModalContent>
+                        <ModalContent className="text-sm md:text-base  p-8">
                             {(onClose) => (
-                                <h4>
-                                    SOLAR WIND The solar wind continuously flows
-                                    outward from the Sun and consists mainly of
-                                    protons and electrons in a state known as a
-                                    plasma. Solar magnetic field is embedded in
-                                    the plasma and flows outward with the solar
-                                    wind. Different regions on the Sun produce
-                                    solar wind of different speeds and
-                                    densities. Coronal holes produce solar wind
-                                    of high speed, ranging from 500 to 800
-                                    kilometers per second. The north and south
-                                    poles of the Sun have large, persistent
-                                    coronal holes, so high latitudes are filled
-                                    with fast solar wind. In the equatorial
-                                    plane, where the Earth and the other planets
-                                    orbit, the most common state of the solar
-                                    wind is the slow speed very high densities
-                                    and strong magnetic fields Above the current
-                                    sheet, the higher speed solar wind typically
-                                    has a dominant magnetic polarity in one
-                                    direction and below the current sheet, the
-                                    polarity is in the opposite direction. As
-                                    the Earth moves through this evolving
-                                    ballerina skirt, it is sometimes within the
-                                    heliospheric current sheet, sometimes above
-                                    it and sometime below it. When the magnetic
-                                    field of the solar wind switches polarity,
-                                    it is a strong
-                                </h4>
+                                <>
+                                    <p className="center ">Solar Wind</p>
+                                    <ModalBody>
+                                        Solar wind is a stream of charged particles that come from the corona, the outermost layer of the sun's
+                                        atmosphere and produce the aurora.
+                                        <p>Values 500km/sec and above are the most favorable for strong aurora</p>
+                                        <p className="center mt-10">Interplanetary Magnetic Field (IMF)</p>
+                                        <p className="center mt-2">Bt</p>
+                                        The Bt value of the interplanetary magnetic field indicates the total strength of the interplanetary magnetic
+                                        field. The higher this value, the better it is for enhanced geomagnetic conditions. We speak of a moderately
+                                        strong total interplanetary magnetic field when the Bt exceeds 10nT. Strong values start at 20nT and we speak
+                                        of a very strong total interplanetary magnetic field when values exceed 30nT.
+                                        <p>Values 10nT and above are the most favorable for strong aurora</p>
+                                        <p className="center mt-2">Bz</p>
+                                        The north-south direction of the interplanetary magnetic field (Bz) is the most important ingredient for
+                                        auroral activity. Continues values of -10nT and lower are good indicators that a geomagnetic storm could
+                                        develop but the lower this value goes the better it is for auroral activity.
+                                        <p>Values lower than 0 are the most favorable for strong aurora. The lower the better.</p>
+                                    </ModalBody>
+                                </>
                             )}
                         </ModalContent>
                     </Modal>

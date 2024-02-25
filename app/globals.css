@@ -120,6 +120,18 @@ footer {
   display: none;
 }
 
+table {
+  padding: 4px;
+}
+
+
+
+td, tr, th  {
+  padding: 2px 8px;
+  border: solid rgb(64, 64, 64) 1px;
+  
+}
+
 canvas {
   max-width: 100%;
 }
