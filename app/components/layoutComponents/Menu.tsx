@@ -20,8 +20,6 @@ export default function Menu() {
         event.stopPropagation();
     };
 
-    console.log("ISOPEN", isOpen);
-
     function handleDismiss(event: MouseEvent) {
         if (refMenu.current && !event.composedPath().includes(refMenu.current)) {
             setIsOpen(false);
@@ -42,8 +40,6 @@ export default function Menu() {
             document.body.addEventListener("keydown", handleEscapeDismiss);
         };
     }, []);
-
-    console.log("rerender");
 
     return (
         <>
@@ -68,7 +64,7 @@ export default function Menu() {
                 <div className="time center">
                     <div className="time-nav widget heigth-100">
                         <Clock className="font-smaller" time={now.getTime()} tmzAbrr={tmzAbrr} />
-                        <Clock className="font-smaller text-stone-900" time={now.getTime()} timezone="UTC" tmzAbrr={tmzAbrr} />
+                        <Clock className="font-smaller" time={now.getTime()} timezone="UTC" tmzAbrr={tmzAbrr} />
                     </div>
                 </div>
             </menu>
