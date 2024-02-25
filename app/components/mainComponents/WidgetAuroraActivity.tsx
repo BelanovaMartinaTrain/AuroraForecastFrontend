@@ -31,7 +31,7 @@ export default function WidgetAuroraActivity() {
                         {(onClose) => (
                             <>
                                 <ModalBody className="my-5 ">
-                                    <p className="center text-sm ">KP index</p>
+                                    <p className="center text-base underline underline-offset-4 ">KP index</p>
                                     The Kp number is used to measure aurora strength. The range goes from 0 to 9 (0 being calm and 9 representing a
                                     major geomagnetic storm with strong auroras visible). <br />
                                     Any Kp 5 and above is classified as a geomagnetic storm. Near the aurora ovation you can see aurora even with Kp
@@ -40,7 +40,7 @@ export default function WidgetAuroraActivity() {
                                     <div className="text-sm  " role="KP Index">
                                         <table>
                                             <caption className="p-4">
-                                                <p className="text-sm">Geomagnetic Storms</p>
+                                                <p className="text-base underline underline-offset-4">Geomagnetic Storms</p>
                                             </caption>
                                             <thead>
                                                 <tr>

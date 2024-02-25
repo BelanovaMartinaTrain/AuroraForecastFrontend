@@ -12,7 +12,7 @@ export default function Header() {
             </h1>
 
             <Menu />
-            <Navigation />
+            <Navigation cssClass="nav-horizontal widget" />
         </header>
     );
 }

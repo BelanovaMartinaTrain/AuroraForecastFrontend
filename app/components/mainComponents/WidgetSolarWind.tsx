@@ -31,11 +31,11 @@ export default function WidgetSolarWind() {
                         {(onClose) => (
                             <>
                                 <ModalBody className="mb-5">
-                                    <p className="center mt-5 text-base">Solar Wind</p>
+                                    <p className="center mt-5 text-base underline underline-offset-4">Solar Wind</p>
                                     Solar wind is a stream of charged particles that come from the corona, the outermost layer of the sun's atmosphere
                                     and produce the aurora.
                                     <p className="font-normal text-xs">Values 500km/sec and above are the most favorable for strong aurora</p>
-                                    <p className="center mt-10 text-base">Interplanetary Magnetic Field (IMF)</p>
+                                    <p className="center mt-10 text-base underline underline-offset-4">Interplanetary Magnetic Field (IMF)</p>
                                     <p className="center mt-2 text-sm">Bt</p>
                                     The Bt value of the interplanetary magnetic field indicates the total strength of the interplanetary magnetic
                                     field. The higher this value, the better it is for enhanced geomagnetic conditions. We speak of a moderately
@@ -49,7 +49,7 @@ export default function WidgetSolarWind() {
                                     <p className="font-normal text-xs">
                                         Values lower than 0 are the most favorable for strong aurora. The lower the better.
                                     </p>
-                                    <p className="center mt-8 text-base">Solar wind density</p>
+                                    <p className="center mt-8 text-base underline underline-offset-4">Solar wind density</p>
                                     Density of particles in the solar wind reaching the atmoshere. Their interactions with particles in the atmosphere
                                     create the aurora.
                                     <p className="font-normal text-xs mb-5">Values above 10. The higher the better</p>

@@ -52,11 +52,6 @@ function createGradient(ctx: CanvasRenderingContext2D) {
     return gradient;
 }
 
-type graphValType = {
-    labels: string[];
-    yValues: number[];
-};
-
 export function Graph() {
     const chartRef = useRef<ChartJS>(null);
     const [chartData, setChartData] = useState<ChartData<"bar">>({

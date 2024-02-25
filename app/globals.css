@@ -53,7 +53,7 @@ html, body {
   padding: 0.4rem; 
 }
 
-nav {
+.nav-horizontal {
   display: none;
   cursor: pointer;
 }
@@ -63,6 +63,7 @@ menu {
   justify-content: space-between;
   margin: 0;
   padding: 0.5rem 0;    
+  border-radius: 8px;
 }
 
 h1 {
@@ -320,7 +321,7 @@ canvas {
       --grid-gap: 0.5rem;
   }
   
-  nav {
+  .nav-horizontal {
       max-width: 768px;
       display: flex;
       justify-content: space-around;
@@ -332,6 +333,11 @@ canvas {
   
   menu {
       display: none;
+      
+  }
+
+  .menu {
+    display: none;
   }
   
   main {
@@ -359,7 +365,7 @@ canvas {
 
 @media (min-width: 1280px) {
   
-  nav {
+  .nav-horizontal {
       max-width: 769px;
   }
   main {
