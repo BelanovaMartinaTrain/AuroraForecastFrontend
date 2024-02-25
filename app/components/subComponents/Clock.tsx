@@ -24,7 +24,7 @@ export default function Clock(props: Props) {
     }, []);
 
     return !!props.timezone ? (
-        <h2 suppressHydrationWarning className={`${!!isLoading && "visibility-hidden"}`}>
+        <h2 suppressHydrationWarning className={`${props.className}${!!isLoading && "visibility-hidden"}`}>
             {time.toLocaleTimeString([], {
                 timeZone: `${props.timezone}`,
                 hourCycle: "h23",

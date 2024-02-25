@@ -67,8 +67,8 @@ export default function Menu() {
                 </div>
                 <div className="time center">
                     <div className="time-nav widget heigth-100">
-                        <Clock className="font-smaller" time={now.getTime()} tmzAbrr={tmzAbrr} />
-                        <Clock className="font-smaller" time={now.getTime()} timezone="UTC" tmzAbrr={tmzAbrr} />
+                        <Clock className="text-[8px] text-stone-900" time={now.getTime()} tmzAbrr={tmzAbrr} />
+                        <Clock className="text-[8px] text-stone-900" time={now.getTime()} timezone="UTC" tmzAbrr={tmzAbrr} />
                     </div>
                 </div>
             </menu>
