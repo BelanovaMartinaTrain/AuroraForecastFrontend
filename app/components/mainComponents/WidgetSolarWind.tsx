@@ -34,23 +34,25 @@ export default function WidgetSolarWind() {
                                     <p className="center mt-5 text-base">Solar Wind</p>
                                     Solar wind is a stream of charged particles that come from the corona, the outermost layer of the sun's atmosphere
                                     and produce the aurora.
-                                    <p className="font-normal">Values 500km/sec and above are the most favorable for strong aurora</p>
+                                    <p className="font-normal text-xs">Values 500km/sec and above are the most favorable for strong aurora</p>
                                     <p className="center mt-10 text-base">Interplanetary Magnetic Field (IMF)</p>
                                     <p className="center mt-2 text-sm">Bt</p>
                                     The Bt value of the interplanetary magnetic field indicates the total strength of the interplanetary magnetic
                                     field. The higher this value, the better it is for enhanced geomagnetic conditions. We speak of a moderately
                                     strong total interplanetary magnetic field when the Bt exceeds 10nT. Strong values start at 20nT and we speak of a
                                     very strong total interplanetary magnetic field when values exceed 30nT.
-                                    <p className="font-normal">Values 10nT and above are the most favorable for strong aurora</p>
+                                    <p className="font-normal text-xs">Values 10nT and above are the most favorable for strong aurora</p>
                                     <p className="center mt-2 text-sm">Bz</p>
                                     The north-south direction of the interplanetary magnetic field (Bz) is the most important ingredient for auroral
                                     activity. Continues values of -10nT and lower are good indicators that a geomagnetic storm could develop but the
                                     lower this value goes the better it is for auroral activity.
-                                    <p className="font-normal">Values lower than 0 are the most favorable for strong aurora. The lower the better.</p>
+                                    <p className="font-normal text-xs">
+                                        Values lower than 0 are the most favorable for strong aurora. The lower the better.
+                                    </p>
                                     <p className="center mt-8 text-base">Solar wind density</p>
                                     Density of particles in the solar wind reaching the atmoshere. Their interactions with particles in the atmosphere
                                     create the aurora.
-                                    <p className="font-normal mb-5">Values above 10. The higher the better</p>
+                                    <p className="font-normal text-xs mb-5">Values above 10. The higher the better</p>
                                 </ModalBody>
                             </>
                         )}
