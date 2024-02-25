@@ -1,10 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Clock from "../subComponents/Clock";
 import Navigation from "./Navigation";
-import { MouseEventHandler, useEffect, useRef, useState } from "react";
-import styles from "../../styles/header.module.css";
+import { useEffect, useRef, useState } from "react";
 
 export default function Menu() {
     const now = new Date();
