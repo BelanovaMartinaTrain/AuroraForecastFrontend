@@ -27,7 +27,7 @@ export default function WidgetAuroraActivity() {
                     disableAnimation={true}
                     scrollBehavior="inside"
                 >
-                    <ModalContent className="text-sm md:text-base  p-2">
+                    <ModalContent className="  p-2">
                         {(onClose) => (
                             <>
                                 <ModalBody className="my-5 ">
@@ -36,7 +36,7 @@ export default function WidgetAuroraActivity() {
                                     major geomagnetic storm with strong auroras visible). <br />
                                     Any Kp 5 and above is classified as a geomagnetic storm. Near the aurora ovation you can see aurora even with Kp
                                     number 0.
-                                    <p className="text-sm">Any level of geomagnetic storm provide a higher chance of strong Aurora</p>
+                                    <p className="text-xs">Any level of geomagnetic storm provide a higher chance of strong Aurora</p>
                                     <div className="text-sm  " role="KP Index">
                                         <table>
                                             <caption className="p-4">

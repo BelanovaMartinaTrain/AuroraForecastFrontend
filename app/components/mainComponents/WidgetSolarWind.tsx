@@ -27,7 +27,7 @@ export default function WidgetSolarWind() {
                     disableAnimation={true}
                     scrollBehavior="inside"
                 >
-                    <ModalContent className="text-sm md:text-base  p-2">
+                    <ModalContent className=" p-2">
                         {(onClose) => (
                             <>
                                 <ModalBody className="mb-5">
