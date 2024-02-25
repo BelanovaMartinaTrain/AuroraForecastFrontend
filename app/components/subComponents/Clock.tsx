@@ -16,13 +16,14 @@ export default function Clock(props: Props) {
 
     useEffect(() => {
         function setClock() {
+            setIsLoading(true);
             setTime(new Date());
-            setIsLoading(false);
             setTimezoneAbbreviation(Intl.DateTimeFormat().resolvedOptions().timeZone);
         }
         setClock();
         const timer = setInterval(() => {
             setClock();
+            setIsLoading(false);
         }, 1000);
         return () => clearInterval(timer);
     }, []);
