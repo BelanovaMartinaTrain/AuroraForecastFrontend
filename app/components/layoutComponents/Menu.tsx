@@ -8,7 +8,7 @@ import styles from "../../styles/header.module.css";
 
 export default function Menu() {
     const now = new Date();
-    const tmzAbrr = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const tmzAbrr = "Europe/Bratislava";
     const [isOpen, setIsOpen] = useState(false);
     const classnames = "menu h-52 absolute rounded-[8px] z-40 p-6 bg-black bg-opacity-80 w-2/3  mt-1 backdrop-blur-[4px] ";
     const linkclass = "p-2 ";

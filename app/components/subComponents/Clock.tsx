@@ -11,9 +11,7 @@ type Props = {
 
 export default function Clock(props: Props) {
     const [time, setTime] = useState(new Date(props.time));
-    const [timezoneAbbreviation, setTimezoneAbbreviation] = useState(
-        props.tmzAbrr
-    );
+    const [timezoneAbbreviation, setTimezoneAbbreviation] = useState(props.tmzAbrr);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -21,17 +19,14 @@ export default function Clock(props: Props) {
             setTime(new Date());
             setIsLoading(false);
         }, 1000);
-        setTimezoneAbbreviation(
-            Intl.DateTimeFormat().resolvedOptions().timeZone
-        );
+        setTimezoneAbbreviation(Intl.DateTimeFormat().resolvedOptions().timeZone);
         return () => clearInterval(timer);
     }, []);
 
+    console.log(props.timezone);
+
     return props.timezone ? (
-        <h2
-            suppressHydrationWarning
-            className={`${!!isLoading && "visibility-hidden"}`}
-        >
+        <h2 suppressHydrationWarning className={`${!!isLoading && "visibility-hidden"}`}>
             {time.toLocaleTimeString([], {
                 timeZone: `${props.timezone}`,
                 hourCycle: "h23",
@@ -41,10 +36,7 @@ export default function Clock(props: Props) {
             {" UTC"}
         </h2>
     ) : (
-        <h2
-            suppressHydrationWarning
-            className={`${!!isLoading && "visibility-hidden"}`}
-        >
+        <h2 suppressHydrationWarning className={`${!!isLoading && "visibility-hidden"}`}>
             {time.toLocaleTimeString([], {
                 hourCycle: "h23",
                 hour: "2-digit",
