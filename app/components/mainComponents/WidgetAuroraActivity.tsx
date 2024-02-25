@@ -1,6 +1,6 @@
 "use client";
 
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
+import { Modal, ModalContent, ModalBody, useDisclosure } from "@nextui-org/react";
 import WidgetAuroraView from "../subComponents/WidgetAuroraView";
 
 export default function WidgetAuroraActivity() {
@@ -36,7 +36,9 @@ export default function WidgetAuroraActivity() {
                                     major geomagnetic storm with strong auroras visible). <br />
                                     Any Kp 5 and above is classified as a geomagnetic storm. Near the aurora ovation you can see aurora even with Kp
                                     number 0.
-                                    <p className="text-xs">Any level of geomagnetic storm provide a higher chance of strong Aurora</p>
+                                    <p className="text-xs text-[SpringGreen]">
+                                        Any level of geomagnetic storm provide a higher chance of strong Aurora
+                                    </p>
                                     <div className="text-sm  " role="KP Index">
                                         <table>
                                             <caption className="p-4">
