@@ -36,8 +36,14 @@ export default function HamburgerMenu() {
     }, []);
 
     return (
-        <div className={` ${!!isOpen && " rounded grid-flow-col"} `} ref={refMenu}>
-            <button onClick={handleClick} className="flex flex-col justify-center items-center menu-btn widget-for-small relative w-">
+        <div className={` ${!!isOpen ? " rounded grid-flow-col" : ""} `} ref={refMenu}>
+            <button
+                onClick={handleClick}
+                className="flex flex-col justify-center items-center menu-btn widget-for-small relative w-"
+                aria-label="menu button"
+                aria-haspopup="true"
+                aria-expanded={isOpen}
+            >
                 <span
                     className={`bg-[gainsboro] transition-all duration-300 ease-out 
             h-0.5 w-6 rounded-sm ${isOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"}`}
