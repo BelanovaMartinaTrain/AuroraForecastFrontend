@@ -23,7 +23,7 @@ export default function WidgetAuroraActivity() {
                     isOpen={isOpen}
                     onOpenChange={onOpenChange}
                     isDismissable={true}
-                    className=" bg-black bg-opacity-75 backdrop-blur-md rounded-xl "
+                    className=" bg-black bg-opacity-75 backdrop-blur-sm rounded-xl "
                     disableAnimation={true}
                     scrollBehavior="inside"
                 >
