@@ -3,7 +3,13 @@ import { nextui } from "@nextui-org/react";
 
 const config = {
     darkMode: ["class"],
-    content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}", "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"],
+    content: [
+        "./pages/**/*.{ts,tsx}",
+        "./components/**/*.{ts,tsx}",
+        "./app/**/*.{ts,tsx}",
+        "./src/**/*.{ts,tsx}",
+        "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    ],
     prefix: "",
     theme: {
         container: {
@@ -67,6 +73,9 @@ const config = {
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
+            },
+            screens: {
+                "2sm": "576px",
             },
         },
         darkMode: "class",

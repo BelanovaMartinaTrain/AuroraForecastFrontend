@@ -63,9 +63,9 @@ export default function WidgetWeather() {
 
     return (
         <>
-            <div className="grid grid-flow-col grid-rows-1 grid-cols-3  margin-xs-btm ">
-                <h2 className="col-span-2 uppercase pl-16 font-h2  self-center">Weather</h2>
-                <div className="  w-12  self-center items-center ">
+            <div className="grid grid-flow-col grid-rows-1 grid-cols-3  margin-xs-btm 2sm:flex md:grid 2sm:justify-between  ">
+                <h2 className="col-span-2 uppercase pl-16 2sm:pl-0 md:pl-16 font-h2  self-center">Weather</h2>
+                <div className=" col-span-1 w-12  self-center items-center ">
                     <div className="flex justify-evenly pr-2">
                         <button onClick={handleClickC} aria-label="change units to celsius" aria-selected={degrees === "C" ? "true" : "false"}>
                             <p className={`text-base pr-1 ${degrees === "C" ? "text-[gainsboro]" : "text-stone-500"}`}>&#176;C</p>

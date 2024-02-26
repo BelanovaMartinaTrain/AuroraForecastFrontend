@@ -53,10 +53,7 @@ html, body {
   padding: 0.4rem; 
 }
 
-.nav-horizontal {
-  display: none;
-  cursor: pointer;
-}
+
 
 menu {
   display: flex;
@@ -141,6 +138,11 @@ canvas {
   padding: 1.5rem 0;
 }
 
+.nav-horizontal {
+  display: none;
+  cursor: pointer;
+}
+
 .quickview-div {
   display: flex;
 }
@@ -193,6 +195,7 @@ canvas {
 
 .grouped-widget {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--grid-widget-width), 1fr));
   gap: var(--grid-gap);
 }
 
