@@ -6,7 +6,7 @@ export default function Header() {
     return (
         <header>
             <h1 className="title">
-                <Link href="/">
+                <Link href="/" aria-label="Navigate to dashboard">
                     <span className="cursor-pointer">Aurora Borealis</span>
                 </Link>
             </h1>
