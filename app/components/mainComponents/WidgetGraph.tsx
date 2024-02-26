@@ -109,9 +109,11 @@ export function Graph() {
         <div className="widget center padding-small grid-item width-100 backdrop-blur-sm min-h-[212px] xl:min-h-[300px]">
             <h2 className="uppercase margin-xs-btm font-h2 relative">KP index forecast</h2>
             {!!isLoading ? <ProgressBar /> : <Chart ref={chartRef} type="bar" data={chartData} options={options} />}
-            <Link href="https://www.swpc.noaa.gov/" className={`${!!isLoading && "visibility-hidden"}`} target="_blank">
-                <p className="mt-2 font-medium text-stone-500">NOAA</p>
-            </Link>
+            <p className="mt-2 font-medium text-stone-500">
+                <Link href="https://www.swpc.noaa.gov/" className={`${!!isLoading && "visibility-hidden"}`} target="_blank">
+                    NOAA
+                </Link>
+            </p>
         </div>
     );
 }

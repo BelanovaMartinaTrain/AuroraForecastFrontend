@@ -74,14 +74,14 @@ export default function WidgetAuroraView() {
                 </div>
                 <div className="center quickview-item width-100 padding-sm-r">
                     <p className="relative padding-xs-btm">Activity</p>
-                    <h3 className="padding-sm-btm ">{activity}</h3>
+                    <h3 className="pb-3 ">{activity}</h3>
                     <p className="relative padding-xs-btm">Geomagnetic storm</p>
 
                     <h3 className="padding-xs-btm pb-2">{storm}</h3>
                 </div>
             </div>
             {!error ? (
-                <p className="mt-2 font-medium text-stone-500">
+                <p className="mt-4 font-medium text-stone-500">
                     <Link href="https://www.swpc.noaa.gov/" className={`${!!isLoading && "visibility-hidden"}`} target="_blank">
                         NOAA
                     </Link>

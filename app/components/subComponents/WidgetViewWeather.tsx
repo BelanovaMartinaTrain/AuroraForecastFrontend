@@ -10,8 +10,9 @@ type weatherProps = {
     lon: number;
 };
 
-export default function WidgetViewWeather(location: weatherProps) {
+export default function WidgetViewWeather({ location, degrees }: { location: weatherProps; degrees: string }) {
     let { lat, lon } = location;
+
     const [isLoading, setIsLoading] = useState(false);
 
     const [weather, setWeather] = useState({
@@ -56,10 +57,12 @@ export default function WidgetViewWeather(location: weatherProps) {
         <>
             <div className="quickview-div center">
                 <div className={`center quickview-item width-100 padding-sm-btm ${!weather.air_pressure_at_sea_level && "text-neutral-800"}`}>
-                    <p className="padding-xs-btm">Temperature</p>
-                    <h3 className="padding-sm-btm">{Math.round(weather.air_temperature)} &#176;C</h3>
-                    <p className="padding-xs-btm">Wind</p>
-                    <h3>{Math.round(weather.wind_speed)} m/s </h3>
+                    <p className="mb-1">Temperature</p>
+                    <h3 className="mb-3">
+                        {degrees === "C" ? Math.round(weather.air_temperature) : Math.round(weather.air_temperature * (9 / 5) + 32)} &#176;{degrees}
+                    </h3>
+                    <p className="mb-1">Wind</p>
+                    {degrees === "C" ? <h3>{Math.round(weather.wind_speed)} m/s </h3> : <h3>{Math.round(weather.wind_speed * 2.2369)} mph </h3>}
                 </div>
                 <div className={`center quickview-item width-100 margin-xs-btm ${!weather.air_pressure_at_sea_level && "text-neutral-800"}`}>
                     <p className="margin-sm-btm">Clouds </p>
@@ -74,9 +77,11 @@ export default function WidgetViewWeather(location: weatherProps) {
                 !weather.air_pressure_at_sea_level ? (
                     <p className="text-stone-600">Weather is not available</p>
                 ) : (
-                    <Link href="https://www.yr.no/en" target="_blank">
-                        <p className=" font-medium text-stone-500">MET Norway</p>
-                    </Link>
+                    <p className=" font-medium text-stone-500">
+                        <Link href="https://www.yr.no/en" target="_blank">
+                            MET Norway
+                        </Link>
+                    </p>
                 )
             ) : (
                 <ProgressBar />

@@ -68,14 +68,14 @@ export default function WidgetViewSolarWind() {
             <div className={`quickview-div ${!!isLoading && "visibility-hidden"}`}>
                 <div className="center grid-item quickview-item width-100 ">
                     <p className="relative mt-2">Speed</p>
-                    <h3 className="pb-2">{wind} km/sec</h3>
+                    <h3 className="pb-3">{wind} km/sec</h3>
 
                     <p className="relative">Density</p>
 
                     <h3 className="pb-2">{density} cm⁻³</h3>
                 </div>
                 <div className=" center quickview-item width-100">
-                    <p className="relative ">Magnetic field</p>
+                    <p className="relative mb-1">Magnetic field</p>
                     <h3>Bt: {magField.Bt} nT</h3>
                     <h3 className="pb-2">Bz: {magField.Bz} nT</h3>
                 </div>
