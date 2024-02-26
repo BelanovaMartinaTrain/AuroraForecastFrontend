@@ -12,7 +12,7 @@ type Props = {
 export default function Clock(props: Props) {
     const [time, setTime] = useState(new Date(props.time));
     const [timezoneAbbreviation, setTimezoneAbbreviation] = useState(props.tmzAbrr);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         function setClock() {
