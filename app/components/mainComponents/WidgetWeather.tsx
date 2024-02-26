@@ -64,14 +64,14 @@ export default function WidgetWeather() {
     return (
         <>
             <div className="grid grid-flow-col grid-rows-1 grid-cols-5  margin-xs-btm gap-2">
-                <h2 className="col-span-3 uppercase  font-h2 pl-12 self-end">Weather</h2>
-                <div className="  w-10  self-center items-center ">
+                <h2 className="col-span-3 uppercase  font-h2 pl-16 self-center">Weather</h2>
+                <div className="  w-14  self-center items-center ">
                     <div className="flex justify-evenly">
                         <button onClick={handleClickC} aria-label="change units to celsius" aria-selected={degrees === "C" ? "true" : "false"}>
-                            <p className={degrees === "C" ? "text-[gainsboro]" : "text-stone-500"}>&#176;C</p>
+                            <p className={`text-base ${degrees === "C" ? "text-[gainsboro]" : "text-stone-500"}`}>&#176;C</p>
                         </button>
                         <button onClick={handleClickF} aria-label="change units to fahrenheit" aria-selected={degrees === "F" ? "true" : "false"}>
-                            <p className={degrees === "F" ? "text-[gainsboro]" : "text-stone-500"}>&#176;F</p>
+                            <p className={`text-base ${degrees === "F" ? "text-[gainsboro]" : "text-stone-500"}`}>&#176;F</p>
                         </button>
                     </div>
                 </div>
