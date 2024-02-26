@@ -110,7 +110,12 @@ export function Graph() {
             <h2 className="uppercase margin-xs-btm font-h2 relative">KP index forecast</h2>
             {!!isLoading ? <ProgressBar /> : <Chart ref={chartRef} type="bar" data={chartData} options={options} />}
             <p className="mt-2 font-medium text-stone-500">
-                <Link href="https://www.swpc.noaa.gov/" className={`${!!isLoading && "visibility-hidden"}`} target="_blank">
+                <Link
+                    href="https://www.swpc.noaa.gov/"
+                    className={`${!!isLoading && "visibility-hidden"}`}
+                    aria-label="Link to source of used data - NOAA"
+                    target="_blank"
+                >
                     NOAA
                 </Link>
             </p>

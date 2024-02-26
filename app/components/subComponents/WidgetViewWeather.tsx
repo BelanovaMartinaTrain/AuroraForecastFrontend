@@ -78,7 +78,7 @@ export default function WidgetViewWeather({ location, degrees }: { location: wea
                     <p className="text-stone-600">Weather is not available</p>
                 ) : (
                     <p className=" font-medium text-stone-500">
-                        <Link href="https://www.yr.no/en" target="_blank">
+                        <Link href="https://www.yr.no/en" target="_blank" aria-label="Link to source of used data - Norway meteo institute">
                             MET Norway
                         </Link>
                     </p>

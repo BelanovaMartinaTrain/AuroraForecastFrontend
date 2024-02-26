@@ -82,7 +82,12 @@ export default function WidgetViewSolarWind() {
             </div>
             {!error ? (
                 <p className="mt-2 font-medium text-stone-500">
-                    <Link href="https://www.swpc.noaa.gov/" className={`${!!isLoading && "visibility-hidden"}`} target="_blank">
+                    <Link
+                        href="https://www.swpc.noaa.gov/"
+                        className={`${!!isLoading && "visibility-hidden"}`}
+                        aria-label="Link to source of used data - NOAA"
+                        target="_blank"
+                    >
                         NOAA
                     </Link>
                 </p>

@@ -67,7 +67,7 @@ export default function BarGraph({ data }: { data: barGraphProps }): JSX.Element
 
     return (
         <>
-            <Chart ref={chartRef} type="bar" data={chartData} options={options} />
+            <Chart ref={chartRef} type="bar" data={chartData} options={options} aria-label="graph of predicted KP values" />
         </>
     );
 }

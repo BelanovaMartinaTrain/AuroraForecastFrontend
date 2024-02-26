@@ -26,9 +26,20 @@ export default function WidgetImage() {
         <div className="widget center padding-small grid-item backdrop-blur-sm">
             <h3 className="img-text uppercase margin-xs-btm">Northern Hemisphere</h3>
             {!!isLoading && <ProgressBar />}
-            <img src={`${imageUrl}`} alt="image of the latest aurora activity" className="img-latest" width={475} height={475} />
+            <img
+                src={`${imageUrl}`}
+                alt="image of the predicted aurora oval, aurora activity in the next hour"
+                className="img-latest"
+                width={475}
+                height={475}
+            />
             <p className="mt-4 font-medium text-stone-500">
-                <Link href="https://www.swpc.noaa.gov/" className={`${!!isLoading && "visibility-hidden"}`} target="_blank">
+                <Link
+                    href="https://www.swpc.noaa.gov/"
+                    className={`${!!isLoading && "visibility-hidden"}`}
+                    aria-label="Link to source of used data - NOAA"
+                    target="_blank"
+                >
                     NOAA
                 </Link>
             </p>
