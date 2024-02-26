@@ -9,13 +9,18 @@ export default function WidgetWeather() {
         lat: 0,
         lon: 0,
     });
-    let degreesFromStorage = "C";
-    if (typeof window !== "undefined") {
-        degreesFromStorage = localStorage.getItem("degrees") || "C";
-    }
-    const [degrees, setDegreees] = useState(degreesFromStorage);
+
+    const [degrees, setDegreees] = useState("");
     const [isLocation, setIsLocation] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+
+    console.log("deg begin", degrees);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setDegreees(localStorage.getItem("degrees") || "C");
+        }
+    }, []);
 
     useEffect(() => {
         async function checkPerm() {
@@ -61,6 +66,7 @@ export default function WidgetWeather() {
         if (typeof window !== "undefined") {
             window?.localStorage?.removeItem("degrees");
             window?.localStorage?.setItem("degrees", "C");
+            console.log("set C");
         }
     }
 
@@ -70,8 +76,11 @@ export default function WidgetWeather() {
         if (typeof window !== "undefined") {
             window?.localStorage?.removeItem("degrees");
             window?.localStorage?.setItem("degrees", "F");
+            console.log("set F");
         }
     }
+
+    console.log("degrees", degrees);
 
     return (
         <>
