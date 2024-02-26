@@ -14,8 +14,6 @@ export default function WidgetWeather() {
     const [isLocation, setIsLocation] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
-    console.log("deg begin", degrees);
-
     useEffect(() => {
         if (typeof window !== "undefined") {
             setDegreees(localStorage.getItem("degrees") || "C");
@@ -61,26 +59,20 @@ export default function WidgetWeather() {
     }
 
     function handleClickC() {
-        console.log("click C");
         setDegreees("C");
         if (typeof window !== "undefined") {
-            window?.localStorage?.removeItem("degrees");
-            window?.localStorage?.setItem("degrees", "C");
-            console.log("set C");
+            window.localStorage?.removeItem("degrees");
+            window.localStorage?.setItem("degrees", "C");
         }
     }
 
     function handleClickF() {
-        console.log("click F");
         setDegreees("F");
         if (typeof window !== "undefined") {
-            window?.localStorage?.removeItem("degrees");
-            window?.localStorage?.setItem("degrees", "F");
-            console.log("set F");
+            window.localStorage?.removeItem("degrees");
+            window.localStorage?.setItem("degrees", "F");
         }
     }
-
-    console.log("degrees", degrees);
 
     return (
         <>
