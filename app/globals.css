@@ -27,9 +27,9 @@
 
 :root {
   --font-h1-size: clamp(2.2rem, 8vw, 3.55rem);
-  --font-h2-size: 1rem;
-  --font-h3-size: 1rem;
-  --font-p-size: 0.7rem;
+  --font-h2-size: 0.9rem;
+  --font-h3-size: 1.2rem;
+  --font-p-size: 0.8rem;
   --widget-max-height: 200px;
   --font-bigger: 3rem;
   --font-smaller: 0.95rem;
@@ -314,7 +314,7 @@ canvas {
   :root {
       --font-h2-size: 1.1rem;
       --font-h3-size: 1.2rem;
-      --font-p-size: 0.7rem;
+      --font-p-size: 0.8rem;
       --widget-max-height: 150px;
       --font-bigger: 3.5rem;
       --font-smaller: 1.1rem;
