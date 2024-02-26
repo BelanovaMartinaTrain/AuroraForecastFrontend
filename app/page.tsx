@@ -1,4 +1,4 @@
-import Clock from "./components/subComponents/Clock";
+import Clock from "./ui/Clock";
 import { Graph } from "./components/mainComponents/WidgetGraph";
 import BasicWidget from "./components/layoutComponents/BasicWidget";
 import WidgetAuroraActivity from "./components/mainComponents/WidgetAuroraActivity";

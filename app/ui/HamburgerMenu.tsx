@@ -1,12 +1,12 @@
 "use client";
 
-import Navigation from "../layoutComponents/Navigation";
+import Navigation from "../components/layoutComponents/Navigation";
 import { useEffect, useRef, useState } from "react";
 
 export default function HamburgerMenu() {
     const [isOpen, setIsOpen] = useState(false);
-    const classnames = "menu h-52 absolute rounded-[8px] z-40 p-6 bg-black bg-opacity-80 w-80  mt-1 backdrop-blur-[4px] ";
-    const linkclass = "p-2 ";
+    const classnames = "menu h-52 absolute rounded-[8px] z-40 p-6 bg-black bg-opacity-80 w-80  mt-1 backdrop-blur-[4px]  ";
+    const linkclass = "p-2 text-base";
     const refMenu = useRef(null);
 
     const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -39,7 +39,7 @@ export default function HamburgerMenu() {
         <div className={` ${!!isOpen ? " rounded grid-flow-col" : ""} `} ref={refMenu}>
             <button
                 onClick={handleClick}
-                className="flex flex-col justify-center items-center menu-btn widget-for-small relative w-"
+                className="flex flex-col justify-center items-center menu-btn widget-for-small relative "
                 aria-label="menu button"
                 aria-haspopup="true"
                 aria-expanded={isOpen}
