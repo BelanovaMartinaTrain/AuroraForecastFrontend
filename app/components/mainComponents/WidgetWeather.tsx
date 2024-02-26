@@ -9,9 +9,10 @@ export default function WidgetWeather() {
         lat: 0,
         lon: 0,
     });
+    const degreesFromStorage = localStorage.getItem("degrees") || "C";
     const [isLocation, setIsLocation] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const [degrees, setDegreees] = useState("C");
+    const [degrees, setDegreees] = useState(degreesFromStorage);
 
     useEffect(() => {
         async function checkPerm() {
@@ -54,11 +55,15 @@ export default function WidgetWeather() {
     function handleClickC() {
         console.log("click C");
         setDegreees("C");
+        localStorage.removeItem("degrees");
+        localStorage.setItem("degrees", "C");
     }
 
     function handleClickF() {
         console.log("click F");
         setDegreees("F");
+        localStorage.removeItem("degrees");
+        localStorage.setItem("degrees", "F");
     }
 
     return (
