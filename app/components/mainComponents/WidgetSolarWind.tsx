@@ -23,7 +23,7 @@ export default function WidgetSolarWind() {
                     isOpen={isOpen}
                     onOpenChange={onOpenChange}
                     isDismissable={true}
-                    className=" bg-black bg-opacity-80 backdrop-blur-sm rounded-xl  "
+                    className=" bg-black bg-opacity-75 backdrop-blur-md rounded-xl  "
                     disableAnimation={true}
                     scrollBehavior="inside"
                 >
