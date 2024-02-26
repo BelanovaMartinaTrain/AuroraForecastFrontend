@@ -1,7 +1,7 @@
 "use client";
 
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
-import WidgetViewSolarWind from "../subComponents/wWidgetSolarWindView";
+import WidgetViewSolarWind from "../subComponents/WidgetSolarWindView";
 
 export default function WidgetSolarWind() {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();

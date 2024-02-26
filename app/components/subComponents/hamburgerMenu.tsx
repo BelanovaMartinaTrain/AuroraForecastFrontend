@@ -5,13 +5,12 @@ import { useEffect, useRef, useState } from "react";
 
 export default function HamburgerMenu() {
     const [isOpen, setIsOpen] = useState(false);
-    const classnames = "menu h-52 absolute rounded-[8px] z-40 p-6 bg-black bg-opacity-80 w-2/3  mt-1 backdrop-blur-[4px] ";
+    const classnames = "menu h-52 absolute rounded-[8px] z-40 p-6 bg-black bg-opacity-80 w-80  mt-1 backdrop-blur-[4px] ";
     const linkclass = "p-2 ";
     const refMenu = useRef(null);
 
     const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         setIsOpen((prev) => !prev);
-        console.log("click");
         event.stopPropagation();
     };
 
@@ -38,7 +37,7 @@ export default function HamburgerMenu() {
 
     return (
         <div className={` ${!!isOpen && " rounded grid-flow-col"} `} ref={refMenu}>
-            <button onClick={handleClick} className="flex flex-col justify-center items-center menu-btn widget-for-small relative">
+            <button onClick={handleClick} className="flex flex-col justify-center items-center menu-btn widget-for-small relative w-">
                 <span
                     className={`bg-[gainsboro] transition-all duration-300 ease-out 
             h-0.5 w-6 rounded-sm ${isOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"}`}

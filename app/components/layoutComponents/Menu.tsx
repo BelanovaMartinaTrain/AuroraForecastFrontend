@@ -1,9 +1,9 @@
 import Clock from "../subComponents/Clock";
-import HamburgerMenu from "../subComponents/hamburgerMenu";
+import HamburgerMenu from "../subComponents/HamburgerMenu";
 
 export default function Menu() {
     const now = new Date();
-    const tmzAbrr = "Europe/Bratislava";
+    const tmzAbrr = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
     return (
         <>

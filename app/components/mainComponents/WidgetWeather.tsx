@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import WidgetViewWeather from "../subComponents/widgetViewWeather";
+import WidgetViewWeather from "../subComponents/WidgetViewWeather";
 import ProgressBar from "../../ui/ProgressBar";
 
 export default function WidgetWeather() {

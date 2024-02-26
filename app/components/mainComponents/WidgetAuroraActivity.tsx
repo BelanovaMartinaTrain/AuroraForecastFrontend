@@ -36,7 +36,7 @@ export default function WidgetAuroraActivity() {
                                     major geomagnetic storm with strong auroras visible). <br />
                                     Any Kp 5 and above is classified as a geomagnetic storm. Near the aurora ovation you can see aurora even with Kp
                                     number 0.
-                                    <p className="text-xs text-[SpringGreen]">
+                                    <p className=" font-normal text-xs text-[SpringGreen]">
                                         Any level of geomagnetic storm provide a higher chance of strong Aurora
                                     </p>
                                     <div className="text-sm  " role="KP Index">

@@ -81,9 +81,11 @@ export default function WidgetAuroraView() {
                 </div>
             </div>
             {!error ? (
-                <Link href="https://www.swpc.noaa.gov/" className={`${!!isLoading && "visibility-hidden"}`} target="_blank">
-                    <p className="mt-2 font-medium text-stone-500">NOAA</p>
-                </Link>
+                <p className="mt-2 font-medium text-stone-500">
+                    <Link href="https://www.swpc.noaa.gov/" className={`${!!isLoading && "visibility-hidden"}`} target="_blank">
+                        NOAA
+                    </Link>
+                </p>
             ) : (
                 <p className="text-rose-800">{error}</p>
             )}
