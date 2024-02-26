@@ -81,7 +81,7 @@ export default function WidgetViewSolarWind() {
                 </div>
             </div>
             {!error ? (
-                <p className="mt-2 font-medium text-stone-500">
+                <p className="mt-3 font-medium text-stone-500">
                     <Link
                         href="https://www.swpc.noaa.gov/"
                         className={`${!!isLoading && "visibility-hidden"}`}
