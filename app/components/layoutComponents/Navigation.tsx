@@ -12,8 +12,8 @@ export default function Navigation({ cssClass, linksClass }: { cssClass?: string
             <Link href="/weather">
                 <h2 className={linksClass}>WEATHER</h2>
             </Link>
-            <Link href="/blog">
-                <h2 className={linksClass}>BLOG</h2>
+            <Link href="/about">
+                <h2 className={linksClass}>ABOUT</h2>
             </Link>
         </nav>
     );

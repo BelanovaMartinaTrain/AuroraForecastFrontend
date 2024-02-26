@@ -51,12 +51,14 @@ export default function WidgetSolarWind() {
                                     activity. Continues values of -10nT and lower are good indicators that a geomagnetic storm could develop but the
                                     lower this value goes the better it is for auroral activity.
                                     <p className="font-normal text-xs text-[SpringGreen] ">
-                                        Values lower than 0 are the most favorable for strong aurora. The lower the better.
+                                        Values lower than 0 are the most favorable for strong aurora. The lower the better
                                     </p>
                                     <p className="center mt-8 text-base underline underline-offset-4">Solar wind density</p>
                                     Density of particles in the solar wind reaching the atmoshere. Their interactions with particles in the atmosphere
                                     create the aurora.
-                                    <p className="font-normal text-xs mb-5 text-[SpringGreen] ">Values above 10. The higher the better</p>
+                                    <p className="font-normal text-xs mb-5 text-[SpringGreen] ">
+                                        Values above 10 give bigger chance of aurora. The higher the better
+                                    </p>
                                 </ModalBody>
                             </>
                         )}
