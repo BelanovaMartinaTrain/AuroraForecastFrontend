@@ -64,7 +64,7 @@ export function Graph() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const graphValues = await fetchAndChangeGraphData("http://165.227.128.185:8080/api/planetary-k-3h");
+                const graphValues = await fetchAndChangeGraphData("http://209.38.184.216:8080/api/planetary-k-3h");
                 if (!graphValues.labels) {
                     throw new Error("Source is unreachable");
                 } else {

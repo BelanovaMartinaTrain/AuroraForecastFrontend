@@ -15,8 +15,8 @@
 
 /* RESET */
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: border-box;
   line-height: normal;
 }
@@ -355,6 +355,8 @@ canvas {
       padding: 0.5rem;
   }
 }
+
+
 
 
 @media (min-width: 1024px) { 

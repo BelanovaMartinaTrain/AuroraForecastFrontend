@@ -21,9 +21,9 @@ export default function WidgetViewSolarWind() {
             setIsLoading(true);
             setError("");
             try {
-                const windData = await fetchData("http://165.227.128.185:8080/api/solar-wind");
-                const densityData = await fetchData("http://165.227.128.185:8080/api/solar-wind-density-5min");
-                const magData = await fetchData("http://165.227.128.185:8080/api/magnetic-field");
+                const windData = await fetchData("http://209.38.184.216:8080/api/solar-wind");
+                const densityData = await fetchData("http://209.38.184.216:8080/api/solar-wind-density-5min");
+                const magData = await fetchData("http://209.38.184.216:8080/api/magnetic-field");
 
                 if (!!windData.cause || !!densityData.cause || magData.cause) {
                     throw new Error("Source is unreachable");

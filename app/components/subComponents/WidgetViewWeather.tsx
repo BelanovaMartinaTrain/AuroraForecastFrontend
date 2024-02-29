@@ -35,7 +35,7 @@ export default function WidgetViewWeather({ location, degrees }: { location: wea
             setIsLoading(true);
             if (!!lat || !!lon) {
                 try {
-                    const weatherData = await fetchData(`http://165.227.128.185:8080/api/yr-met-weather/${lat}/${lon}`);
+                    const weatherData = await fetchData(`http://209.38.184.216:8080/api/yr-met-weather/${lat}/${lon}`);
                     if (weatherData.cause) {
                         console.error("error", weatherData.cause);
                     } else {

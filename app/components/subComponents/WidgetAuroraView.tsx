@@ -17,8 +17,8 @@ export default function WidgetAuroraView() {
             setIsLoading(true);
             setError("");
             try {
-                const kpData = await fetchData("http://165.227.128.185:8080/api/planetary-k-index-mod");
-                const stormData = await fetchData("http://165.227.128.185:8080/api/sunstorm-events");
+                const kpData = await fetchData("http://209.38.184.216:8080/api/planetary-k-index-mod");
+                const stormData = await fetchData("http://209.38.184.216:8080/api/sunstorm-events");
 
                 if (!!kpData.cause || !!stormData.cause) {
                     throw new Error("Source is unreachable");
