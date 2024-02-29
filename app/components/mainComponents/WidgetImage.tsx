@@ -33,7 +33,7 @@ export default function WidgetImage() {
                 width={475}
                 height={475}
             />
-            <p className="mt-4 font-medium text-stone-500">
+            <p className="mt-4 font-medium text-stone-500 text-xs ">
                 <span className={`capitalize mr-1 ${!!isLoading ? "hidden" : ""}`}>Source:</span>
                 <Link
                     href="https://www.swpc.noaa.gov/"
