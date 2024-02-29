@@ -4,6 +4,7 @@ import { Quicksand } from "next/font/google";
 import "./globals.css";
 import Header from "./components/layoutComponents/Header";
 import { Providers } from "./providers";
+import Footer from "./components/layoutComponents/Footer";
 
 const quicksand = Quicksand({ subsets: ["latin"] });
 
@@ -39,6 +40,7 @@ export default function RootLayout({
                 <Providers>
                     <Header />
                     <main>{children}</main>
+                    <Footer />
                 </Providers>
             </body>
         </html>
