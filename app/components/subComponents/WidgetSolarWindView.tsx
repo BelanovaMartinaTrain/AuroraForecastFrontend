@@ -81,7 +81,7 @@ export default function WidgetViewSolarWind() {
                 </div>
             </div>
             {!error ? (
-                <p className="mt-3 font-medium text-stone-500 text-xs ">
+                <p className="mt-5 font-medium text-stone-500 text-xs ">
                     <span className={`capitalize mr-1 ${!!isLoading ? "hidden" : ""}`}>Source:</span>
                     <Link
                         href="https://www.swpc.noaa.gov/"
