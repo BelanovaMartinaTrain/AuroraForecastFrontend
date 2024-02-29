@@ -77,7 +77,7 @@ export default function WidgetViewWeather({ location, degrees }: { location: wea
                 !weather.air_pressure_at_sea_level ? (
                     <p className="text-stone-600">Weather is not available</p>
                 ) : (
-                    <p className=" font-medium text-stone-500 text-xs">
+                    <p className=" font-medium text-stone-500 text-[11px]">
                         <span className="capitalize mr-1">Source:</span>
                         <Link href="https://www.yr.no/en" target="_blank" aria-label="Link to source of used data - Norway meteo institute">
                             MET Norway

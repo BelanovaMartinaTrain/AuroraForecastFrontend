@@ -113,7 +113,7 @@ export function Graph() {
             ) : (
                 <>
                     <Chart ref={chartRef} type="bar" data={chartData} options={options} />
-                    <p className="mt-4 font-medium text-stone-500 text-xs">
+                    <p className="mt-4 font-medium text-stone-500 text-[11px]">
                         <span className="capitalize mr-1">Source:</span>
                         <Link
                             href="https://www.swpc.noaa.gov/"

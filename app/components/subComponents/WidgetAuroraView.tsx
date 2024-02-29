@@ -81,7 +81,7 @@ export default function WidgetAuroraView() {
                 </div>
             </div>
             {!error ? (
-                <p className="mt-6 font-medium text-stone-500 text-xs">
+                <p className="mt-6 font-medium text-stone-500 text-[11px]">
                     <span className={`capitalize mr-1 ${!!isLoading ? "hidden" : ""}`}>Source:</span>
                     <Link
                         href="https://www.swpc.noaa.gov/"
