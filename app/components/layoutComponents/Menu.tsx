@@ -12,7 +12,7 @@ export default function Menu() {
                 <div className="time center">
                     <div className="time-nav widget heigth-100">
                         <Clock className="font-smaller font-normal" time={now.getTime()} tmzAbrr={tmzAbrr} />
-                        <Clock className="font-smaller font-normal" time={now.getTime()} timezone="UTC" tmzAbrr={tmzAbrr} />
+                        <Clock className="font-smaller font-normal m-1" time={now.getTime()} timezone="UTC" tmzAbrr={tmzAbrr} />
                     </div>
                 </div>
             </menu>

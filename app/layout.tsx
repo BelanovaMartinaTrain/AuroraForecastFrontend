@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
+
 import "./globals.css";
 import Header from "./components/layoutComponents/Header";
 import { Providers } from "./providers";

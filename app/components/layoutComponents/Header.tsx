@@ -5,7 +5,7 @@ import Navigation from "./Navigation";
 export default function Header() {
     return (
         <header>
-            <h1 className="title" aria-label="Aurora Borealis Forecast">
+            <h1 className=" title" aria-label="Aurora Borealis Forecast">
                 <Link href="/" aria-label="Navigate to dashboard">
                     <span className="cursor-pointer title">Aurora Borealis</span>
                 </Link>
