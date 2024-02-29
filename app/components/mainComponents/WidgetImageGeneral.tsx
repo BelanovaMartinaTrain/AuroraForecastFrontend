@@ -46,6 +46,7 @@ export default function WidgetImageGeneral({ title, url, timerDuration, source }
             />
             {/* <embed type="text/html" src={imageUrl} width={900} height={600} /> */}
             <p className="mt-4 font-medium text-stone-500">
+                <span className="capitalize mr-1">Source:</span>
                 <Link
                     href={source.urlSource}
                     className={`${!!isLoading && "visibility-hidden"}`}

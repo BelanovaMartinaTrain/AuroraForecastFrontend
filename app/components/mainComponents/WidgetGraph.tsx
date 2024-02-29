@@ -108,17 +108,24 @@ export function Graph() {
     return (
         <div className="widget center padding-small grid-item width-100 backdrop-blur-sm min-h-[212px] xl:min-h-[300px]">
             <h2 className="uppercase margin-xs-btm font-h2 relative">KP index forecast</h2>
-            {!!isLoading ? <ProgressBar /> : <Chart ref={chartRef} type="bar" data={chartData} options={options} />}
-            <p className="mt-2 font-medium text-stone-500">
-                <Link
-                    href="https://www.swpc.noaa.gov/"
-                    className={`${!!isLoading && "visibility-hidden"}`}
-                    aria-label="Link to source of used data - NOAA"
-                    target="_blank"
-                >
-                    NOAA
-                </Link>
-            </p>
+            {!!isLoading ? (
+                <ProgressBar />
+            ) : (
+                <>
+                    <Chart ref={chartRef} type="bar" data={chartData} options={options} />
+                    <p className="mt-2 font-medium text-stone-500">
+                        <span className="capitalize mr-1">Source:</span>
+                        <Link
+                            href="https://www.swpc.noaa.gov/"
+                            className={`${!!isLoading && "visibility-hidden"}`}
+                            aria-label="Link to source of used data - NOAA"
+                            target="_blank"
+                        >
+                            NOAA
+                        </Link>
+                    </p>
+                </>
+            )}
         </div>
     );
 }
