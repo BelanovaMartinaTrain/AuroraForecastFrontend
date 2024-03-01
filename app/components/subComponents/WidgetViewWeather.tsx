@@ -65,7 +65,7 @@ export default function WidgetViewWeather({ location, degrees }: { location: wea
                     {degrees === "C" ? <h3>{Math.round(weather.wind_speed)} m/s </h3> : <h3>{Math.round(weather.wind_speed * 2.2369)} mph </h3>}
                 </div>
                 <div className={`center quickview-item width-100 margin-xs-btm ${!weather.air_pressure_at_sea_level && "text-neutral-800"}`}>
-                    <p className="margin-sm-btm">Clouds </p>
+                    <p className="mb-1">Clouds </p>
                     <h3 className="font-smaller">Low: {Math.round(weather.cloud_area_fraction_low)} %</h3>
                     <h3 className="font-smaller">Middle: {Math.round(weather.cloud_area_fraction_medium)} %</h3>
                     <h3 className="font-smaller">High: {Math.round(weather.cloud_area_fraction_high)} %</h3>
