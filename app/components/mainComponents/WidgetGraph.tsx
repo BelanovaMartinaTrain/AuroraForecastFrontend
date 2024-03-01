@@ -117,7 +117,7 @@ export function Graph() {
                         <span className="capitalize mr-1">Source:</span>
                         <Link
                             href="https://www.swpc.noaa.gov/"
-                            className={`${!!isLoading && "visibility-hidden"}`}
+                            className={`${!!isLoading ? "visibility-hidden" : ""}`}
                             aria-label="Link to source of used data - NOAA"
                             target="_blank"
                         >
