@@ -29,11 +29,11 @@ export default function WidgetImage() {
             <img
                 src={`${imageUrl}`}
                 alt="image of the predicted aurora oval, aurora activity in the next hour"
-                className="img-latest"
+                className="img-latest mb-8"
                 width={475}
                 height={475}
             />
-            <p className="mt-6 font-medium text-stone-500 text-[11px] ">
+            <p className="mt-6 font-medium text-stone-500 text-[11px] absolute bottom-5 left-[42%] right-[50%]">
                 <span className={`capitalize mr-1 ${!!isLoading ? "hidden" : ""}`}>Source:</span>
                 <Link
                     href="https://www.swpc.noaa.gov/"

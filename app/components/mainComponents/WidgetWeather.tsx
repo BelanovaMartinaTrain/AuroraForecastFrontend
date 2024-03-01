@@ -95,7 +95,10 @@ export default function WidgetWeather() {
             ) : isLocation ? (
                 <WidgetViewWeather location={location} degrees={degrees} />
             ) : (
-                <button className="widget center padding-small focus:bg-black hover:bg-black" onClick={getLocation}>
+                <button
+                    className="  rounded-lg  text-black font-semibold enable-button center padding-small mt-3 bg-emerald-700 focus:bg-emerald-600 hover:bg-emerald-500 hover:-translate-y-1"
+                    onClick={getLocation}
+                >
                     Enable location
                 </button>
             )}

@@ -11,7 +11,7 @@ export default function Dashboard() {
     const tmzAbrr = "Europe/Bratislava";
     return (
         <>
-            <div className="grid">
+            <div className="grid ">
                 <BasicWidget className={"widget center padding-small  backdrop-blur-sm lg:min-h-40 "}>
                     <WidgetAuroraActivity />
                 </BasicWidget>

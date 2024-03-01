@@ -10,9 +10,9 @@ export default function WidgetAuroraActivity() {
         <>
             <h2 className="center mb-2 uppercase font-h2 relative">
                 Aurora activity{" "}
-                <button className="material-symbols-outlined info-icon-kp  " onClick={onOpen}>
+                <button className="material-symbols-outlined info-icon-kp absolute -top-0.5 " onClick={onOpen}>
                     <svg
-                        className="info-icon ml-1 fill-gray-400 hover:fill-gray-50 "
+                        className="info-icon ml-1 fill-stone-400 hover:fill-stone-50 "
                         xmlns="http://www.w3.org/2000/svg"
                         height="18"
                         viewBox="0 -960 960 960"

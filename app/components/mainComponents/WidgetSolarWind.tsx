@@ -10,9 +10,9 @@ export default function WidgetSolarWind() {
         <>
             <h2 className="mb-2 uppercase font-h2 relative ">
                 Solar Wind{" "}
-                <button className="material-symbols-outlined info-icon-kp absolute" onClick={onOpen}>
+                <button className="material-symbols-outlined info-icon-kp absolute -top-0.5" onClick={onOpen}>
                     <svg
-                        className="info-icon ml-1 fill-gray-400 hover:fill-gray-100 "
+                        className="info-icon ml-1 fill-stone-400 hover:fill-stone-100 "
                         xmlns="http://www.w3.org/2000/svg"
                         height="18"
                         viewBox="0 -960 960 960"
