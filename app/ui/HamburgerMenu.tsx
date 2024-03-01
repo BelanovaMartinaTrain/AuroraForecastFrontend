@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from "react";
 
 export default function HamburgerMenu() {
     const [isOpen, setIsOpen] = useState(false);
-    const classnames = "menu h-52 absolute rounded-[8px] z-40 p-6 bg-black bg-opacity-75 w-80  mt-1 backdrop-blur-sm  ";
-    const linkclass = "p-2 text-base font-normal";
+    const classnames = "  absolute  z-40 left-0 bg-black bg-opacity-75 w-screen   backdrop-blur-sm  transition-all duration-300 ease-out";
+    const linkclass = " p-2 text-base font-normal  transition-opacity duration-1 ease-out  ";
     const refMenu = useRef(null);
 
     const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -46,18 +46,24 @@ export default function HamburgerMenu() {
             >
                 <span
                     className={`bg-[gainsboro] transition-all duration-300 ease-out 
-            h-0.5 w-6 rounded-sm ${isOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"}`}
+            h-0.5 w-6 rounded-sm ${!!isOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"}`}
                 ></span>
                 <span
                     className={`bg-[gainsboro] block transition-all duration-300 ease-out 
-            h-0.5 w-6 rounded-sm my-0.5 ${isOpen ? "opacity-0" : "opacity-100"}`}
+            h-0.5 w-6 rounded-sm my-0.5 ${!!isOpen ? "opacity-0" : "opacity-100"}`}
                 ></span>
                 <span
                     className={`bg-[gainsboro] block transition-all duration-300 ease-out 
-            h-0.5 w-6 rounded-sm ${isOpen ? "-rotate-45 -translate-y-1" : "translate-y-0.5"}`}
+            h-0.5 w-6 rounded-sm ${!!isOpen ? "-rotate-45 -translate-y-1" : "translate-y-0.5"}`}
                 ></span>
             </button>
-            <div onClick={() => setIsOpen(false)}>{!!isOpen && <Navigation cssClass={classnames} linksClass={linkclass} />}</div>
+            <div onClick={() => setIsOpen(false)}>
+                {" "}
+                <Navigation
+                    cssClass={`${classnames} ${!isOpen ? " h-0  " : "h-52 p-6"}`}
+                    linksClass={`${linkclass} ${!isOpen ? " opacity-0" : " opacity-100"}`}
+                />
+            </div>
         </div>
     );
 }
