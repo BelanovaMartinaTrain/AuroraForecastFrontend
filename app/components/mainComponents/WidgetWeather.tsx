@@ -77,17 +77,23 @@ export default function WidgetWeather() {
     return (
         <>
             <div className="relative">
-                <h2 className="font-h2 uppercase">Weather</h2>
+                <h2 className="font-h2 uppercase mb-4">Weather</h2>
 
-                <button onClick={handleClickC} aria-label="change units to celsius" aria-selected={degrees === "C" ? "true" : "false"}>
-                    <p className={`text-base absolute  -top-2 right-0 mr-9 p-1  ${degrees === "C" ? "text-[gainsboro]" : "text-stone-500"}`}>
-                        &#176;C
-                    </p>
+                <button
+                    className={` absolute  -top-2 right-0 mr-9 p-1  `}
+                    onClick={handleClickC}
+                    aria-label="change units to celsius"
+                    aria-selected={degrees === "C" ? "true" : "false"}
+                >
+                    <p className={`text-base ${degrees === "C" ? "text-[gainsboro]" : "text-stone-500"}`}>&#176;C</p>
                 </button>
-                <button onClick={handleClickF} aria-label="change units to fahrenheit" aria-selected={degrees === "F" ? "true" : "false"}>
-                    <p className={`text-base absolute right-0 mr-2 -top-2  p-1 ${degrees === "F" ? "text-[gainsboro]" : "text-stone-500"}`}>
-                        &#176;F
-                    </p>
+                <button
+                    className={` absolute right-0 mr-2 -top-2  p-1 ${degrees === "F" ? "text-[gainsboro]" : "text-stone-500"}`}
+                    onClick={handleClickF}
+                    aria-label="change units to fahrenheit"
+                    aria-selected={degrees === "F" ? "true" : "false"}
+                >
+                    <p className={` text-base ${degrees === "F" ? "text-[gainsboro]" : "text-stone-500"}`}>&#176;F</p>
                 </button>
             </div>
             {!!isLoading ? (
@@ -96,7 +102,7 @@ export default function WidgetWeather() {
                 <WidgetViewWeather location={location} degrees={degrees} />
             ) : (
                 <button
-                    className="mt-3 text-black bg-gradient-to-r from-blue-500 to-green-500  px-5 py-3 rounded-lg font-bold focus:ring ring-black ring-opacity-10 gradient element-to-rotate hover:-translate-y-1"
+                    className="mt-3 text-black bg-gradient-to-r from-blue-500 to-green-500  px-5 py-3 rounded-lg font-bold focus:ring ring-black ring-opacity-10 gradient element-to-rotate hover:-translate-y-0.5"
                     onClick={getLocation}
                 >
                     Enable location
