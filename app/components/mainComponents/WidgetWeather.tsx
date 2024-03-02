@@ -96,7 +96,7 @@ export default function WidgetWeather() {
                 <WidgetViewWeather location={location} degrees={degrees} />
             ) : (
                 <button
-                    className="  rounded-lg  text-black font-semibold enable-button center padding-small mt-3 bg-emerald-700 focus:bg-emerald-600 hover:bg-emerald-500 hover:-translate-y-1"
+                    className="mt-3 text-black bg-gradient-to-r from-blue-500 to-green-500  px-5 py-3 rounded-lg font-bold focus:ring ring-black ring-opacity-10 gradient element-to-rotate hover:-translate-y-1"
                     onClick={getLocation}
                 >
                     Enable location

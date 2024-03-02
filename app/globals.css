@@ -13,6 +13,31 @@
   font-display: swap;
 }
 
+@layer utilities {
+  @keyframes gradientChange {
+      0% {
+          background-position: 0%
+      }
+
+      50% {
+          background-position: 100%
+      }
+
+      100% {
+          background-position: 0%
+      }
+  }
+
+  .gradient {
+      background: linear-gradient(80deg,#166534, #16A34A,  #4ADE80);
+      background-size: 200% 200%;
+  }
+
+  .element-to-rotate {
+      animation: gradientChange 7s ease infinite;
+  }
+}
+
 /* RESET */
 *,
 *::before,
