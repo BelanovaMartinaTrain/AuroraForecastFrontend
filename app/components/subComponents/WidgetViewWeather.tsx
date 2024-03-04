@@ -49,7 +49,7 @@ export default function WidgetViewWeather({ location, degrees }: { location: wea
         fetchWeather();
         const intervalID = setInterval(() => {
             fetchWeather();
-        }, 1800000);
+        }, 600000);
         return () => clearInterval(intervalID);
     }, [location]);
 

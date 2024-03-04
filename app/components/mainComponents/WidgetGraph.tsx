@@ -45,6 +45,7 @@ export const options = {
 
 function createGradient(ctx: CanvasRenderingContext2D) {
     const gradient = ctx.createLinearGradient(0, -50, 470, 0);
+    //const gradient = ctx.createLinearGradient(0, 200, 0, 0);
     gradient.addColorStop(0, "purple");
     gradient.addColorStop(0.5, "SpringGreen");
     gradient.addColorStop(0.7, "yellowGreen");
@@ -69,20 +70,22 @@ export function Graph() {
                     throw new Error("Source is unreachable");
                 } else {
                     const { labels, yValues } = graphValues;
-                    setLabels(labels);
-                    setYValues(yValues);
+                    setLabels(["UTC", ...labels]);
+                    setYValues([0, ...yValues]);
                     setIsLoading(false);
                 }
             } catch (error) {
                 console.log(error);
                 setIsLoading(false);
             }
+            console.log("fetch");
         }
 
         fetchData();
         const intervalID = setInterval(() => {
             fetchData();
-        }, 3600000); //fetch every hour
+            console.log("fetch graph data");
+        }, 1800000); //fetch every half an hour
         return () => clearInterval(intervalID);
     }, []);
 
@@ -101,13 +104,14 @@ export function Graph() {
                     },
                 ],
             };
+            console.log(labels, yValues);
             setChartData(chartData);
         }
     }, [labels, yValues]);
 
     return (
         <div className="widget center padding-small grid-item width-100 backdrop-blur-sm min-h-[212px] xl:min-h-[300px]">
-            <h2 className="uppercase margin-xs-btm font-h2 relative">KP index forecast</h2>
+            <h2 className="uppercase font-h2 relative">KP index forecast</h2>
             {!!isLoading ? (
                 <ProgressBar />
             ) : (

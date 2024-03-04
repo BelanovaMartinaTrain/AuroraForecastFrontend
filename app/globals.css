@@ -63,7 +63,7 @@
   --widget-background: rgba(0, 0, 0, 60%);
 }
 
-/* ELEMENTS CSS */
+/* ELEMENTS CSS  */
 
 html, body { 
   background: url(/images/background.jpg) no-repeat center center fixed, black; 
@@ -311,7 +311,7 @@ canvas {
 .font-h2 {
   font-size: smaller;
   font-weight: 600;
-  color: gray;
+  color:gray;
 }
 
 .font-smaller {
