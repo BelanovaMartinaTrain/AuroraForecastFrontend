@@ -83,7 +83,7 @@ export default function WidgetWeather() {
                     className={` absolute  -top-2 right-0 mr-9 p-1  `}
                     onClick={handleClickC}
                     aria-description="change units to celsius"
-                    aria-selected={degrees === "C" ? "true" : "false"}
+                    aria-pressed={degrees === "C" ? "true" : "false"}
                 >
                     <p className={`text-base ${degrees === "C" ? "text-[gainsboro]" : "text-stone-500"}`}>&#176;C</p>
                 </button>
@@ -91,7 +91,7 @@ export default function WidgetWeather() {
                     className={` absolute right-0 mr-2 -top-2  p-1 ${degrees === "F" ? "text-[gainsboro]" : "text-stone-500"}`}
                     onClick={handleClickF}
                     aria-description="change units to fahrenheit"
-                    aria-selected={degrees === "F" ? "true" : "false"}
+                    aria-pressed={degrees === "F" ? "true" : "false"}
                 >
                     <p className={` text-base ${degrees === "F" ? "text-[gainsboro]" : "text-stone-500"}`}>&#176;F</p>
                 </button>
