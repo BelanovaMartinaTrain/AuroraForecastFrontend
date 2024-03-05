@@ -1,5 +1,5 @@
 {
-  "proxy": "http://209.38.184.216:8080/",
+ 
   "name": "aurora-forecast",
   "version": "0.1.0",
   "private": true,
