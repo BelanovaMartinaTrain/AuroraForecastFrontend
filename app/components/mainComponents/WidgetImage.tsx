@@ -28,7 +28,7 @@ export default function WidgetImage() {
             {!!isLoading && <ProgressBar />}
             <img
                 src={`${imageUrl}`}
-                alt="image of the predicted aurora oval, aurora activity in the next hour"
+                alt="predicted aurora ovation, predicted aurora activity in the next hour depicted visually"
                 className="img-latest mb-8"
                 width={475}
                 height={475}
