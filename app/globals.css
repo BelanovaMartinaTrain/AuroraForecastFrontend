@@ -66,10 +66,7 @@
 /* ELEMENTS CSS  */
 
 html, body { 
-  background: url(/images/background.jpg) no-repeat center center fixed, black; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+  background: url(/images/background.webp) no-repeat center center fixed, black; 
   background-size: cover;
   font-family: 'Quicksand', system-ui, sans-serif;
   font-weight: 300;
