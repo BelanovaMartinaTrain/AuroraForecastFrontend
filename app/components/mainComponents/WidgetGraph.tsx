@@ -83,7 +83,6 @@ export function Graph() {
         fetchData();
         const intervalID = setInterval(() => {
             fetchData();
-            console.log("fetch graph data");
         }, 1800000); //fetch every half an hour
         return () => clearInterval(intervalID);
     }, []);
@@ -103,7 +102,6 @@ export function Graph() {
                     },
                 ],
             };
-            console.log(labels, yValues);
             setChartData(chartData);
         }
     }, [labels, yValues]);

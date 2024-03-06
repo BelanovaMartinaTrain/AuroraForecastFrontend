@@ -47,6 +47,7 @@ export default function RootLayout({
                     <a
                         href="https://pixabay.com/users/evamichalkova-1091520/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=8465061"
                         target="_blank"
+                        area-label="navigate to the page of image author"
                     >
                         Eva Michálková
                     </a>{" "}
@@ -54,6 +55,7 @@ export default function RootLayout({
                     <a
                         href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=8465061"
                         target="_blank"
+                        area-label="navigate to the page of image hosting Pixabay"
                     >
                         Pixabay
                     </a>

@@ -3,7 +3,6 @@ export default async function fetchData(url: string) {
         const res = await fetch(url);
         const data = await res.json();
         if (res.ok) {
-            console.log("data", data);
             return data;
         } else {
             throw new Error("ERROR: Couldn't fetch the data");
