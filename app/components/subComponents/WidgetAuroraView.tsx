@@ -19,7 +19,7 @@ export default function WidgetAuroraView() {
             try {
                 const res = await fetch("https://aurora-api.cloud/api/planetary-k-index-mod");
                 const kpData = await res.json();
-                const res2 = await fetchData("https://aurora-api.cloud/api/sunstorm-events");
+                const res2 = await fetch("https://aurora-api.cloud/api/sunstorm-events");
                 const stormData = await res2.json();
                 console.log("kpData", kpData);
                 if (kpData === undefined || stormData === undefined || !!kpData.cause || !!stormData.cause) {
