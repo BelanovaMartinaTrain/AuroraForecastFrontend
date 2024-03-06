@@ -1,5 +1,3 @@
-"use server";
-
 export default async function fetchAndChangeGraphData(url: string) {
     const res = await fetch(url);
     const data = await res.json();
