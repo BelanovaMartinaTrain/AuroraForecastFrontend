@@ -78,7 +78,6 @@ export function Graph() {
                 console.log(error);
                 setIsLoading(false);
             }
-            console.log("fetch");
         }
 
         fetchData();
