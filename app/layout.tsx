@@ -41,7 +41,7 @@ export default function RootLayout({
                     <Header />
                     <main>
                         {/* <div>{ovation}</div> */}
-                        <div className="mt-2">{children}</div>
+                        <div>{children}</div>
                     </main>
 
                     <Footer />
