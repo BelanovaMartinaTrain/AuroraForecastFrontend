@@ -1,10 +1,10 @@
-import Clock from "./ui/Clock";
-import { Graph } from "./components/mainComponents/WidgetGraph";
-import BasicWidget from "./components/layoutComponents/BasicWidget";
-import WidgetAuroraActivity from "./components/mainComponents/WidgetAuroraActivity";
-import WidgetSolarWind from "./components/mainComponents/WidgetSolarWind";
-import WidgetWeather from "./components/mainComponents/WidgetWeather";
-import WidgetImage from "./components/mainComponents/WidgetImage";
+import Clock from "../_ui/Clock";
+import { Graph } from "../_components/mainComponents/WidgetGraph";
+import BasicWidget from "../_components/layoutComponents/BasicWidget";
+import WidgetAuroraActivity from "../_components/mainComponents/WidgetAuroraActivity";
+import WidgetSolarWind from "../_components/mainComponents/WidgetSolarWind";
+import WidgetWeather from "../_components/mainComponents/WidgetWeather";
+import WidgetImage from "../_components/mainComponents/WidgetImage";
 
 export default function Dashboard() {
     const now = new Date();

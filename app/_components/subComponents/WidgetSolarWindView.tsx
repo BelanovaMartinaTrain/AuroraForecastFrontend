@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import fetchData from "../../api/fetchData";
-import ProgressBar from "../../ui/ProgressBar";
+import fetchData from "../../_api/fetchData";
+import ProgressBar from "../../_ui/ProgressBar";
 import Link from "next/link";
 
 export default function WidgetViewSolarWind() {

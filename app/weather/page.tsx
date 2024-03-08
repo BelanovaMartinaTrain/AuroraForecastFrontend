@@ -1,5 +1,5 @@
-import WidgetImageGeneral from "../components/mainComponents/WidgetImageGeneral";
-import BasicWidget from "../components/layoutComponents/BasicWidget";
+import WidgetImageGeneral from "../_components/mainComponents/WidgetImageGeneral";
+import BasicWidget from "../_components/layoutComponents/BasicWidget";
 
 export default function Page() {
     return (
