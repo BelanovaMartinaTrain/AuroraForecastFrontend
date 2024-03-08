@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import WidgetViewWeather from "../subComponents/WidgetViewWeather";
-import ProgressBar from "../../ui/ProgressBar";
+import ProgressBar from "../../_ui/ProgressBar";
 
 export default function WidgetWeather() {
     const [location, setLocation] = useState({

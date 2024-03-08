@@ -7,8 +7,8 @@ export default function Navigation({ cssClass, linksClass }: { cssClass?: string
     const pathname = usePathname();
     return (
         <nav className={cssClass} role="menu">
-            <Link href="/" role="menuitem" aria-label="Navigate to Dashboard ">
-                <h2 className={`${linksClass} ${pathname === "/" ? "active font-semibold " : ""} hover:font-bold`}>DASHBOARD</h2>
+            <Link href="/dashboard" role="menuitem" aria-label="Navigate to Dashboard ">
+                <h2 className={`${linksClass} ${pathname === "/dashboard" ? "active font-semibold " : ""} hover:font-bold`}>DASHBOARD</h2>
             </Link>
 
             <Link href="/graphs" role="menuitem" aria-label="Navigate to Graphs ">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ProgressBar from "../../ui/ProgressBar";
+import ProgressBar from "../../_ui/ProgressBar";
 import Link from "next/link";
 
 interface imageProps {

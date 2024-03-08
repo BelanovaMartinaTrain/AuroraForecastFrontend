@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
 
 import "./globals.css";
-import Header from "./components/layoutComponents/Header";
+import Header from "./_components/layoutComponents/Header";
 import { Providers } from "./providers";
-import Footer from "./components/layoutComponents/Footer";
+import Footer from "./_components/layoutComponents/Footer";
 
 const quicksand = Quicksand({ subsets: ["latin"] });
 
@@ -39,7 +39,11 @@ export default function RootLayout({
             <body className={quicksand.className}>
                 <Providers>
                     <Header />
-                    <main>{children}</main>
+                    <main>
+                        {/* <div>{ovation}</div> */}
+                        <div>{children}</div>
+                    </main>
+
                     <Footer />
                 </Providers>
                 <span className="text-[8px] text-stone-700  font-semibold image-creds ">

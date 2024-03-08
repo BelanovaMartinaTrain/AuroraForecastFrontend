@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import fetchData from "../../api/fetchData";
-import ProgressBar from "../../ui/ProgressBar";
+import fetchData from "../../_api/fetchData";
+import ProgressBar from "../../_ui/ProgressBar";
 import Link from "next/link";
 
 export default function WidgetAuroraView() {
@@ -31,9 +31,9 @@ export default function WidgetAuroraView() {
 
                 if (Number(kpData) <= 2) {
                     setActivity("Low");
-                } else if (Number(kpData) > 2 && Number(kp) < 5) {
+                } else if (Number(kpData) > 2 && Number(kp) < 4) {
                     setActivity("Moderate");
-                } else if (Number(kpData) >= 5 && Number(kp) < 6) {
+                } else if (Number(kpData) >= 4 && Number(kp) < 6) {
                     setActivity("High");
                 } else if (Number(kpData) >= 6) {
                     setActivity("Very high");
