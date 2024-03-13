@@ -6,24 +6,13 @@ import WidgetSolarWind from "../_components/mainComponents/WidgetSolarWind";
 import WidgetWeather from "../_components/mainComponents/WidgetWeather";
 import WidgetImage from "../_components/mainComponents/WidgetImage";
 import WidgetWeatherParams from "../_components/mainComponents/WidgetWeatherParams";
-import checkParams from "../_utils/checkParams";
+import { Suspense } from "react";
+import WidgetViewWeatherSearchParams from "../_components/subComponents/WidgetViewWeatherSearchParams";
 
-export default function Dashboard({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+export default function Dashboard() {
     const now = new Date();
     const tmzAbrr = "Europe/Bratislava";
-    console.log("page", searchParams);
 
-    if (!searchParams) {
-        searchParams = {
-            lon: "null",
-            lat: "null",
-            units: "C",
-        };
-    }
-
-    searchParams = checkParams(searchParams);
-
-    console.log("page after", searchParams);
     return (
         <>
             <div className="grid ">
@@ -41,7 +30,11 @@ export default function Dashboard({ searchParams }: { searchParams: { [key: stri
                         <Clock className="font-smaller" time={now.getTime()} timezone="UTC" tmzAbrr={tmzAbrr} />
                     </BasicWidget>
                     <BasicWidget className={"widget center padding-small backdrop-blur-sm min-h-[152px] lg:min-h-[202px]"}>
-                        <WidgetWeatherParams searchParams={searchParams} />
+                        <Suspense>
+                            <WidgetWeatherParams>
+                                <WidgetViewWeatherSearchParams />
+                            </WidgetWeatherParams>
+                        </Suspense>
                     </BasicWidget>
                     <Graph />
                 </BasicWidget>

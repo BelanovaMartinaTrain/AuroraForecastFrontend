@@ -2,14 +2,14 @@
 
 import React, { useEffect, useState } from "react";
 import ProgressBar from "../../_ui/ProgressBar";
-import { useRouter } from "next/navigation";
 import WidgetViewWeatherSearchParams from "../subComponents/WidgetViewWeatherSearchParams";
+import { useLocationContext } from "@/app/_context/locationContext";
 
-export default function WidgetWeather({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+export default function WidgetWeather({ children }: { children: React.ReactNode }) {
     const [isLocation, setIsLocation] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-
-    const router = useRouter();
+    const { location, setLocation, units, setUnits } = useLocationContext();
+    const { lon, lat } = location;
 
     async function checkPerm() {
         navigator.permissions.query({ name: "geolocation" }).then((result) => {
@@ -17,15 +17,18 @@ export default function WidgetWeather({ searchParams }: { searchParams: { [key: 
                 setIsLocation(true);
                 getLocation();
             } else {
-                router.push(`?${new URLSearchParams({ ...searchParams, lon: "null", lat: "null" })}`);
+                setLocation({ lon: null, lat: null });
             }
         });
         setIsLoading(false);
     }
 
     useEffect(() => {
-        if (!searchParams.lon && !searchParams.lat) {
+        if (!lon || !lat) {
             checkPerm();
+        } else {
+            setIsLocation(true);
+            setLocation({ lon: `${lon}`, lat: `${lat}` });
         }
 
         const timeout = setTimeout(() => {
@@ -35,16 +38,15 @@ export default function WidgetWeather({ searchParams }: { searchParams: { [key: 
     }, []);
 
     function getLocation() {
-        router.push(`?${new URLSearchParams({ ...searchParams, lon: "null", lat: "null" })}`);
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                const lat = Math.round(position.coords.latitude * 10) / 10;
-                const lon = Math.round(position.coords.longitude * 10) / 10;
-                router.push(`?${new URLSearchParams({ ...searchParams, lon: `${lon}`, lat: `${lat}` })}`);
+                const numLat = Math.round(position.coords.latitude * 10) / 10;
+                const numLon = Math.round(position.coords.longitude * 10) / 10;
+                setLocation({ lon: `${numLon}`, lat: `${numLat}` });
             },
             (error) => {
                 console.log(error);
-                router.push(`?${new URLSearchParams({ ...searchParams, lon: "null", lat: "null" })}`);
+                setLocation({ lon: null, lat: null });
             }
         );
         setIsLocation(true);
@@ -52,11 +54,11 @@ export default function WidgetWeather({ searchParams }: { searchParams: { [key: 
     }
 
     function handleClickC() {
-        router.push(`?${new URLSearchParams({ ...searchParams, units: "C" })}`);
+        setUnits("C");
     }
 
     function handleClickF() {
-        router.push(`?${new URLSearchParams({ ...searchParams, units: "F" })}`);
+        setUnits("F");
     }
 
     return (
@@ -68,27 +70,23 @@ export default function WidgetWeather({ searchParams }: { searchParams: { [key: 
                     className={` absolute  -top-2 right-0 mr-9 p-1  `}
                     onClick={handleClickC}
                     aria-description="change units to celsius"
-                    aria-pressed={searchParams.units === "C" ? "true" : "false"}
+                    aria-pressed={units === "C" ? "true" : "false"}
                 >
-                    <p className={`text-base ${searchParams.units === "C" ? "text-[gainsboro]" : "text-stone-500"}`}>&#176;C</p>
+                    <p className={`text-base ${units === "C" ? "text-[gainsboro]" : "text-stone-500"}`}>&#176;C</p>
                 </button>
                 <button
-                    className={` absolute right-0 mr-2 -top-2  p-1 ${searchParams.units === "F" ? "text-[gainsboro]" : "text-stone-500"}`}
+                    className={` absolute right-0 mr-2 -top-2  p-1 ${units === "F" ? "text-[gainsboro]" : "text-stone-500"}`}
                     onClick={handleClickF}
                     aria-description="change units to fahrenheit"
-                    aria-pressed={searchParams.units === "F" ? "true" : "false"}
+                    aria-pressed={units === "F" ? "true" : "false"}
                 >
-                    <p className={` text-base ${searchParams.units === "F" ? "text-[gainsboro]" : "text-stone-500"}`}>&#176;F</p>
+                    <p className={` text-base ${units === "F" ? "text-[gainsboro]" : "text-stone-500"}`}>&#176;F</p>
                 </button>
             </div>
             {!!isLoading ? (
                 <ProgressBar />
             ) : isLocation ? (
-                <WidgetViewWeatherSearchParams
-                    lon={searchParams.lon as unknown as string | null}
-                    lat={searchParams.lat as unknown as string | null}
-                    degrees={searchParams.units as unknown as string}
-                />
+                <>{children}</>
             ) : (
                 <button
                     className="mt-3 text-black  px-5 py-3 rounded-lg font-bold focus:ring ring-black ring-opacity-10 gradient element-to-rotate hover:-translate-y-0.5"

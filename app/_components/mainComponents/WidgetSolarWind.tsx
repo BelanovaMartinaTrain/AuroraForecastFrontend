@@ -36,11 +36,11 @@ export default function WidgetSolarWind() {
                     disableAnimation={true}
                     scrollBehavior="inside"
                 >
-                    <ModalContent className=" p-2">
+                    <ModalContent className=" p-3 ">
                         {(onClose) => (
                             <>
-                                <ModalBody className="mb-5">
-                                    <p className="center mt-5 text-base underline underline-offset-4">Solar Wind</p>
+                                <ModalBody className="my-5">
+                                    <p className="center  text-base underline underline-offset-4">Solar Wind</p>
                                     Solar wind is a stream of charged particles that come from the corona, the outermost layer of the sun's atmosphere
                                     and produce the aurora.
                                     <p className="font-normal text-xs text-[SpringGreen]">

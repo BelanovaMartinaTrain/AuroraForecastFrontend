@@ -1,21 +1,15 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import fetchData from "../../_api/fetchData";
 import ProgressBar from "../../_ui/ProgressBar";
 import Link from "next/link";
+import { useLocationContext } from "@/app/_context/locationContext";
 
-export default function WidgetViewWeather({ lon, lat, degrees }: { lon: string | null; lat: string | null; degrees: string }) {
+export default function WidgetViewWeather() {
     const [isLoading, setIsLoading] = useState(false);
-    if (lon === "null") {
-        lon = null;
-    }
-
-    if (lat === "null") {
-        lat = null;
-    }
-
-    console.log("view", lon, lat, degrees);
+    const { location, units } = useLocationContext();
+    const { lon, lat } = location;
 
     const [weather, setWeather] = useState({
         air_pressure_at_sea_level: 0,
@@ -36,7 +30,6 @@ export default function WidgetViewWeather({ lon, lat, degrees }: { lon: string |
         async function fetchWeather() {
             setIsLoading(true);
             if (!!lat || !!lon) {
-                console.log("passed");
                 try {
                     const weatherData = await fetchData(`https://aurora-api.cloud/api/yr-met-weather/${lat}/${lon}`);
                     if (weatherData.cause) {
@@ -62,17 +55,17 @@ export default function WidgetViewWeather({ lon, lat, degrees }: { lon: string |
                 <div className={`center quickview-item width-100 padding-sm-btm ${!weather.air_pressure_at_sea_level && "text-neutral-800"}`}>
                     <p className="mb-1">Temperature</p>
                     <h3 className="mb-3">
-                        {degrees === "C" ? Math.round(weather.air_temperature) : Math.round(weather.air_temperature * (9 / 5) + 32)} &#176;{degrees}
+                        {units === "C" ? Math.round(weather.air_temperature) : Math.round(weather.air_temperature * (9 / 5) + 32)} &#176;{units}
                     </h3>
                     <p className="mb-1">Wind</p>
-                    {degrees === "C" ? <h3>{Math.round(weather.wind_speed)} m/s </h3> : <h3>{Math.round(weather.wind_speed * 2.2369)} mph </h3>}
+                    {units === "C" ? <h3>{Math.round(weather.wind_speed)} m/s </h3> : <h3>{Math.round(weather.wind_speed * 2.2369)} mph </h3>}
                 </div>
                 <div className={`center quickview-item width-100 margin-xs-btm ${!weather.air_pressure_at_sea_level && "text-neutral-800"}`}>
                     <p className="mb-1">Clouds </p>
                     <h3 className="font-smaller">Low: {Math.round(weather.cloud_area_fraction_low)} %</h3>
                     <h3 className="font-smaller">Middle: {Math.round(weather.cloud_area_fraction_medium)} %</h3>
                     <h3 className="font-smaller">High: {Math.round(weather.cloud_area_fraction_high)} %</h3>
-                    <h3 className="font-smaller">Fog: {Math.round(weather.fog_area_fraction)} %</h3>
+                    <h3 className="font-smaller mb-1">Fog: {Math.round(weather.fog_area_fraction)} %</h3>
                 </div>
             </div>
 
@@ -80,12 +73,18 @@ export default function WidgetViewWeather({ lon, lat, degrees }: { lon: string |
                 !weather.air_pressure_at_sea_level ? (
                     <p className="text-stone-600">Weather is not available</p>
                 ) : (
-                    <p className=" font-medium text-stone-500 text-[11px]">
-                        <span className="capitalize mr-1">Source:</span>
-                        <Link href="https://www.yr.no/en" target="_blank" aria-label="Link to source of used data - Norway meteo institute">
-                            MET Norway
-                        </Link>
-                    </p>
+                    <>
+                        {" "}
+                        <p className=" font-medium text-stone-500 text-[11px] mb-2">
+                            Used location: {lat}, {lon}
+                        </p>
+                        <p className=" font-medium text-stone-500 text-[11px]">
+                            <span className="capitalize mr-1">Source:</span>
+                            <Link href="https://www.yr.no/en" target="_blank" aria-label="Link to source of used data - Norway meteo institute">
+                                MET Norway
+                            </Link>
+                        </p>
+                    </>
                 )
             ) : (
                 <ProgressBar />
