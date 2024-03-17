@@ -9,20 +9,20 @@ type TCoordinates = {
 
 type TUnits = "C" | "F" | "c" | "f";
 
-type TLocationContext = {
+type TLocationAndWeatherContext = {
     location: TCoordinates;
     setLocation: React.Dispatch<React.SetStateAction<TCoordinates>>;
     units: TUnits;
     setUnits: React.Dispatch<React.SetStateAction<TUnits>>;
 };
 
-type TLocationContextProviderProps = {
+type TLocationAndWeatherContextProviderProps = {
     children: React.ReactNode;
 };
 
-export const LocationContext = createContext<TLocationContext | null>(null);
+export const LocationAndWeatherContext = createContext<TLocationAndWeatherContext | null>(null);
 
-export default function LocationContextProvider({ children }: TLocationContextProviderProps) {
+export default function LocationAndWeatherContextProvider({ children }: TLocationAndWeatherContextProviderProps) {
     const [location, setLocation] = useState<TCoordinates>({
         lon: null,
         lat: null,
@@ -30,7 +30,7 @@ export default function LocationContextProvider({ children }: TLocationContextPr
     const [units, setUnits] = useState<TUnits>("C");
 
     return (
-        <LocationContext.Provider
+        <LocationAndWeatherContext.Provider
             value={{
                 location,
                 setLocation,
@@ -39,14 +39,14 @@ export default function LocationContextProvider({ children }: TLocationContextPr
             }}
         >
             {children}
-        </LocationContext.Provider>
+        </LocationAndWeatherContext.Provider>
     );
 }
 
-export function useLocationContext() {
-    const context = useContext(LocationContext);
+export function useLocationAndWeatherContext() {
+    const context = useContext(LocationAndWeatherContext);
     if (!context) {
-        throw new Error("Location context can only be used inside <LocationContextProvider/>");
+        throw new Error("Location and weather context can only be used inside <LocationAndWeatherContextProvider/>");
     }
     return context;
 }

@@ -36,14 +36,14 @@ export default function WidgetImageGeneral({ title, url, timerDuration, source }
     }, [imageUrl]);
 
     return (
-        <div className=" bg-black bg-opacity-70  center padding-small rounded-xl backdrop-blur-sm">
-            <h3 className="img-text uppercase margin-xs-btm">{title}</h3>
+        <>
+            <h3 className="img-text uppercase mb-2">{title}</h3>
             {!!isLoading && <ProgressBar />}
 
             <img
                 src={`${imageUrl}`}
                 alt="image of the predicted aurora oval, aurora activity in the next hour"
-                className="w-full rounded-xl opacity-75"
+                className="w-full rounded-xl opacity-75 "
             />
 
             <p className="mt-4 font-medium text-stone-500">
@@ -57,6 +57,6 @@ export default function WidgetImageGeneral({ title, url, timerDuration, source }
                     {source.nameSource}
                 </Link>
             </p>
-        </div>
+        </>
     );
 }

@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import ProgressBar from "../../_ui/ProgressBar";
-import { useLocationContext } from "@/app/_context/locationContext";
+import { useLocationAndWeatherContext } from "@/app/_context/locationAndWeatherContext";
 
 export default function WidgetWeather({ children }: { children: React.ReactNode }) {
     const [isLocation, setIsLocation] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const { location, setLocation, units, setUnits } = useLocationContext();
+    const { location, setLocation, units, setUnits } = useLocationAndWeatherContext();
     const { lon, lat } = location;
 
     async function checkPerm() {
@@ -63,8 +63,7 @@ export default function WidgetWeather({ children }: { children: React.ReactNode 
     return (
         <>
             <div className="relative">
-                {/*<h2 className="font-h2 uppercase mb-4">Weather</h2>*/}
-
+                <h2 className="font-h2 uppercase">Weather</h2>
                 <button
                     className={` absolute  -top-2 right-0 mr-9 p-1  `}
                     onClick={handleClickC}

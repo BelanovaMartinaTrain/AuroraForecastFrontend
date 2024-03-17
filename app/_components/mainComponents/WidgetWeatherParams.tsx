@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import ProgressBar from "../../_ui/ProgressBar";
-import { useLocationContext } from "@/app/_context/locationContext";
+import { useLocationAndWeatherContext } from "@/app/_context/locationAndWeatherContext";
 
 export default function WidgetWeather({ children }: { children: React.ReactNode }) {
     const [isLocation, setIsLocation] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const { location, setLocation, units, setUnits } = useLocationContext();
+    const { location, setLocation, units, setUnits } = useLocationAndWeatherContext();
     const { lon, lat } = location;
 
     async function checkPerm() {

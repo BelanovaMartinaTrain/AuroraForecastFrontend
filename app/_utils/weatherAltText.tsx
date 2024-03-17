@@ -1,3 +1,8 @@
+type ValueOf<T> = T[keyof T];
+
+export type TWeatherAltKey = keyof typeof weatherAlt;
+export type TWeatherAltId = ValueOf<typeof weatherAlt>;
+
 export const weatherAlt = {
     "01": "clear sky",
     "02": "fair",

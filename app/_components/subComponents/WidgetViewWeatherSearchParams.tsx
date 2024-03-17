@@ -4,14 +4,16 @@ import React, { useEffect, useState } from "react";
 import fetchData from "../../_api/fetchData";
 import ProgressBar from "../../_ui/ProgressBar";
 import Link from "next/link";
-import { useLocationContext } from "@/app/_context/locationContext";
+import { useLocationAndWeatherContext } from "@/app/_context/locationAndWeatherContext";
 import { TWeatherSymbolKey, weatherSymbolKeys } from "@/app/_utils/weatherSymbolKeys";
+import { weatherAlt, TWeatherAltKey } from "@/app/_utils/weatherAltText";
 
 export default function WidgetViewWeather() {
     const [isLoading, setIsLoading] = useState(false);
-    const { location, units } = useLocationContext();
+    const { location, units } = useLocationAndWeatherContext();
     const { lon, lat } = location;
     const [icon, setIcon] = useState<TWeatherSymbolKey>("none");
+    const [altText, setAltText] = useState("none");
 
     const [weather, setWeather] = useState({
         air_pressure_at_sea_level: 0,
@@ -40,7 +42,11 @@ export default function WidgetViewWeather() {
                     } else {
                         setWeather(weatherData.properties.timeseries[0].data.instant.details);
                         setIcon(weatherData.properties.timeseries[0].data.next_1_hours.summary.symbol_code);
-                        if (!!icon) console.log(weatherSymbolKeys[icon]);
+                        let localIcon: TWeatherSymbolKey = weatherData.properties.timeseries[0].data.next_1_hours.summary.symbol_code;
+
+                        let icon_num = weatherSymbolKeys[localIcon].slice(0, 2);
+                        setAltText(weatherAlt[icon_num as TWeatherAltKey]);
+                        console.log(weatherAlt[icon_num as TWeatherAltKey]);
                     }
                 } catch {}
             }
@@ -63,12 +69,7 @@ export default function WidgetViewWeather() {
                         <h3 className="mb-3">
                             {units === "C" ? Math.round(weather.air_temperature) : Math.round(weather.air_temperature * (9 / 5) + 32)} &#176;{units}
                         </h3>
-                        <img
-                            className="ml-2 place-self-start "
-                            src={`icons/weather/${weatherSymbolKeys[icon]}.svg`}
-                            width="25px"
-                            alt={icon.split("_").join(" ")}
-                        />
+                        <img className="ml-2 place-self-start " src={`icons/weather/${weatherSymbolKeys[icon]}.svg`} width="25px" alt={altText} />
                     </div>
                     <p className="mb-1">Wind</p>
                     {units === "C" ? <h3>{Math.round(weather.wind_speed)} m/s </h3> : <h3>{Math.round(weather.wind_speed * 2.2369)} mph </h3>}
