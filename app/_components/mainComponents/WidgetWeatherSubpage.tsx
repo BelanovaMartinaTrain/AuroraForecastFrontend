@@ -63,7 +63,7 @@ export default function WidgetWeather({ children }: { children: React.ReactNode 
     return (
         <>
             <div className="relative">
-                <h2 className="font-h2 uppercase mb-4">Weather</h2>
+                {/*<h2 className="font-h2 uppercase mb-4">Weather</h2>*/}
 
                 <button
                     className={` absolute  -top-2 right-0 mr-9 p-1  `}

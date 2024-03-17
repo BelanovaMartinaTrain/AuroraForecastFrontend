@@ -5,11 +5,13 @@ import fetchData from "../../_api/fetchData";
 import ProgressBar from "../../_ui/ProgressBar";
 import Link from "next/link";
 import { useLocationContext } from "@/app/_context/locationContext";
+import { TWeatherSymbolKey, weatherSymbolKeys } from "@/app/_utils/weatherSymbolKeys";
 
 export default function WidgetViewWeather() {
     const [isLoading, setIsLoading] = useState(false);
     const { location, units } = useLocationContext();
     const { lon, lat } = location;
+    const [icon, setIcon] = useState<TWeatherSymbolKey>("none");
 
     const [weather, setWeather] = useState({
         air_pressure_at_sea_level: 0,
@@ -32,10 +34,13 @@ export default function WidgetViewWeather() {
             if (!!lat || !!lon) {
                 try {
                     const weatherData = await fetchData(`https://aurora-api.cloud/api/yr-met-weather/${lat}/${lon}`);
+                    console.log(weatherData.properties.timeseries[0].data.next_1_hours.summary.symbol_code);
                     if (weatherData.cause) {
                         console.error("error", weatherData.cause);
                     } else {
                         setWeather(weatherData.properties.timeseries[0].data.instant.details);
+                        setIcon(weatherData.properties.timeseries[0].data.next_1_hours.summary.symbol_code);
+                        if (!!icon) console.log(weatherSymbolKeys[icon]);
                     }
                 } catch {}
             }
@@ -54,9 +59,17 @@ export default function WidgetViewWeather() {
             <div className="quickview-div center">
                 <div className={`center quickview-item width-100 padding-sm-btm ${!weather.air_pressure_at_sea_level && "text-neutral-800"}`}>
                     <p className="mb-1">Temperature</p>
-                    <h3 className="mb-3">
-                        {units === "C" ? Math.round(weather.air_temperature) : Math.round(weather.air_temperature * (9 / 5) + 32)} &#176;{units}
-                    </h3>
+                    <div className="flex">
+                        <h3 className="mb-3">
+                            {units === "C" ? Math.round(weather.air_temperature) : Math.round(weather.air_temperature * (9 / 5) + 32)} &#176;{units}
+                        </h3>
+                        <img
+                            className="ml-2 place-self-start "
+                            src={`icons/weather/${weatherSymbolKeys[icon]}.svg`}
+                            width="25px"
+                            alt={icon.split("_").join(" ")}
+                        />
+                    </div>
                     <p className="mb-1">Wind</p>
                     {units === "C" ? <h3>{Math.round(weather.wind_speed)} m/s </h3> : <h3>{Math.round(weather.wind_speed * 2.2369)} mph </h3>}
                 </div>
@@ -73,9 +86,8 @@ export default function WidgetViewWeather() {
                 !weather.air_pressure_at_sea_level ? (
                     <p className="text-stone-600">Weather is not available</p>
                 ) : (
-                    <>
-                        {" "}
-                        <p className=" font-medium text-stone-500 text-[11px] mb-2">
+                    <div className="flex justify-evenly mt-5">
+                        <p className=" font-medium text-stone-500 text-[11px]  mr-2">
                             Used location: {lat}, {lon}
                         </p>
                         <p className=" font-medium text-stone-500 text-[11px]">
@@ -84,7 +96,7 @@ export default function WidgetViewWeather() {
                                 MET Norway
                             </Link>
                         </p>
-                    </>
+                    </div>
                 )
             ) : (
                 <ProgressBar />

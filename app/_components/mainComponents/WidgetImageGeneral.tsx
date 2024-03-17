@@ -39,12 +39,13 @@ export default function WidgetImageGeneral({ title, url, timerDuration, source }
         <div className=" bg-black bg-opacity-70  center padding-small rounded-xl backdrop-blur-sm">
             <h3 className="img-text uppercase margin-xs-btm">{title}</h3>
             {!!isLoading && <ProgressBar />}
+
             <img
                 src={`${imageUrl}`}
                 alt="image of the predicted aurora oval, aurora activity in the next hour"
                 className="w-full rounded-xl opacity-75"
             />
-            {/* <embed type="text/html" src={imageUrl} width={900} height={600} /> */}
+
             <p className="mt-4 font-medium text-stone-500">
                 <span className="capitalize mr-1">Source:</span> {/*TODO add loading*/}
                 <Link

@@ -6,13 +6,11 @@ import WidgetSolarWind from "../_components/mainComponents/WidgetSolarWind";
 import WidgetWeather from "../_components/mainComponents/WidgetWeather";
 import WidgetImage from "../_components/mainComponents/WidgetImage";
 import WidgetWeatherParams from "../_components/mainComponents/WidgetWeatherParams";
-import { Suspense } from "react";
-import WidgetViewWeatherSearchParams from "../_components/subComponents/WidgetViewWeatherSearchParams";
+import WidgetViewWeather from "../_components/subComponents/WidgetViewWeatherSearchParams";
 
 export default function Dashboard() {
     const now = new Date();
     const tmzAbrr = "Europe/Bratislava";
-
     return (
         <>
             <div className="grid ">
@@ -30,11 +28,9 @@ export default function Dashboard() {
                         <Clock className="font-smaller" time={now.getTime()} timezone="UTC" tmzAbrr={tmzAbrr} />
                     </BasicWidget>
                     <BasicWidget className={"widget center padding-small backdrop-blur-sm min-h-[152px] lg:min-h-[202px]"}>
-                        <Suspense>
-                            <WidgetWeatherParams>
-                                <WidgetViewWeatherSearchParams />
-                            </WidgetWeatherParams>
-                        </Suspense>
+                        <WidgetWeatherParams>
+                            <WidgetViewWeather />
+                        </WidgetWeatherParams>
                     </BasicWidget>
                     <Graph />
                 </BasicWidget>

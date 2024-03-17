@@ -1,21 +1,21 @@
+"use client";
+
 import WidgetImageGeneral from "../_components/mainComponents/WidgetImageGeneral";
-import BasicWidget from "../_components/layoutComponents/BasicWidget";
+import { useLocationContext } from "../_context/locationContext";
+import WidgetWeather from "../_components/mainComponents/WidgetWeatherSubpage";
 
 export default function Page() {
+    const { location } = useLocationContext();
+    const { lon, lat } = location;
+    console.log(lon, lat);
     return (
-        <>
-            {/* <WidgetImageGeneral
-                title={"Picture"}
-                url={"https://www.yr.no/en/content/48.100,17.100/meteogram.svg?mode=dark"}
+        <WidgetWeather>
+            <WidgetImageGeneral
+                title={""}
+                url={`https://www.yr.no/en/content/${lat},${lon}/meteogram.svg?mode=dark`}
                 timerDuration={3600000}
                 source={{ urlSource: "https://yr.no", nameSource: "MET Norway" }}
-            /> */}
-            {/* <WidgetImageGeneral
-                title={"chart"}
-                url={"https://www.yr.no/en/content/48.100,17.100/table.html?mode=dark"}
-                timerDuration={3600000}
-                source={{ urlSource: "https://yr.no", nameSource: "MET Norway" }}
-            /> */}
-        </>
+            />
+        </WidgetWeather>
     );
 }
