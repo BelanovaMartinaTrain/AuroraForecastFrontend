@@ -23,7 +23,7 @@ export default function WidgetImageGeneral({ title, url, timerDuration, source }
     useEffect(() => {
         function changeUrl() {
             const timestamp = Math.floor(Date.now() / 1000);
-            setImageUrl(`${url}&${timestamp}`);
+            //setImageUrl(`${url}&${timestamp}`); //TODO temporarily disabled
             setIsLoading(true);
             setTimeout(() => setIsLoading(false), 500);
         }

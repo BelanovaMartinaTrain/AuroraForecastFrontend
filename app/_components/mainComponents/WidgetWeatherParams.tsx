@@ -4,14 +4,14 @@ import React, { useEffect, useState } from "react";
 import ProgressBar from "../../_ui/ProgressBar";
 import { useLocationAndWeatherContext } from "@/app/_context/locationAndWeatherContext";
 
-export default function WidgetWeather({ children }: { children: React.ReactNode }) {
+export default function WidgetWeatherParams({ children }: { children: React.ReactNode }) {
     const [isLocation, setIsLocation] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const { location, setLocation, units, setUnits } = useLocationAndWeatherContext();
     const { lon, lat } = location;
 
     async function checkPerm() {
-        navigator.permissions.query({ name: "geolocation" }).then((result) => {
+        await navigator.permissions.query({ name: "geolocation" }).then((result) => {
             if (result.state === "granted") {
                 setIsLocation(true);
                 getLocation();

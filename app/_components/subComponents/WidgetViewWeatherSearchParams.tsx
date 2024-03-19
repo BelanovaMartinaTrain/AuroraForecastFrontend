@@ -36,7 +36,6 @@ export default function WidgetViewWeather() {
             if (!!lat || !!lon) {
                 try {
                     const weatherData = await fetchData(`https://aurora-api.cloud/api/yr-met-weather/${lat}/${lon}`);
-                    console.log(weatherData.properties.timeseries[0].data.next_1_hours.summary.symbol_code);
                     if (weatherData.cause) {
                         console.error("error", weatherData.cause);
                     } else {
@@ -46,7 +45,6 @@ export default function WidgetViewWeather() {
 
                         let icon_num = weatherSymbolKeys[localIcon].slice(0, 2);
                         setAltText(weatherAlt[icon_num as TWeatherAltKey]);
-                        console.log(weatherAlt[icon_num as TWeatherAltKey]);
                     }
                 } catch {}
             }

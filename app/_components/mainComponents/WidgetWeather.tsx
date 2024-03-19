@@ -22,7 +22,7 @@ export default function WidgetWeather() {
 
     useEffect(() => {
         async function checkPerm() {
-            navigator.permissions.query({ name: "geolocation" }).then((result) => {
+            await navigator.permissions.query({ name: "geolocation" }).then((result) => {
                 if (result.state === "granted") {
                     setIsLocation(true);
                     getLocation();

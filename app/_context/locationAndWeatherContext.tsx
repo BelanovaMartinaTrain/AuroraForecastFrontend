@@ -9,11 +9,30 @@ type TCoordinates = {
 
 type TUnits = "C" | "F" | "c" | "f";
 
+export type TWeatherObject = {
+    air_pressure_at_sea_level: number;
+    air_temperature: number;
+    cloud_area_fraction: number;
+    cloud_area_fraction_high: number;
+    cloud_area_fraction_low: number;
+    cloud_area_fraction_medium: number;
+    dew_point_temperature: number;
+    fog_area_fraction: number;
+    relative_humidity: number;
+    ultraviolet_index_clear_sky: number;
+    wind_from_direction: number;
+    wind_speed: number;
+    icon_code: string;
+    time: string;
+};
+
 type TLocationAndWeatherContext = {
     location: TCoordinates;
     setLocation: React.Dispatch<React.SetStateAction<TCoordinates>>;
     units: TUnits;
     setUnits: React.Dispatch<React.SetStateAction<TUnits>>;
+    weatherArray: TWeatherObject[] | null;
+    setWeatherArray: React.Dispatch<React.SetStateAction<TWeatherObject[] | null>>;
 };
 
 type TLocationAndWeatherContextProviderProps = {
@@ -28,6 +47,7 @@ export default function LocationAndWeatherContextProvider({ children }: TLocatio
         lat: null,
     });
     const [units, setUnits] = useState<TUnits>("C");
+    const [weatherArray, setWeatherArray] = useState<TWeatherObject[] | null>(null);
 
     return (
         <LocationAndWeatherContext.Provider
@@ -36,6 +56,8 @@ export default function LocationAndWeatherContextProvider({ children }: TLocatio
                 setLocation,
                 units,
                 setUnits,
+                weatherArray,
+                setWeatherArray,
             }}
         >
             {children}
