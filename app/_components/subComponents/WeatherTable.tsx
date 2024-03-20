@@ -64,7 +64,7 @@ export default function WeatherTable() {
             <div key={-1} className="flex justify-evenly py-1 border-b-[1px] border-b-black">
                 <p className="capitalize font-medium min-w-36">Date and time</p>
                 <div className="capitalize font-medium flex w-full mr-6">
-                    <p className={PClassNames}>Temperature </p>{" "}
+                    <p className={`${PClassNames} ml-5`}>Temperature </p>{" "}
                 </div>
                 <p className={PClassNames}>Icon</p>
                 <p className={PClassNames}>Wind speed</p>
@@ -77,7 +77,7 @@ export default function WeatherTable() {
             {!!weatherArray &&
                 weatherArray?.map((weather, index) => {
                     return (
-                        <div key={index} className="flex justify-evenly py-1 border-b-[1px] border-b-black">
+                        <div key={index} className="flex justify-evenly py-1 border-b-[1px] border-b-black ">
                             <p className="capitalize font-medium min-w-36">
                                 {new Date(weather.time).toLocaleDateString("uk", {
                                     month: "numeric",
@@ -90,8 +90,8 @@ export default function WeatherTable() {
                                     minute: "2-digit",
                                 })}
                             </p>
-                            <div className="capitalize font-medium flex   w-full ml-6">
-                                <p className="">{weather.air_temperature} &#176;C </p>{" "}
+                            <div className="capitalize font-medium flex justify-evenly  w-full ml-6">
+                                <p className="place-items-start">{weather.air_temperature} &#176;C </p>{" "}
                                 <img
                                     className=" "
                                     src={`icons/weather/${weatherSymbolKeys[weather.icon_code as TWeatherSymbolKey]}.svg`}
