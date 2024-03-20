@@ -4,11 +4,12 @@ import React, { useEffect, useState } from "react";
 import ProgressBar from "../../_ui/ProgressBar";
 import { useLocationAndWeatherContext } from "@/app/_context/locationAndWeatherContext";
 import WidgetImageGeneral from "../mainComponents/WidgetImageGeneral";
+import TemperatureUnitsSwitch from "@/app/_ui/TemperatureUnitsSwitch";
 
 export default function WidgetWeatherSubpage() {
     const [isLocation, setIsLocation] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const { location, setLocation, units, setUnits } = useLocationAndWeatherContext();
+    const { location, setLocation } = useLocationAndWeatherContext();
     const { lon, lat } = location;
 
     async function checkPerm() {
@@ -53,35 +54,9 @@ export default function WidgetWeatherSubpage() {
         setIsLoading(false);
     }
 
-    function handleClickC() {
-        setUnits("C");
-    }
-
-    function handleClickF() {
-        setUnits("F");
-    }
-
     return (
         <>
-            <div className="relative">
-                <h2 className="font-h2 uppercase">Weather</h2>
-                <button
-                    className={` absolute  -top-2 right-0 mr-9 p-1  `}
-                    onClick={handleClickC}
-                    aria-description="change units to celsius"
-                    aria-pressed={units === "C" ? "true" : "false"}
-                >
-                    <p className={`text-base ${units === "C" ? "text-[gainsboro]" : "text-stone-500"}`}>&#176;C</p>
-                </button>
-                <button
-                    className={` absolute right-0 mr-2 -top-2  p-1 ${units === "F" ? "text-[gainsboro]" : "text-stone-500"}`}
-                    onClick={handleClickF}
-                    aria-description="change units to fahrenheit"
-                    aria-pressed={units === "F" ? "true" : "false"}
-                >
-                    <p className={` text-base ${units === "F" ? "text-[gainsboro]" : "text-stone-500"}`}>&#176;F</p>
-                </button>
-            </div>
+            <TemperatureUnitsSwitch title="Title" classes="" />
             {!!isLoading ? (
                 <ProgressBar />
             ) : isLocation ? (
