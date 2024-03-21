@@ -54,7 +54,7 @@ export default function WeatherData({ children, title }: { children: React.React
 
     return (
         <>
-            <TemperatureUnitsSwitch title={title} classes="mb-4" />
+            <TemperatureUnitsSwitch title={title} classes="mb-4 mt-3" />
             <ButtonRequestLocationPerm>
                 {!!weatherArray ? <>{children}</> : isLoading ? <ProgressBar /> : isError && <p className="mt-8">Source is not available</p>}
             </ButtonRequestLocationPerm>
