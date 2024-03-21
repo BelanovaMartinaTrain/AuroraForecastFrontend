@@ -1,15 +1,18 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import fetchData from "./fetchData";
-import { TWeatherObject, useLocationAndWeatherContext } from "@/app/_context/locationAndWeatherContext";
-import TemperatureUnitsSwitch from "@/app/_ui/TemperatureUnitsSwitch";
-import WeatherTable from "../_components/subComponents/WeatherTable";
+import fetchData from "../../_api/fetchData";
+import { useLocationAndWeatherContext } from "@/app/_context/locationAndWeatherContext";
+import TemperatureUnitsSwitch from "@/app/_components/uiComponents/TemperatureUnitsSwitch";
+import ButtonRequestLocationPerm from "../uiComponents/ButtonRequestLocationPerm";
+import ProgressBar from "../uiComponents/ProgressBar";
 
-export default function WeatherData() {
+export default function WeatherData({ children }: { children: React.ReactNode }) {
     const [isLoading, setIsLoading] = useState(false);
-    const { location, units, weatherArray, setWeatherArray } = useLocationAndWeatherContext();
+    const { location, weatherArray, setWeatherArray } = useLocationAndWeatherContext();
     const { lon, lat } = location;
+
+    console.log("weatherdata", lon, lat);
 
     async function fetchWeather(source?: string) {
         setIsLoading(true);
@@ -34,6 +37,7 @@ export default function WeatherData() {
                     }
                 } catch {
                     setWeatherArray(null);
+                    setIsLoading(false);
                 }
             }
         }
@@ -41,18 +45,23 @@ export default function WeatherData() {
 
     useEffect(() => {
         fetchWeather();
-        setIsLoading(false);
         const intervalID = setInterval(() => {
             fetchWeather("timer");
-            setIsLoading(false);
         }, 600000);
         return () => clearInterval(intervalID);
     }, [lon, lat]);
 
+    useEffect(() => {
+        const timer = setTimeout(() => setIsLoading(false), 500);
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
         <>
             <TemperatureUnitsSwitch title="10-hour weather forecast" classes="mb-4" />
-            <WeatherTable weatherArray={weatherArray!} units={units} isLoading={isLoading} />
+            <ButtonRequestLocationPerm>
+                {!!weatherArray ? <>{children}</> : isLoading ? <ProgressBar /> : !weatherArray && <p className="mt-8">Source is not available</p>}
+            </ButtonRequestLocationPerm>
         </>
     );
 }

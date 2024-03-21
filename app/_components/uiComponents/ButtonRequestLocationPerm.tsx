@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import ProgressBar from "../../_ui/ProgressBar";
-import { useLocationAndWeatherContext } from "@/app/_context/locationAndWeatherContext";
+import { useEffect, useState } from "react";
+import { useLocationAndWeatherContext } from "../../_context/locationAndWeatherContext";
+import ProgressBar from "./ProgressBar";
 
-export default function WidgetWeatherParams({ children }: { children: React.ReactNode }) {
+export default function ButtonRequestLocationPerm({ children }: { children: React.ReactNode }) {
     const [isLocation, setIsLocation] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const { location, setLocation, units, setUnits } = useLocationAndWeatherContext();
+    const { location, setLocation } = useLocationAndWeatherContext();
     const { lon, lat } = location;
 
     async function checkPerm() {
@@ -25,16 +25,18 @@ export default function WidgetWeatherParams({ children }: { children: React.Reac
     useEffect(() => {
         if (!lon || !lat) {
             checkPerm();
+            console.log("check perm", lon, lat);
         } else {
             setIsLocation(true);
             setLocation({ lon: `${lon}`, lat: `${lat}` });
+            console.log("context present", lon, lat);
         }
 
         const timeout = setTimeout(() => {
             setIsLoading(false);
         }, 500);
         return () => clearTimeout(timeout);
-    }, []);
+    }, [lon, lat]);
 
     function getLocation() {
         navigator.geolocation.getCurrentPosition(
@@ -51,37 +53,10 @@ export default function WidgetWeatherParams({ children }: { children: React.Reac
         setIsLocation(true);
         setIsLoading(false);
     }
-
-    function handleClickC() {
-        setUnits("C");
-    }
-
-    function handleClickF() {
-        setUnits("F");
-    }
+    console.log("out", lon, lat);
 
     return (
         <>
-            <div className="relative">
-                <h2 className="font-h2 uppercase mb-4">Weather</h2>
-
-                <button
-                    className={` absolute  -top-2 right-0 mr-9 p-1  `}
-                    onClick={handleClickC}
-                    aria-description="change units to celsius"
-                    aria-pressed={units === "C" ? "true" : "false"}
-                >
-                    <p className={`text-base ${units === "C" ? "text-[gainsboro]" : "text-stone-500"}`}>&#176;C</p>
-                </button>
-                <button
-                    className={` absolute right-0 mr-2 -top-2  p-1 ${units === "F" ? "text-[gainsboro]" : "text-stone-500"}`}
-                    onClick={handleClickF}
-                    aria-description="change units to fahrenheit"
-                    aria-pressed={units === "F" ? "true" : "false"}
-                >
-                    <p className={` text-base ${units === "F" ? "text-[gainsboro]" : "text-stone-500"}`}>&#176;F</p>
-                </button>
-            </div>
             {!!isLoading ? (
                 <ProgressBar />
             ) : isLocation ? (

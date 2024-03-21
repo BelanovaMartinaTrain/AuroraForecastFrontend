@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState } from "react";
 
-type TCoordinates = {
+export type TCoordinates = {
     lon: string | null;
     lat: string | null;
 };

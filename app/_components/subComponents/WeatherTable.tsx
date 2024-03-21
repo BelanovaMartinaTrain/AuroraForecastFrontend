@@ -1,19 +1,11 @@
-import { TWeatherObject } from "@/app/_context/locationAndWeatherContext";
+"use client";
+import { useLocationAndWeatherContext } from "@/app/_context/locationAndWeatherContext";
 import { TWeatherSymbolKey, weatherSymbolKeys } from "@/app/_utils/weatherSymbolKeys";
 import { weatherAlt, TWeatherAltKey } from "@/app/_utils/weatherAltText";
-import TemperatureUnitsSwitch from "@/app/_ui/TemperatureUnitsSwitch";
 
-export default function WeatherTable({
-    weatherArray,
-    units,
-    isLoading,
-}: {
-    weatherArray: TWeatherObject[];
-    units: "C" | "F" | "c" | "f";
-    isLoading: boolean;
-}) {
+export default function WeatherTable() {
     const PClassNames = "capitalize font-medium w-full ";
-    console.log(isLoading);
+    const { weatherArray, units } = useLocationAndWeatherContext();
 
     return (
         <>
@@ -74,7 +66,6 @@ export default function WeatherTable({
                             </div>
                         );
                     })}
-                {isLoading ? <p className="mt-8">Source is not available</p> : ""}
             </div>
         </>
     );

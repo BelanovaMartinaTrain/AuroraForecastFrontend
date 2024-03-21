@@ -42,7 +42,6 @@ export default function RootLayout({
                     <Providers>
                         <Header />
                         <main>
-                            {/* <div>{ovation}</div> */}
                             <div>{children}</div>
                         </main>
 

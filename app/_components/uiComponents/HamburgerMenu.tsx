@@ -1,6 +1,6 @@
 "use client";
 
-import Navigation from "../_components/layoutComponents/Navigation";
+import Navigation from "../layoutComponents/Navigation";
 import { useEffect, useRef, useState } from "react";
 
 export default function HamburgerMenu() {
