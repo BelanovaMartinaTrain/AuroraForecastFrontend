@@ -28,7 +28,7 @@ export default function WeatherTable() {
                     weatherArray?.map((weather, index) => {
                         return (
                             <div key={index} className="flex justify-evenly py-1 border-b-[1px] border-b-black border-opacity-50">
-                                <p className="capitalize font-medium min-w-28">
+                                <p className=" font-medium min-w-28">
                                     {new Date(weather.time).toLocaleDateString(`${units === "C" ? "uk" : "us"}`, {
                                         month: "numeric",
                                         day: "numeric",
