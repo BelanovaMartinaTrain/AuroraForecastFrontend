@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ProgressBar from "../../_ui/ProgressBar";
+import ProgressBar from "../uiComponents/ProgressBar";
 import Link from "next/link";
 
 interface imageProps {
@@ -23,28 +23,28 @@ export default function WidgetImageGeneral({ title, url, timerDuration, source }
     useEffect(() => {
         function changeUrl() {
             const timestamp = Math.floor(Date.now() / 1000);
-            setImageUrl(`${url}&${timestamp}`);
+            //setImageUrl(`${url}&${timestamp}`); //TODO temporarily disabled
             setIsLoading(true);
             setTimeout(() => setIsLoading(false), 500);
         }
         changeUrl();
         const timer = setInterval(() => {
             changeUrl();
-            console.log(timerDuration);
         }, timerDuration);
         return () => clearInterval(timer);
     }, [imageUrl]);
 
     return (
-        <div className=" bg-black bg-opacity-70  center padding-small rounded-xl backdrop-blur-sm">
-            <h3 className="img-text uppercase margin-xs-btm">{title}</h3>
+        <>
+            <h3 className="img-text uppercase mb-2">{title}</h3>
             {!!isLoading && <ProgressBar />}
+
             <img
                 src={`${imageUrl}`}
                 alt="image of the predicted aurora oval, aurora activity in the next hour"
-                className="w-full rounded-xl opacity-75"
+                className="w-full rounded-xl opacity-75 "
             />
-            {/* <embed type="text/html" src={imageUrl} width={900} height={600} /> */}
+
             <p className="mt-4 font-medium text-stone-500">
                 <span className="capitalize mr-1">Source:</span> {/*TODO add loading*/}
                 <Link
@@ -56,6 +56,6 @@ export default function WidgetImageGeneral({ title, url, timerDuration, source }
                     {source.nameSource}
                 </Link>
             </p>
-        </div>
+        </>
     );
 }

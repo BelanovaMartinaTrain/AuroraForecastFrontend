@@ -1,6 +1,6 @@
 "use client";
 
-import ProgressBar from "@/app/_ui/ProgressBar";
+import ProgressBar from "@/app/_components/uiComponents/ProgressBar";
 import { useState, useEffect } from "react";
 
 type Props = {

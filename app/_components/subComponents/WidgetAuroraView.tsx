@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import fetchData from "../../_api/fetchData";
-import ProgressBar from "../../_ui/ProgressBar";
+import ProgressBar from "../uiComponents/ProgressBar";
 import Link from "next/link";
 
 export default function WidgetAuroraView() {

@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip, ChartData, BarController } from "chart.js";
 import { Chart } from "react-chartjs-2";
-import ProgressBar from "../../_ui/ProgressBar";
+import ProgressBar from "../uiComponents/ProgressBar";
 import fetchAndChangeGraphData from "../../_api/changeData";
 import Link from "next/link";
 

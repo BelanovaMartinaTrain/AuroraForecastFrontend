@@ -1,10 +1,11 @@
-import Clock from "../_ui/Clock";
+import Clock from "../_components/uiComponents/Clock";
 import { Graph } from "../_components/mainComponents/WidgetGraph";
 import BasicWidget from "../_components/layoutComponents/BasicWidget";
 import WidgetAuroraActivity from "../_components/mainComponents/WidgetAuroraActivity";
 import WidgetSolarWind from "../_components/mainComponents/WidgetSolarWind";
-import WidgetWeather from "../_components/mainComponents/WidgetWeather";
 import WidgetImage from "../_components/mainComponents/WidgetImage";
+import WeatherData from "../_components/mainComponents/weatherData";
+import WeatherWidget from "../_components/subComponents/WeatherWidget";
 
 export default function Dashboard() {
     const now = new Date();
@@ -26,7 +27,9 @@ export default function Dashboard() {
                         <Clock className="font-smaller" time={now.getTime()} timezone="UTC" tmzAbrr={tmzAbrr} />
                     </BasicWidget>
                     <BasicWidget className={"widget center padding-small backdrop-blur-sm min-h-[152px] lg:min-h-[202px]"}>
-                        <WidgetWeather />
+                        <WeatherData title="Weather">
+                            <WeatherWidget />
+                        </WeatherData>
                     </BasicWidget>
                     <Graph />
                 </BasicWidget>

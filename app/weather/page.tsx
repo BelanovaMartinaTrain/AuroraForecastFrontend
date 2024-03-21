@@ -1,21 +1,16 @@
-import WidgetImageGeneral from "../_components/mainComponents/WidgetImageGeneral";
+//import WidgetWeatherSubpage from "../_components/subComponents/WidgetWeatherSubpage";
 import BasicWidget from "../_components/layoutComponents/BasicWidget";
+import WeatherData from "../_components/mainComponents/weatherData";
+import WeatherTable from "../_components/subComponents/WeatherTable";
+
+//<WidgetWeatherSubpage />
 
 export default function Page() {
     return (
-        <>
-            {/* <WidgetImageGeneral
-                title={"Picture"}
-                url={"https://www.yr.no/en/content/48.100,17.100/meteogram.svg?mode=dark"}
-                timerDuration={3600000}
-                source={{ urlSource: "https://yr.no", nameSource: "MET Norway" }}
-            /> */}
-            {/* <WidgetImageGeneral
-                title={"chart"}
-                url={"https://www.yr.no/en/content/48.100,17.100/table.html?mode=dark"}
-                timerDuration={3600000}
-                source={{ urlSource: "https://yr.no", nameSource: "MET Norway" }}
-            /> */}
-        </>
+        <BasicWidget className={"widget center padding-small backdrop-blur-sm min-h-[152px] lg:min-h-[202px]"}>
+            <WeatherData title="10-hour weather forecast">
+                <WeatherTable />
+            </WeatherData>
+        </BasicWidget>
     );
 }

@@ -1,5 +1,5 @@
-import Clock from "../../_ui/Clock";
-import HamburgerMenu from "../../_ui/HamburgerMenu";
+import Clock from "../uiComponents/Clock";
+import HamburgerMenu from "../uiComponents/HamburgerMenu";
 
 export default function Menu() {
     const now = new Date();

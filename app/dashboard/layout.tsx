@@ -1,4 +1,4 @@
-export default function OvationLayout({
+export default function DashboardLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;

@@ -265,11 +265,13 @@ canvas {
   background: var(--widget-background);
   border-radius: 8px;
   box-sizing: border-box;    
+  /* border: rgba(52, 52, 52, 0.333) 1px solid; */
 }
 
 .widget-for-small {
   background: var(--widget-background);
   border-radius: 0.3rem;
+  /* border: rgba(52, 52, 52, 0.333)1px solid; */
 }
 
 .width-100 {
