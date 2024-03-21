@@ -30,7 +30,6 @@ export default function WidgetImageGeneral({ title, url, timerDuration, source }
         changeUrl();
         const timer = setInterval(() => {
             changeUrl();
-            console.log(timerDuration);
         }, timerDuration);
         return () => clearInterval(timer);
     }, [imageUrl]);

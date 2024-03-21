@@ -25,11 +25,9 @@ export default function ButtonRequestLocationPerm({ children }: { children: Reac
     useEffect(() => {
         if (!lon || !lat) {
             checkPerm();
-            console.log("check perm", lon, lat);
         } else {
             setIsLocation(true);
             setLocation({ lon: `${lon}`, lat: `${lat}` });
-            console.log("context present", lon, lat);
         }
 
         const timeout = setTimeout(() => {
@@ -53,7 +51,6 @@ export default function ButtonRequestLocationPerm({ children }: { children: Reac
         setIsLocation(true);
         setIsLoading(false);
     }
-    console.log("out", lon, lat);
 
     return (
         <>

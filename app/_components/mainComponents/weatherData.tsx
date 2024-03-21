@@ -7,19 +7,19 @@ import TemperatureUnitsSwitch from "@/app/_components/uiComponents/TemperatureUn
 import ButtonRequestLocationPerm from "../uiComponents/ButtonRequestLocationPerm";
 import ProgressBar from "../uiComponents/ProgressBar";
 
-export default function WeatherData({ children }: { children: React.ReactNode }) {
+export default function WeatherData({ children, title }: { children: React.ReactNode; title: string }) {
     const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
     const { location, weatherArray, setWeatherArray } = useLocationAndWeatherContext();
     const { lon, lat } = location;
 
-    console.log("weatherdata", lon, lat);
-
     async function fetchWeather(source?: string) {
-        setIsLoading(true);
         if (!!lat || !!lon) {
             if (!weatherArray || source === "timer") {
                 try {
+                    setIsLoading(true);
                     const weatherData = await fetchData(`https://aurora-api.cloud/api/yr-met-weather/${lat}/${lon}`);
+                    setIsLoading(false);
                     if (weatherData.cause || !("properties" in weatherData)) {
                         console.error("error", weatherData.cause);
                         throw new Error("Remote source is not available");
@@ -38,6 +38,7 @@ export default function WeatherData({ children }: { children: React.ReactNode })
                 } catch {
                     setWeatherArray(null);
                     setIsLoading(false);
+                    setIsError(true);
                 }
             }
         }
@@ -51,16 +52,11 @@ export default function WeatherData({ children }: { children: React.ReactNode })
         return () => clearInterval(intervalID);
     }, [lon, lat]);
 
-    useEffect(() => {
-        const timer = setTimeout(() => setIsLoading(false), 500);
-        return () => clearTimeout(timer);
-    }, []);
-
     return (
         <>
-            <TemperatureUnitsSwitch title="10-hour weather forecast" classes="mb-4" />
+            <TemperatureUnitsSwitch title={title} classes="mb-4" />
             <ButtonRequestLocationPerm>
-                {!!weatherArray ? <>{children}</> : isLoading ? <ProgressBar /> : !weatherArray && <p className="mt-8">Source is not available</p>}
+                {!!weatherArray ? <>{children}</> : isLoading ? <ProgressBar /> : isError && <p className="mt-8">Source is not available</p>}
             </ButtonRequestLocationPerm>
         </>
     );

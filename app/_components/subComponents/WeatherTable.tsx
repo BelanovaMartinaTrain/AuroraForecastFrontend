@@ -2,14 +2,16 @@
 import { useLocationAndWeatherContext } from "@/app/_context/locationAndWeatherContext";
 import { TWeatherSymbolKey, weatherSymbolKeys } from "@/app/_utils/weatherSymbolKeys";
 import { weatherAlt, TWeatherAltKey } from "@/app/_utils/weatherAltText";
+import Link from "next/link";
 
 export default function WeatherTable() {
     const PClassNames = "capitalize font-medium w-full ";
-    const { weatherArray, units } = useLocationAndWeatherContext();
+    const { weatherArray, units, location } = useLocationAndWeatherContext();
+    const { lon, lat } = location;
 
     return (
         <>
-            <div className="mb-8">
+            <div className="mb-8 ml-4">
                 <div key={-1} className="flex justify-evenly pt-1 pb-2 border-b-[1px] border-b-black border-opacity-50">
                     <p className="capitalize font-medium min-w-28">Date and time</p>
                     <div className="capitalize font-medium flex w-full ">
@@ -27,13 +29,14 @@ export default function WeatherTable() {
                         return (
                             <div key={index} className="flex justify-evenly py-1 border-b-[1px] border-b-black border-opacity-50">
                                 <p className="capitalize font-medium min-w-28">
-                                    {new Date(weather.time).toLocaleDateString("uk", {
+                                    {new Date(weather.time).toLocaleDateString(`${units === "C" ? "uk" : "us"}`, {
                                         month: "numeric",
                                         day: "numeric",
                                     })}
-                                    .<span className="pl-2">{`    `}</span>
+                                    {`${units === "C" ? "." : ""}`}
+                                    <span className="pl-2">{`    `}</span>
                                     {new Date(weather.time).toLocaleTimeString([], {
-                                        hourCycle: "h23",
+                                        hourCycle: `${units === "C" ? "h23" : "h12"}`,
                                         hour: "2-digit",
                                         minute: "2-digit",
                                     })}
@@ -66,6 +69,17 @@ export default function WeatherTable() {
                             </div>
                         );
                     })}
+            </div>
+            <div className="flex justify-evenly mt-5">
+                <p className=" font-medium text-stone-500 text-[11px]  mr-2">
+                    Used location: {lat}, {lon}
+                </p>
+                <p className=" font-medium text-stone-500 text-[11px]">
+                    <span className="capitalize mr-1">Source:</span>
+                    <Link href="https://www.yr.no/en" target="_blank" aria-label="Link to source of used data - Norway meteo institute">
+                        MET Norway
+                    </Link>
+                </p>
             </div>
         </>
     );
