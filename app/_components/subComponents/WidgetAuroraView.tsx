@@ -68,13 +68,13 @@ export default function WidgetAuroraView() {
             {!!isLoading && <ProgressBar />}
             <div className={`quickview-div grid-item padding-xs-btm ${!!isLoading && "visibility-hidden"}`}>
                 <div className="center quickview-item width-100 padding-sm-r">
-                    <p className="relative padding-xs-btm mt-4">Kp index</p>
+                    <p className=" padding-xs-btm mt-4">Kp index</p>
                     <h3 className="bigger-font ">{kp}</h3>
                 </div>
                 <div className="center quickview-item width-100 padding-sm-r">
-                    <p className="relative padding-xs-btm mt-4">Activity</p>
+                    <p className=" padding-xs-btm mt-4">Activity</p>
                     <h3 className="pb-3 ">{activity}</h3>
-                    <p className="relative padding-xs-btm">Geomagnetic storm</p>
+                    <p className=" padding-xs-btm">Geomagnetic storm</p>
 
                     <h3 className="padding-xs-btm pb-2">{storm}</h3>
                 </div>

@@ -28,7 +28,7 @@ export default function WeatherWidget() {
 
     return (
         <>
-            <div className="quickview-div center">
+            <div className="quickview-div center z-0">
                 <div className={`center quickview-item width-100 padding-sm-btm ${!weather.air_pressure_at_sea_level && "text-neutral-800"}`}>
                     <p className="mb-1">Temperature</p>
                     <div className="flex">
@@ -50,7 +50,7 @@ export default function WeatherWidget() {
                     <h3 className="font-smaller">Low: {Math.round(weather.cloud_area_fraction_low)} %</h3>
                     <h3 className="font-smaller">Middle: {Math.round(weather.cloud_area_fraction_medium)} %</h3>
                     <h3 className="font-smaller">High: {Math.round(weather.cloud_area_fraction_high)} %</h3>
-                    <h3 className="font-smaller mb-1">Fog: {Math.round(weather.fog_area_fraction)} %</h3>
+                    <h3 className="font-smaller mb-1 ">Fog: {Math.round(weather.fog_area_fraction)} %</h3>
                 </div>
             </div>
 

@@ -235,9 +235,7 @@ canvas {
 
 /* UTILITY CLASSES */
 
-.relative {
-  position: relative;
-}
+
 
 .bigger-font {
   font-size: var(--font-bigger);

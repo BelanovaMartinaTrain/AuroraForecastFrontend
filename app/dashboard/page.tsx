@@ -4,7 +4,7 @@ import BasicWidget from "../_components/layoutComponents/BasicWidget";
 import WidgetAuroraActivity from "../_components/mainComponents/WidgetAuroraActivity";
 import WidgetSolarWind from "../_components/mainComponents/WidgetSolarWind";
 import WidgetImage from "../_components/mainComponents/WidgetImage";
-import WeatherData from "../_components/mainComponents/weatherData";
+import WeatherData from "../_components/mainComponents/WeatherData";
 import WeatherWidget from "../_components/subComponents/WeatherWidget";
 
 export default function Dashboard() {
