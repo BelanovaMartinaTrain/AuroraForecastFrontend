@@ -27,7 +27,7 @@ export default function Dashboard() {
                         <Clock className="font-smaller" time={now.getTime()} timezone="UTC" tmzAbrr={tmzAbrr} />
                     </BasicWidget>
                     <BasicWidget className={"widget center padding-small backdrop-blur-sm min-h-[152px] lg:min-h-[202px]"}>
-                        <WeatherData title="Weather">
+                        <WeatherData title="Weather ">
                             <WeatherWidget />
                         </WeatherData>
                     </BasicWidget>
