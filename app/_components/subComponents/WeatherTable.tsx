@@ -3,6 +3,7 @@ import { useLocationAndWeatherContext } from "@/app/_context/locationAndWeatherC
 import { TWeatherSymbolKey, weatherSymbolKeys } from "@/app/_utils/weatherSymbolKeys";
 import { weatherAlt, TWeatherAltKey } from "@/app/_utils/weatherAltText";
 import Link from "next/link";
+import SkeletonComponent from "../uiComponents/Skeleton";
 
 export default function WeatherTable() {
     const PClassNames = "capitalize font-medium w-full ";
@@ -24,7 +25,7 @@ export default function WeatherTable() {
                     <p className={`${PClassNames} hidden md:block`}>Low clouds</p>
                     <p className={`${PClassNames} hidden lg:block`}>Fog</p>
                 </div>
-                {!!weatherArray &&
+                {!!weatherArray ? (
                     weatherArray?.map((weather, index) => {
                         return (
                             <div key={index} className="flex justify-evenly py-1 border-b-[1px] border-b-black border-opacity-50">
@@ -68,7 +69,10 @@ export default function WeatherTable() {
                                 <p className={`${PClassNames} hidden lg:block`}>{Math.round(weather.fog_area_fraction)} %</p>
                             </div>
                         );
-                    })}
+                    })
+                ) : (
+                    <SkeletonComponent numberOfLines={10} />
+                )}
             </div>
             <div className="flex justify-evenly mt-5">
                 <p className=" font-medium text-stone-500 text-[11px]  mr-2">

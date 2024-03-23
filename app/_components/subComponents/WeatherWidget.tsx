@@ -59,7 +59,13 @@ export default function WeatherWidget() {
             ) : (
                 <div className="flex justify-evenly mt-5">
                     <p className=" font-medium text-stone-500 text-[11px]  mr-2">
-                        Used location: {lat}, {lon}
+                        <Link
+                            href={`https://www.google.com/maps/place/${lat},${lon}`}
+                            target="_blank"
+                            aria-label="Navigate to google maps to see used location on a map"
+                        >
+                            Used location: {lat}, {lon}
+                        </Link>
                     </p>
                     <p className=" font-medium text-stone-500 text-[11px]">
                         <span className="capitalize mr-1">Source:</span>
