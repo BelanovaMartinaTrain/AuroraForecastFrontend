@@ -96,7 +96,7 @@ export function GraphGeneral({
                                 : optionsGradient.createGradientHorizontal(chart.ctx),
                         data: values,
                         borderColor: optionsGradient.createGradientHorizontal(chart.ctx),
-                        pointRadius: 0.1,
+                        pointRadius: 0.01,
                         borderWidth: 1,
                     },
                 ],

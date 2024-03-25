@@ -7,7 +7,7 @@ export default async function fetchGraphData(url: string) {
     const labels: string[] = [];
     const values: number[] = [];
 
-    for (let i = data.length - 1; i > 0; i--) {
+    for (let i = 0; i < data.length; i++) {
         values.push(Number(data[i][1]));
         labels.push(
             String(
