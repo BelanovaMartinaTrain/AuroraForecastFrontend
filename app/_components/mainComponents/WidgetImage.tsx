@@ -22,7 +22,7 @@ export default function WidgetImage() {
         changeUrl();
         const timer = setInterval(() => {
             changeUrl();
-        }, 300000);
+        }, 5 * 60 * 1000);
         return () => clearInterval(timer);
     }, [imageUrl]);
 

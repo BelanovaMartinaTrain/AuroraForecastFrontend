@@ -39,8 +39,8 @@ export default function ButtonRequestLocationPerm({ children }: { children: Reac
     function getLocation() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                const numLat = Math.round(position.coords.latitude * 10) / 10;
-                const numLon = Math.round(position.coords.longitude * 10) / 10;
+                const numLat = Math.round(position.coords.latitude * 100) / 100;
+                const numLon = Math.round(position.coords.longitude * 100) / 100;
                 setLocation({ lon: `${numLon}`, lat: `${numLat}` });
             },
             (error) => {

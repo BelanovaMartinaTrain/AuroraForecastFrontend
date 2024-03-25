@@ -1,77 +1,70 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip, ChartData, BarController } from "chart.js";
-import { Chart } from "react-chartjs-2";
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Tooltip,
+    ChartData,
+    BarController,
+    LineElement,
+    LineController,
+    Title,
+    PointElement,
+} from "chart.js";
+import { Chart, Line } from "react-chartjs-2";
 import ProgressBar from "../uiComponents/ProgressBar";
 import fetchAndChangeGraphData from "../../_api/changeData";
 import Link from "next/link";
+import * as optionsGradient from "@/app/_utils/graphOptionsGradient";
+import fetchGraphData from "@/app/_api/fetchGraphData";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, BarController);
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Tooltip,
+    BarController,
+    LineElement,
+    LineController,
+    PointElement
+);
 
-export const options = {
-    indexAxis: "y" as const,
-    scales: {
-        x: {
-            min: 0,
-            max: 9,
-            ticks: {
-                stepSize: 1,
-            },
-        },
-        // y: {
-        //     min: 0,
-        //     max: 20,
-        //     ticks: {
-        //         stepSize: 5,
-        //     },
-        // },
-    },
-    elements: {
-        bar: {
-            borderWidth: 1,
-        },
-    },
-    responsive: true,
-    plugins: {
-        legend: {
-            display: false,
-        },
-        title: {
-            display: false,
-        },
-    },
-};
-
-function createGradient(ctx: CanvasRenderingContext2D) {
-    const gradient = ctx.createLinearGradient(0, -50, 470, 0);
-    //const gradient = ctx.createLinearGradient(0, 200, 0, 0);
-    gradient.addColorStop(0, "purple");
-    gradient.addColorStop(0.5, "SpringGreen");
-    gradient.addColorStop(0.7, "yellowGreen");
-    gradient.addColorStop(1, "orangeRed");
-    return gradient;
-}
-
-export function GraphGeneral() {
+export function GraphGeneral({
+    orientation,
+    title,
+}: {
+    orientation: "vertical" | "horizontal" | "line";
+    title: string;
+}) {
     const chartRef = useRef<ChartJS>(null);
     const [chartData, setChartData] = useState<ChartData<"bar">>({
         datasets: [],
     });
     const [labels, setLabels] = useState<string[]>();
-    const [yValues, setYValues] = useState<number[]>();
+    const [values, setValues] = useState<number[]>();
     const [isLoading, setIsLoading] = useState(true);
+    const options =
+        orientation === "vertical"
+            ? optionsGradient.optionsBarVertical
+            : orientation === "horizontal"
+            ? optionsGradient.optionsBarHorizontal
+            : optionsGradient.optionsLine;
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const graphValues = await fetchAndChangeGraphData("https://aurora-api.cloud/api/planetary-k-3h");
+                const graphValues = await fetchGraphData(
+                    "https://aurora-api.cloud/api/solar-wind-density-3day"
+                );
                 if (!graphValues.labels) {
                     throw new Error("Source is unreachable");
                 } else {
-                    const { labels, yValues } = graphValues;
-                    setLabels(["UTC", ...labels]);
-                    setYValues([0, ...yValues]);
+                    const { labels, values } = graphValues;
+                    setLabels([...labels]);
+                    setValues([...values]);
                     setIsLoading(false);
                 }
             } catch (error) {
@@ -83,7 +76,7 @@ export function GraphGeneral() {
         fetchData();
         const intervalID = setInterval(() => {
             fetchData();
-        }, 1800000); //fetch every half an hour
+        }, 60 * 1000);
         return () => clearInterval(intervalID);
     }, []);
 
@@ -92,28 +85,44 @@ export function GraphGeneral() {
         if (!chart) {
             return;
         }
-        if (!!labels && !!yValues) {
+        if (!!labels && !!values) {
             const chartData = {
                 labels: labels,
                 datasets: [
                     {
-                        backgroundColor: createGradient(chart.ctx),
-                        data: yValues,
+                        backgroundColor:
+                            orientation === "vertical"
+                                ? optionsGradient.createGradientVertical(chart.ctx)
+                                : optionsGradient.createGradientHorizontal(chart.ctx),
+                        data: values,
+                        borderColor: optionsGradient.createGradientHorizontal(chart.ctx),
+                        pointRadius: 0.1,
+                        borderWidth: 1,
                     },
                 ],
             };
             setChartData(chartData);
         }
-    }, [labels, yValues]);
+    }, [labels, values]);
 
     return (
         <div className="widget center padding-small grid-item width-100 backdrop-blur-sm min-h-[212px] xl:min-h-[300px]">
-            <h2 className="uppercase font-h2 relative">KP index forecast</h2>
+            <h2 className="uppercase font-h2 relative">{title}</h2>
             {!!isLoading ? (
                 <ProgressBar />
             ) : (
                 <>
-                    <Chart ref={chartRef} type="bar" data={chartData} options={options} />
+                    <div className="h-52 ">
+                        <Chart
+                            ref={chartRef}
+                            type="line"
+                            data={chartData}
+                            options={{
+                                ...options,
+                                maintainAspectRatio: false,
+                            }}
+                        />
+                    </div>
                     <p className="mt-4 font-medium text-stone-500 text-[11px]">
                         <span className="capitalize mr-1">Source:</span>
                         <Link

@@ -59,7 +59,7 @@ export default function WidgetAuroraView() {
         fetchAuroraStats();
         const intervalID = setInterval(() => {
             fetchAuroraStats();
-        }, 60000);
+        }, 60 * 1000);
         return () => clearInterval(intervalID);
     }, []);
 

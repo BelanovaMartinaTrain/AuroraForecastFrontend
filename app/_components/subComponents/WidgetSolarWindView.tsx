@@ -57,7 +57,7 @@ export default function WidgetViewSolarWind() {
         fetchWindStats();
         const intervalID = setInterval(() => {
             fetchWindStats();
-        }, 60000);
+        }, 60 * 1000);
         return () => clearInterval(intervalID);
     }, []);
 

@@ -83,7 +83,7 @@ export function Graph() {
         fetchData();
         const intervalID = setInterval(() => {
             fetchData();
-        }, 1800000); //fetch every half an hour
+        }, 30 * 60 * 1000); //fetch every half an hour
         return () => clearInterval(intervalID);
     }, []);
 

@@ -3,7 +3,7 @@ export function ModalSolarWindInfo() {
         <>
             <p className="center  text-base underline underline-offset-4">Solar Wind</p>
             Solar wind is a stream of charged particles that come from the corona, the outermost layer of the sun's atmosphere and produce the aurora.
-            <p className="font-normal text-xs text-[SpringGreen]">Values 500km/sec and above are the most favorable for strong aurora</p>
+            <p className="font-normal text-xs text-[SpringGreen]">Values 450km/sec and above are the most favorable for strong aurora</p>
             <p className="center mt-10 text-base underline underline-offset-4">Interplanetary Magnetic Field (IMF)</p>
             <p className="center mt-2 text-sm">Bt</p>
             The Bt value of the interplanetary magnetic field indicates the total strength of the interplanetary magnetic field. The higher this

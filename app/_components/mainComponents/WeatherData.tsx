@@ -7,7 +7,15 @@ import TemperatureUnitsSwitch from "@/app/_components/uiComponents/TemperatureUn
 import ButtonRequestLocationPerm from "../uiComponents/ButtonRequestLocationPerm";
 import ProgressBar from "../uiComponents/ProgressBar";
 
-export default function WeatherData({ children, title }: { children: React.ReactNode; title: string }) {
+export default function WeatherData({
+    children,
+    title,
+    url,
+}: {
+    children: React.ReactNode;
+    title: string;
+    url: string;
+}) {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const { location, weatherArray, setWeatherArray } = useLocationAndWeatherContext();
@@ -18,22 +26,13 @@ export default function WeatherData({ children, title }: { children: React.React
             if (!weatherArray || source === "timer") {
                 try {
                     setIsLoading(true);
-                    const weatherData = await fetchData(`https://aurora-api.cloud/api/yr-met-weather/${lat}/${lon}`);
+                    const weatherData = await fetchData(`${url}?lat=${lat}&lon=${lon}`);
                     setIsLoading(false);
-                    if (weatherData.cause || !("properties" in weatherData)) {
+                    if (weatherData.cause || !("weather" in weatherData)) {
                         console.error("error", weatherData.cause);
                         throw new Error("Remote source is not available");
                     } else {
-                        let tempArray = [];
-                        for (let i = 0; i < 10; i++) {
-                            tempArray.push({
-                                ...weatherData.properties.timeseries[i].data.instant.details,
-                                icon_code: weatherData.properties.timeseries[i].data.next_1_hours.summary.symbol_code,
-                                time: weatherData.properties.timeseries[i].time,
-                            });
-
-                            setWeatherArray(tempArray);
-                        }
+                        setWeatherArray(weatherData.weather);
                     }
                 } catch {
                     setWeatherArray(null);
@@ -48,7 +47,7 @@ export default function WeatherData({ children, title }: { children: React.React
         fetchWeather();
         const intervalID = setInterval(() => {
             fetchWeather("timer");
-        }, 600000);
+        }, 60 * 10 * 1000);
         return () => clearInterval(intervalID);
     }, [lon, lat]);
 
@@ -56,7 +55,13 @@ export default function WeatherData({ children, title }: { children: React.React
         <>
             <TemperatureUnitsSwitch title={title} classes="mb-4 mt-1 md:mt-0" />
             <ButtonRequestLocationPerm>
-                {!!weatherArray ? <>{children}</> : isLoading ? <ProgressBar /> : isError && <p className="mt-8">Source is not available</p>}
+                {!!weatherArray ? (
+                    <>{children}</>
+                ) : isLoading ? (
+                    <ProgressBar />
+                ) : (
+                    isError && <p className="mt-8">Source is not available</p>
+                )}
             </ButtonRequestLocationPerm>
         </>
     );
