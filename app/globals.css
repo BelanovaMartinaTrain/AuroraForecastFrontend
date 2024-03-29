@@ -2,6 +2,11 @@
   gap: 0 !important
 }
 
+ .hemisphere-grid {
+  display: grid;
+  grid-template-columns:  repeat(auto-fit, minmax(0, 1fr)) !important;
+} 
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

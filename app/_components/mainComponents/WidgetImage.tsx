@@ -17,8 +17,6 @@ export default function WidgetImage() {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const { hemisphere, setHemisphere } = useHemisphereContext();
 
-    console.log(hemisphere);
-
     useEffect(() => {
         function changeUrl(timer?: string) {
             if (timer) {
@@ -50,7 +48,7 @@ export default function WidgetImage() {
     return (
         <>
             <div className="widget center  grid-item backdrop-blur-sm">
-                <div className="grid grid-flow-row hemisphere-gap justify-center  ">
+                <div className="grid grid-flow-row hemisphere-gap hemisphere-grid justify-center  ">
                     <div
                         className={` rounded-tl-lg cursor-pointer ${
                             hemisphere === "Northern"
@@ -59,7 +57,7 @@ export default function WidgetImage() {
                         }`}
                         onClick={handleClickNorth}
                     >
-                        <h3 className="p-2 img-text uppercase  ">Northern </h3>
+                        <h3 className="py-2  uppercase  ">Northern </h3>
                     </div>
                     <div
                         className={` rounded-tl-lg cursor-pointer ${
@@ -69,7 +67,7 @@ export default function WidgetImage() {
                         }`}
                         onClick={handleClickSouth}
                     >
-                        <h3 className="p-2  img-text uppercase ">Southern </h3>
+                        <h3 className="py-2   uppercase ">Southern </h3>
                     </div>
                 </div>
                 <h3 className="p-2 img-text uppercase margin-xs-btm mt-2">Hemisphere </h3>

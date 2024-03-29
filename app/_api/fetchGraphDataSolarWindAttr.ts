@@ -24,11 +24,9 @@ export default async function fetchGraphDataSolarWindAttr(url: string, index: nu
                     })
                 )
             );
-            console.log(ariaTextSignificantValues.value);
 
             if (Number(data[i][index]) > ariaTextSignificantValues.value) {
                 ariaTextSignificantValues.value = Number(data[i][index]);
-                console.log(ariaTextSignificantValues.value);
                 ariaTextSignificantValues.timestamp = String(
                     new Date(data[i][0]).toLocaleTimeString([], {
                         hourCycle: "h23",
@@ -42,7 +40,5 @@ export default async function fetchGraphDataSolarWindAttr(url: string, index: nu
 
     ariaTextSignificantValues.minimum = Math.min(...values);
 
-    console.log(ariaTextSignificantValues);
-    console.log(values, labels);
     return { labels, values, ariaTextSignificantValues };
 }

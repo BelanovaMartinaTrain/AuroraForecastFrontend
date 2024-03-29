@@ -6,8 +6,6 @@ export default async function fetchWindTesting() {
     );
     const data = await response.json();
 
-    console.log(data);
-
     // data!.properties.timeseries.forEach((weatherObject) =>
     //     windArray.push(weatherObject.data.instant.details.wind_speed)
     // );

@@ -20,7 +20,6 @@ export default function WeatherData({
     const [isError, setIsError] = useState(false);
     const { location, weatherArray, setWeatherArray } = useLocationAndWeatherContext();
     const { lon, lat } = location;
-    console.log(weatherArray);
 
     async function fetchWeather(source?: string) {
         if (!!lat || !!lon) {
