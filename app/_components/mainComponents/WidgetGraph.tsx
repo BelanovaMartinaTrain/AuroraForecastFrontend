@@ -1,7 +1,15 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip, ChartData, BarController } from "chart.js";
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Tooltip,
+    ChartData,
+    BarController,
+} from "chart.js";
 import { Chart } from "react-chartjs-2";
 import ProgressBar from "../uiComponents/ProgressBar";
 import fetchAndChangeGraphData from "../../_api/changeData";
@@ -65,7 +73,9 @@ export function Graph() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const graphValues = await fetchAndChangeGraphData("https://aurora-api.cloud/api/planetary-k-3h");
+                const graphValues = await fetchAndChangeGraphData(
+                    "https://aurora-api.cloud/api/planetary-k-3h"
+                );
                 if (!graphValues.labels) {
                     throw new Error("Source is unreachable");
                 } else {
@@ -113,8 +123,17 @@ export function Graph() {
                 <ProgressBar />
             ) : (
                 <>
-                    <Chart ref={chartRef} type="bar" data={chartData} options={options} />
-                    <p className="mt-4 font-medium text-stone-500 text-[11px]">
+                    <Chart
+                        ref={chartRef}
+                        type="bar"
+                        data={chartData}
+                        options={{
+                            ...options,
+                            aspectRatio: 1.7,
+                        }}
+                    />
+
+                    <p className="mt-6 font-medium text-stone-500 text-[11px]  ">
                         <span className="capitalize mr-1">Source:</span>
                         <Link
                             href="https://www.swpc.noaa.gov/"

@@ -20,6 +20,80 @@
     transform-origin: 0% 50%;
     border-radius: 1rem;
   }
+
+
+
+  
+  .locationHeader {
+    font-size: 1.4666666667rem;
+    font-weight: 440;
+    line-height: 1.8333333333rem;
+    letter-spacing: -0.22px;
+    font-weight: 600;
+    fill: #ffffff;
+  }
+  
+  .servedByHeader {
+    font-size: 0.8666666667rem;
+    font-weight: 440;
+    line-height: 1.2rem;
+    fill: #ffffff;
+  }
+  
+  .dayLabel {
+    font-size: 1.0666666667rem;
+    font-weight: 440;
+    line-height: 1.4666666667rem;
+    font-weight: 600;
+    fill: #ffffff;
+  }
+  
+  .hourLabel {
+    font-size: 0.8666666667rem;
+    font-weight: 440;
+    line-height: 1.2rem;
+    fill: #ffffff;
+  }
+  
+  .yAxisLabel {
+    font-size: 0.8666666667rem;
+    font-weight: 440;
+    line-height: 1.2rem;
+    fill: #ffffff;
+  }
+  
+  .legendLabel {
+    font-size: 0.8666666667rem;
+    font-weight: 440;
+    line-height: 1.2rem;
+    fill: #ffffff;
+  }
+  
+  .precipitationValuesOverMax {
+    font-size: 0.8rem;
+    font-weight: 440;
+    line-height: 1.0666666667rem;
+    fill: #ffffff;
+  }
+  
+  /* text {
+      fill: #ffffff;
+    } 
+    .servedByHeader {
+      fill: #ffffff;
+    }
+    .hourLabel {
+      fill: #a2a5b3;
+    }
+    .yAxisLabel {
+      fill: #a2a5b3;
+    }
+    .legendLabel {
+      fill: #a2a5b3;
+    }
+    .precipitationValuesOverMax {
+      fill: #21292b;
+    } */
   
   @keyframes indeterminateAnimation {
     0% {

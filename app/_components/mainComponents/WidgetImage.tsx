@@ -6,41 +6,87 @@ import Link from "next/link";
 //import { useModalOpenContext } from "@/app/_context/modalOpenContext";
 import { Modal, ModalContent, ModalBody, useDisclosure } from "@nextui-org/react";
 import { ModalOvationImageNoClass } from "@/app/_data/modalData";
+import { useHemisphereContext } from "@/app/_context/hemisphereContext";
 
 export default function WidgetImage() {
-    const [imageUrl, setImageUrl] = useState("https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg");
+    const [imageUrl, setImageUrl] = useState({
+        north: "https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg",
+        south: "https://services.swpc.noaa.gov/images/animations/ovation/south/latest.jpg",
+    });
     const [isLoading, setIsLoading] = useState(false);
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { hemisphere, setHemisphere } = useHemisphereContext();
+
+    console.log(hemisphere);
 
     useEffect(() => {
-        function changeUrl() {
-            const timestamp = Math.floor(Date.now() / 1000);
-            setImageUrl(`https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg?${timestamp}`);
+        function changeUrl(timer?: string) {
+            if (timer) {
+                const timestamp = Math.floor(Date.now() / 1000);
+
+                setImageUrl({
+                    north: `https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg?${timestamp}`,
+                    south: `https://services.swpc.noaa.gov/images/animations/ovation/south/latest.jpg?${timestamp}`,
+                });
+            }
             setIsLoading(true);
             setTimeout(() => setIsLoading(false), 500);
         }
         changeUrl();
         const timer = setInterval(() => {
-            changeUrl();
+            changeUrl("timer");
         }, 5 * 60 * 1000);
         return () => clearInterval(timer);
-    }, [imageUrl]);
+    }, [imageUrl, hemisphere]);
+
+    function handleClickNorth() {
+        setHemisphere("Northern");
+    }
+
+    function handleClickSouth() {
+        setHemisphere("Southern");
+    }
 
     return (
         <>
-            <div className="widget center padding-small grid-item backdrop-blur-sm">
-                <h3 className="img-text uppercase margin-xs-btm">Northern Hemisphere</h3>
+            <div className="widget center  grid-item backdrop-blur-sm">
+                <div className="grid grid-flow-row hemisphere-gap justify-center  ">
+                    <div
+                        className={` rounded-tl-lg cursor-pointer ${
+                            hemisphere === "Northern"
+                                ? "bg-black bg-opacity-0 text-[gainsboro]"
+                                : "bg-black bg-opacity-70 text-stone-500"
+                        }`}
+                        onClick={handleClickNorth}
+                    >
+                        <h3 className="p-2 img-text uppercase  ">Northern </h3>
+                    </div>
+                    <div
+                        className={` rounded-tl-lg cursor-pointer ${
+                            hemisphere === "Southern"
+                                ? "bg-black bg-opacity-0 text-[gainsboro]"
+                                : "bg-black bg-opacity-70 text-stone-500"
+                        }`}
+                        onClick={handleClickSouth}
+                    >
+                        <h3 className="p-2  img-text uppercase ">Southern </h3>
+                    </div>
+                </div>
+                <h3 className="p-2 img-text uppercase margin-xs-btm mt-2">Hemisphere </h3>
+
                 {!!isLoading && <ProgressBar />}
                 <img
-                    src={`${imageUrl}`}
+                    src={`${hemisphere === "Northern" ? imageUrl.north : imageUrl.south}`}
                     alt="predicted aurora ovation, predicted aurora activity in the next hour depicted visually"
-                    className="img-latest mb-8"
+                    className="img-latest mb-8 px-3"
                     width={475}
                     height={475}
                     onClick={onOpen}
                 />
-                <p className="mt-6 font-medium text-stone-500 text-[11px] absolute bottom-5 left-[42%] right-[50%]">
-                    <span className={`capitalize mr-1 ${!!isLoading ? "hidden" : ""}`}>Source:</span>
+                <p className="mt-4 font-medium text-stone-500 text-[11px] absolute bottom-5 left-[42%] right-[50%]">
+                    <span className={`capitalize mr-1 ${!!isLoading ? "hidden" : ""}`}>
+                        Source:
+                    </span>
                     <Link
                         href="https://www.swpc.noaa.gov/"
                         className={`${!!isLoading ? "visibility-hidden" : ""}`}
@@ -66,7 +112,11 @@ export default function WidgetImage() {
                     {(onClose) => (
                         <>
                             <ModalBody className="my-5">
-                                <ModalOvationImageNoClass imageUrl={imageUrl} />
+                                <ModalOvationImageNoClass
+                                    imageUrl={
+                                        hemisphere === "Northern" ? imageUrl.north : imageUrl.south
+                                    }
+                                />
                             </ModalBody>
                         </>
                     )}

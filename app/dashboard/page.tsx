@@ -1,3 +1,4 @@
+import Script from "next/script";
 import Clock from "../_components/uiComponents/Clock";
 import { Graph } from "../_components/mainComponents/WidgetGraph";
 import BasicWidget from "../_components/layoutComponents/BasicWidget";

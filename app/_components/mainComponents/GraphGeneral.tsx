@@ -11,15 +11,13 @@ import {
     BarController,
     LineElement,
     LineController,
-    Title,
     PointElement,
 } from "chart.js";
-import { Chart, Line } from "react-chartjs-2";
+import { Chart } from "react-chartjs-2";
 import ProgressBar from "../uiComponents/ProgressBar";
-import fetchAndChangeGraphData from "../../_api/changeData";
 import Link from "next/link";
 import * as optionsGradient from "@/app/_utils/graphOptionsGradient";
-import fetchGraphData from "@/app/_api/fetchGraphData";
+import fetchGraphDataSolarWindAttr from "@/app/_api/fetchGraphDataSolarWindAttr";
 
 ChartJS.register(
     CategoryScale,
@@ -35,17 +33,23 @@ ChartJS.register(
 export function GraphGeneral({
     orientation,
     title,
+    url,
+    index,
 }: {
     orientation: "vertical" | "horizontal" | "line";
     title: string;
+    url: string;
+    index: number;
 }) {
     const chartRef = useRef<ChartJS>(null);
+    const ariaDivRef = useRef<HTMLDivElement>(null);
     const [chartData, setChartData] = useState<ChartData<"bar">>({
         datasets: [],
     });
     const [labels, setLabels] = useState<string[]>();
     const [values, setValues] = useState<number[]>();
     const [isLoading, setIsLoading] = useState(true);
+    const [altText, setAltText] = useState("");
     const options =
         orientation === "vertical"
             ? optionsGradient.optionsBarVertical
@@ -56,16 +60,26 @@ export function GraphGeneral({
     useEffect(() => {
         async function fetchData() {
             try {
-                const graphValues = await fetchGraphData(
-                    "https://aurora-api.cloud/api/solar-wind-density-3day"
-                );
+                const graphValues = await fetchGraphDataSolarWindAttr(url, index);
                 if (!graphValues.labels) {
                     throw new Error("Source is unreachable");
                 } else {
-                    const { labels, values } = graphValues;
+                    const { labels, values, ariaTextSignificantValues } = graphValues;
                     setLabels([...labels]);
                     setValues([...values]);
                     setIsLoading(false);
+                    ariaDivRef.current &&
+                        (ariaDivRef.current.innerText = `graph is showing ${
+                            title.split("(")[0]
+                        } progression in time. The maximum value was ${
+                            ariaTextSignificantValues.value +
+                            " " +
+                            title.split("(")[1].split(")")[0]
+                        } recorded at ${
+                            ariaTextSignificantValues.timestamp
+                        } UTC. The range of values were from ${
+                            ariaTextSignificantValues.minimum
+                        } to ${ariaTextSignificantValues.value}`);
                 }
             } catch (error) {
                 console.log(error);
@@ -107,12 +121,19 @@ export function GraphGeneral({
 
     return (
         <div className="widget center padding-small grid-item width-100 backdrop-blur-sm min-h-[212px] xl:min-h-[300px]">
-            <h2 className="uppercase font-h2 relative">{title}</h2>
+            <h2 id="title" className="uppercase font-h2 relative">
+                {title}
+            </h2>
             {!!isLoading ? (
                 <ProgressBar />
             ) : (
                 <>
-                    <div className="h-52 ">
+                    <div
+                        role="img"
+                        aria-labelledby="title"
+                        aria-describedby="description"
+                        className="h-52 "
+                    >
                         <Chart
                             ref={chartRef}
                             type="line"
@@ -122,6 +143,13 @@ export function GraphGeneral({
                                 maintainAspectRatio: false,
                             }}
                         />
+                    </div>
+                    <div
+                        id="description"
+                        ref={ariaDivRef}
+                        className="uppercase text-normal font-medium sr-only"
+                    >
+                        Text
                     </div>
                     <p className="mt-4 font-medium text-stone-500 text-[11px]">
                         <span className="capitalize mr-1">Source:</span>
