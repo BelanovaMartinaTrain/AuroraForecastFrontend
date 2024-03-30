@@ -4,6 +4,7 @@ import { TWeatherSymbolKey, weatherSymbolKeys } from "@/app/_utils/weatherSymbol
 import { weatherAlt, TWeatherAltKey } from "@/app/_utils/weatherAltText";
 import Link from "next/link";
 import SkeletonComponent from "../uiComponents/Skeleton";
+import { toDayAndMonth, toHoursAndMinutes12h, toHoursAndMinutes24h, toSingleDay } from "@/app/_utils/timeFormatting";
 
 export default function WeatherTable() {
     const PClassNames = "capitalize font-medium w-full ";
@@ -13,10 +14,7 @@ export default function WeatherTable() {
     return (
         <>
             <div className="mb-8 ml-4">
-                <div
-                    key={-1}
-                    className="flex justify-evenly pt-1 pb-2 border-b-[1px] border-b-black border-opacity-50"
-                >
+                <div key={-1} className="flex justify-evenly pt-1 pb-2 border-b-[1px] border-b-black border-opacity-50">
                     <p className="capitalize font-medium min-w-28">Date and time</p>
                     <div className="capitalize font-medium flex w-full ">
                         <p className={`${PClassNames}`}>Temperature </p>{" "}
@@ -29,77 +27,54 @@ export default function WeatherTable() {
                     <p className={`${PClassNames} hidden lg:block`}>Fog</p>
                 </div>
                 {!!weatherArray ? (
-                    weatherArray?.map((weather, index) => {
+                    weatherArray?.map((weather, index, weatherArray) => {
+                        let isNewDay = false;
+                        if (index < 9) {
+                            const timestamp1 = new Date(weatherArray[index].time).toLocaleTimeString([], toSingleDay).split(",")[0];
+                            const timestamp2 = new Date(weatherArray[index + 1].time).toLocaleTimeString([], toSingleDay).split(",")[0];
+                            isNewDay = timestamp1 !== timestamp2;
+                        }
+
                         return (
                             <div
                                 key={index}
-                                className="flex justify-evenly py-1 border-b-[1px] border-b-black border-opacity-50"
+                                className={`flex justify-evenly py-1    ${
+                                    isNewDay
+                                        ? "border-b-[gainsboro] border-b-[2px] border-opacity-50"
+                                        : "border-b-black border-b-[1px] border-opacity-50"
+                                }`}
                             >
                                 <p className=" font-medium min-w-28">
-                                    {new Date(weather.time).toLocaleDateString(
-                                        `${units === "C" ? "uk" : "us"}`,
-                                        {
-                                            month: "numeric",
-                                            day: "numeric",
-                                        }
-                                    )}
+                                    {new Date(weather.time).toLocaleDateString(`${units === "C" ? "uk" : "us"}`, toDayAndMonth)}
                                     {`${units === "C" ? "." : ""}`}
                                     <span className="pl-2">{`    `}</span>
-                                    {new Date(weather.time).toLocaleTimeString([], {
-                                        hourCycle: `${units === "C" ? "h23" : "h12"}`,
-                                        hour: "2-digit",
-                                        minute: "2-digit",
-                                    })}
+                                    {new Date(weather.time).toLocaleTimeString([], units === "C" ? toHoursAndMinutes24h : toHoursAndMinutes12h)}
                                 </p>
                                 <div className="capitalize font-medium flex justify-evenly  w-full ">
                                     <p className="place-items-start">
                                         {" "}
                                         {units === "C"
                                             ? Math.round(weather.air_temperature)
-                                            : Math.round(
-                                                  weather.air_temperature * (9 / 5) + 32
-                                              )}{" "}
+                                            : Math.round(weather.air_temperature * (9 / 5) + 32)}{" "}
                                         &#176;{units}
                                     </p>{" "}
                                     <img
                                         className=" "
-                                        src={`icons/weather/${
-                                            weatherSymbolKeys[
-                                                weather.icon_code as TWeatherSymbolKey
-                                            ]
-                                        }.svg`}
+                                        src={`icons/weather/${weatherSymbolKeys[weather.icon_code as TWeatherSymbolKey]}.svg`}
                                         width="20px relaive top-0"
-                                        alt={
-                                            weatherAlt[
-                                                weatherSymbolKeys[
-                                                    weather.icon_code as TWeatherSymbolKey
-                                                ].slice(0, 2) as TWeatherAltKey
-                                            ]
-                                        }
+                                        alt={weatherAlt[weatherSymbolKeys[weather.icon_code as TWeatherSymbolKey].slice(0, 2) as TWeatherAltKey]}
                                     />
                                 </div>
 
                                 <p className="font-medium w-full lowercase">
                                     {" "}
-                                    {units === "C"
-                                        ? `${Math.round(weather.wind_speed)} m/s`
-                                        : `${Math.round(weather.wind_speed * 2.2369)} mph`}
+                                    {units === "C" ? `${Math.round(weather.wind_speed)} m/s` : `${Math.round(weather.wind_speed * 2.2369)} mph`}
                                 </p>
-                                <p className={PClassNames}>
-                                    {Math.round(weather.cloud_area_fraction)} %
-                                </p>
-                                <p className={`${PClassNames} hidden md:block`}>
-                                    {Math.round(weather.cloud_area_fraction_high)} %
-                                </p>
-                                <p className={`${PClassNames} hidden md:block`}>
-                                    {Math.round(weather.cloud_area_fraction_medium)} %
-                                </p>
-                                <p className={`${PClassNames} hidden md:block`}>
-                                    {Math.round(weather.cloud_area_fraction_low)} %
-                                </p>
-                                <p className={`${PClassNames} hidden lg:block`}>
-                                    {Math.round(weather.fog_area_fraction)} %
-                                </p>
+                                <p className={PClassNames}>{Math.round(weather.cloud_area_fraction)} %</p>
+                                <p className={`${PClassNames} hidden md:block`}>{Math.round(weather.cloud_area_fraction_high)} %</p>
+                                <p className={`${PClassNames} hidden md:block`}>{Math.round(weather.cloud_area_fraction_medium)} %</p>
+                                <p className={`${PClassNames} hidden md:block`}>{Math.round(weather.cloud_area_fraction_low)} %</p>
+                                <p className={`${PClassNames} hidden lg:block`}>{Math.round(weather.fog_area_fraction)} %</p>
                             </div>
                         );
                     })
@@ -119,11 +94,7 @@ export default function WeatherTable() {
                 </p>
                 <p className=" font-medium text-stone-500 text-[11px]">
                     <span className="capitalize mr-1">Source:</span>
-                    <Link
-                        href="https://www.yr.no/en"
-                        target="_blank"
-                        aria-label="Link to source of used data - Norway meteo institute"
-                    >
+                    <Link href="https://www.yr.no/en" target="_blank" aria-label="Link to source of used data - Norway meteo institute">
                         MET Norway
                     </Link>
                 </p>

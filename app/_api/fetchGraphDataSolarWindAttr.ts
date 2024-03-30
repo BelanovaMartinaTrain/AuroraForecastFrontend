@@ -1,3 +1,5 @@
+import { toHoursAndMinutes24h } from "../_utils/timeFormatting";
+
 export default async function fetchGraphDataSolarWindAttr(url: string, index: number) {
     const res = await fetch(url);
     const data = await res.json();
@@ -7,33 +9,21 @@ export default async function fetchGraphDataSolarWindAttr(url: string, index: nu
     const labels: string[] = [];
     const values: number[] = [];
     let ariaTextSignificantValues = {
-        value: 0,
+        maximum: 0,
         timestamp: "",
         minimum: 0,
     };
 
     for (let i = 0; i < data.length; i++) {
         if (!!data[i][index]) {
-            values.push(Number(data[i][index]));
-            labels.push(
-                String(
-                    new Date(data[i][0]).toLocaleTimeString([], {
-                        hourCycle: "h23",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                    })
-                )
-            );
+            const value = Number(data[i][index]);
+            const label = String(new Date(data[i][0]).toLocaleTimeString([], toHoursAndMinutes24h));
+            values.push(value);
+            labels.push(label);
 
-            if (Number(data[i][index]) > ariaTextSignificantValues.value) {
-                ariaTextSignificantValues.value = Number(data[i][index]);
-                ariaTextSignificantValues.timestamp = String(
-                    new Date(data[i][0]).toLocaleTimeString([], {
-                        hourCycle: "h23",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                    })
-                );
+            if (value > ariaTextSignificantValues.maximum) {
+                ariaTextSignificantValues.maximum = value;
+                ariaTextSignificantValues.timestamp = label;
             }
         }
     }

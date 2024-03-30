@@ -10,10 +10,7 @@ import SkeletonComponent from "../_components/uiComponents/Skeleton";
 export default function Page() {
     return (
         <BasicWidget className={"widget center p-6 backdrop-blur-sm min-h-[445px]"}>
-            <WeatherData
-                title="10-hour weather forecast"
-                url="https://aurora-api.cloud/api/yr-met-weather-10day"
-            >
+            <WeatherData title="10-hour weather forecast" url="https://aurora-api.cloud/api/yr-met-weather-10hours">
                 <WeatherTable />
             </WeatherData>
         </BasicWidget>

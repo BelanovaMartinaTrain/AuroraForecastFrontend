@@ -26,9 +26,9 @@ export default function WidgetImage() {
                     north: `https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg?${timestamp}`,
                     south: `https://services.swpc.noaa.gov/images/animations/ovation/south/latest.jpg?${timestamp}`,
                 });
+                setIsLoading(true);
+                setTimeout(() => setIsLoading(false), 500);
             }
-            setIsLoading(true);
-            setTimeout(() => setIsLoading(false), 500);
         }
         changeUrl();
         const timer = setInterval(() => {
@@ -51,9 +51,7 @@ export default function WidgetImage() {
                 <div className="grid grid-flow-row hemisphere-gap hemisphere-grid justify-center  ">
                     <div
                         className={` rounded-tl-lg cursor-pointer ${
-                            hemisphere === "Northern"
-                                ? "bg-black bg-opacity-0 text-[gainsboro]"
-                                : "bg-black bg-opacity-70 text-stone-500"
+                            hemisphere === "Northern" ? "bg-black bg-opacity-0 text-[gainsboro]" : "bg-black bg-opacity-70 text-stone-500"
                         }`}
                         onClick={handleClickNorth}
                     >
@@ -61,30 +59,26 @@ export default function WidgetImage() {
                     </div>
                     <div
                         className={` rounded-tl-lg cursor-pointer ${
-                            hemisphere === "Southern"
-                                ? "bg-black bg-opacity-0 text-[gainsboro]"
-                                : "bg-black bg-opacity-70 text-stone-500"
+                            hemisphere === "Southern" ? "bg-black bg-opacity-0 text-[gainsboro]" : "bg-black bg-opacity-70 text-stone-500"
                         }`}
                         onClick={handleClickSouth}
                     >
                         <h3 className="py-2   uppercase ">Southern </h3>
                     </div>
                 </div>
-                <h3 className="p-2 img-text uppercase margin-xs-btm mt-2">Hemisphere </h3>
-
+                <h3 className="p-2 img-text uppercase margin-xs-btm ">Hemisphere </h3>
                 {!!isLoading && <ProgressBar />}
                 <img
                     src={`${hemisphere === "Northern" ? imageUrl.north : imageUrl.south}`}
                     alt="predicted aurora ovation, predicted aurora activity in the next hour depicted visually"
-                    className="img-latest mb-8 px-3"
+                    className="img-latest mb-8 pb-4 px-3"
                     width={475}
                     height={475}
                     onClick={onOpen}
                 />
+
                 <p className="mt-4 font-medium text-stone-500 text-[11px] absolute bottom-5 left-[42%] right-[50%]">
-                    <span className={`capitalize mr-1 ${!!isLoading ? "hidden" : ""}`}>
-                        Source:
-                    </span>
+                    <span className={`capitalize mr-1 ${!!isLoading ? "hidden" : ""}`}>Source:</span>
                     <Link
                         href="https://www.swpc.noaa.gov/"
                         className={`${!!isLoading ? "visibility-hidden" : ""}`}
@@ -110,11 +104,7 @@ export default function WidgetImage() {
                     {(onClose) => (
                         <>
                             <ModalBody className="my-5">
-                                <ModalOvationImageNoClass
-                                    imageUrl={
-                                        hemisphere === "Northern" ? imageUrl.north : imageUrl.south
-                                    }
-                                />
+                                <ModalOvationImageNoClass imageUrl={hemisphere === "Northern" ? imageUrl.north : imageUrl.south} />
                             </ModalBody>
                         </>
                     )}

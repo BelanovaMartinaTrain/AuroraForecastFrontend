@@ -49,7 +49,6 @@ export function GraphGeneral({
     const [labels, setLabels] = useState<string[]>();
     const [values, setValues] = useState<number[]>();
     const [isLoading, setIsLoading] = useState(true);
-    const [altText, setAltText] = useState("");
     const options =
         orientation === "vertical"
             ? optionsGradient.optionsBarVertical
@@ -72,14 +71,14 @@ export function GraphGeneral({
                         (ariaDivRef.current.innerText = `graph is showing ${
                             title.split("(")[0]
                         } progression in time. The maximum value was ${
-                            ariaTextSignificantValues.value +
+                            ariaTextSignificantValues.maximum +
                             " " +
                             title.split("(")[1].split(")")[0]
                         } recorded at ${
                             ariaTextSignificantValues.timestamp
                         } UTC. The range of values were from ${
                             ariaTextSignificantValues.minimum
-                        } to ${ariaTextSignificantValues.value}`);
+                        } to ${ariaTextSignificantValues.maximum}`);
                 }
             } catch (error) {
                 console.log(error);

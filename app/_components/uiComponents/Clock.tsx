@@ -2,6 +2,7 @@
 
 import ProgressBar from "@/app/_components/uiComponents/ProgressBar";
 import { useState, useEffect } from "react";
+import { toHoursAndMinutes24h } from "@/app/_utils/timeFormatting";
 
 type Props = {
     className: string;
@@ -34,22 +35,22 @@ export default function Clock(props: Props) {
             {!!isLoading ? (
                 <ProgressBar />
             ) : !!props.timezone ? (
-                <h2 suppressHydrationWarning className={`${props.className} ${!!isLoading ? "visibility-hidden" : ""}`}>
+                <h2
+                    suppressHydrationWarning
+                    className={`${props.className} ${!!isLoading ? "visibility-hidden" : ""}`}
+                >
                     {time.toLocaleTimeString([], {
                         timeZone: `${props.timezone}`,
-                        hourCycle: "h23",
-                        hour: "2-digit",
-                        minute: "2-digit",
+                        ...toHoursAndMinutes24h,
                     })}
                     {" UTC"}
                 </h2>
             ) : (
-                <h2 suppressHydrationWarning className={`${props.className} ${!!isLoading ? "visibility-hidden" : ""}`}>
-                    {time.toLocaleTimeString([], {
-                        hourCycle: "h23",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                    })}
+                <h2
+                    suppressHydrationWarning
+                    className={`${props.className} ${!!isLoading ? "visibility-hidden" : ""}`}
+                >
+                    {time.toLocaleTimeString([], toHoursAndMinutes24h)}
                     {` ${timezoneAbbreviation}`}
                 </h2>
             )}
