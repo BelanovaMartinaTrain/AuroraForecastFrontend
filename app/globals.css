@@ -242,6 +242,11 @@ canvas {
   inset -5px -5px 5px #161b1b;
 }
 
+.inner-shadow {
+  box-shadow: inset -5px -5px 20px 1px rgba(0, 0, 0, 0.5);
+}
+
+
 /* UTILITY CLASSES */
 
 
@@ -262,7 +267,7 @@ canvas {
   display: none;
 }
 
-.grid {
+.display-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--grid-widget-width), 1fr));
   gap: var(--grid-gap);
@@ -413,7 +418,7 @@ canvas {
       --font-smaller: 1.28rem;
   }
   
-  .grid {
+  .display-grid {
       grid-template-columns: 1fr 1fr ;
   }
 }

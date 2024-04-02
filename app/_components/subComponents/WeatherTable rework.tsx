@@ -13,7 +13,7 @@ export default function WeatherTable() {
 
     return (
         <>
-            <table className="w-full h-full mb-14">
+            <table className="w-full h-full mb-14 ">
                 <tbody className=" border-none">
                     <tr key={-1} className="border-t-0 border-x-0 border-b-black border-b-[3px] border-opacity-50 h-full">
                         <td className="capitalize font-medium !text-nowrap border-none text-sm">Date and time</td>

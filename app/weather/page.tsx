@@ -7,9 +7,11 @@ import WeatherTable from "../_components/subComponents/WeatherTable rework";
 
 export default function Page() {
     return (
-        <BasicWidget className={"widget center p-6 backdrop-blur-sm min-h-[430px] overflow-x-auto scroll-p-5 w-full"}>
+        <BasicWidget className={"widget center p-6 backdrop-blur-sm min-h-[430px] "}>
             <WeatherData title="10-hour weather forecast" url="https://aurora-api.cloud/api/yr-met-weather-10hours">
-                <WeatherTable />
+                <div className="overflow-x-auto scroll-p-5 w-full">
+                    <WeatherTable />
+                </div>
             </WeatherData>
         </BasicWidget>
     );

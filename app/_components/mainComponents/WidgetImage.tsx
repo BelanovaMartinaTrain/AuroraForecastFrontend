@@ -50,16 +50,20 @@ export default function WidgetImage() {
             <div className="widget center  grid-item backdrop-blur-sm">
                 <div className="grid grid-flow-row hemisphere-gap hemisphere-grid justify-center  ">
                     <div
-                        className={` rounded-tl-lg cursor-pointer ${
-                            hemisphere === "Northern" ? "bg-black bg-opacity-0 text-[gainsboro]" : "bg-black bg-opacity-50 text-stone-500"
+                        className={` rounded-tl-lg cursor-pointer  ${
+                            hemisphere === "Northern"
+                                ? "bg-black bg-opacity-0 text-[gainsboro]"
+                                : "bg-black bg-opacity-40 text-stone-500 inner-shadow"
                         }`}
                         onClick={handleClickNorth}
                     >
                         <h3 className="py-2  uppercase  ">Northern </h3>
                     </div>
                     <div
-                        className={` rounded-tl-lg cursor-pointer ${
-                            hemisphere === "Southern" ? "bg-black bg-opacity-0 text-[gainsboro]" : "bg-black bg-opacity-50 text-stone-500"
+                        className={` rounded-tr-lg cursor-pointer  ${
+                            hemisphere === "Southern"
+                                ? "bg-black bg-opacity-0 text-[gainsboro]"
+                                : "bg-black bg-opacity-40 text-stone-500 inner-shadow"
                         }`}
                         onClick={handleClickSouth}
                     >
