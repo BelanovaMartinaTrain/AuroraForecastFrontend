@@ -16,27 +16,19 @@ import {
 import { Chart } from "react-chartjs-2";
 import ProgressBar from "../uiComponents/ProgressBar";
 import Link from "next/link";
-import * as optionsGradient from "@/app/_utils/graphOptionsGradient";
-import fetchGraphDataSolarWindAttr from "@/app/_api/fetchGraphDataSolarWindAttr";
+import useFetchGraphData from "@/app/_hooks/useFetchGraphData";
 
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Tooltip,
-    BarController,
-    LineElement,
-    LineController,
-    PointElement
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, BarController, LineElement, LineController, PointElement);
 
-export function GraphGeneral({
-    orientation,
+export function GraphGeneral<T>({
+    options,
+    createGradient,
     title,
     url,
     index,
 }: {
-    orientation: "vertical" | "horizontal" | "line";
+    options: T;
+    createGradient: (ctx: CanvasRenderingContext2D) => CanvasGradient;
     title: string;
     url: string;
     index: number;
@@ -46,77 +38,8 @@ export function GraphGeneral({
     const [chartData, setChartData] = useState<ChartData<"bar">>({
         datasets: [],
     });
-    const [labels, setLabels] = useState<string[]>();
-    const [values, setValues] = useState<number[]>();
-    const [isLoading, setIsLoading] = useState(true);
-    const options =
-        orientation === "vertical"
-            ? optionsGradient.optionsBarVertical
-            : orientation === "horizontal"
-            ? optionsGradient.optionsBarHorizontal
-            : optionsGradient.optionsLine;
 
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const graphValues = await fetchGraphDataSolarWindAttr(url, index);
-                if (!graphValues.labels) {
-                    throw new Error("Source is unreachable");
-                } else {
-                    const { labels, values, ariaTextSignificantValues } = graphValues;
-                    setLabels([...labels]);
-                    setValues([...values]);
-                    setIsLoading(false);
-                    ariaDivRef.current &&
-                        (ariaDivRef.current.innerText = `graph is showing ${
-                            title.split("(")[0]
-                        } progression in time. The maximum value was ${
-                            ariaTextSignificantValues.maximum +
-                            " " +
-                            title.split("(")[1].split(")")[0]
-                        } recorded at ${
-                            ariaTextSignificantValues.timestamp
-                        } UTC. The range of values were from ${
-                            ariaTextSignificantValues.minimum
-                        } to ${ariaTextSignificantValues.maximum}`);
-                }
-            } catch (error) {
-                console.log(error);
-                setIsLoading(false);
-            }
-        }
-
-        fetchData();
-        const intervalID = setInterval(() => {
-            fetchData();
-        }, 60 * 1000);
-        return () => clearInterval(intervalID);
-    }, []);
-
-    useEffect(() => {
-        const chart = chartRef.current;
-        if (!chart) {
-            return;
-        }
-        if (!!labels && !!values) {
-            const chartData = {
-                labels: labels,
-                datasets: [
-                    {
-                        backgroundColor:
-                            orientation === "vertical"
-                                ? optionsGradient.createGradientVertical(chart.ctx)
-                                : optionsGradient.createGradientHorizontal(chart.ctx),
-                        data: values,
-                        borderColor: optionsGradient.createGradientHorizontal(chart.ctx),
-                        pointRadius: 0.01,
-                        borderWidth: 1,
-                    },
-                ],
-            };
-            setChartData(chartData);
-        }
-    }, [labels, values]);
+    const { isLoading } = useFetchGraphData(url, index, title, chartRef, createGradient, setChartData, ariaDivRef);
 
     return (
         <div className="widget center padding-small grid-item width-100 backdrop-blur-sm min-h-[212px] xl:min-h-[300px]">
@@ -127,12 +50,7 @@ export function GraphGeneral({
                 <ProgressBar />
             ) : (
                 <>
-                    <div
-                        role="img"
-                        aria-labelledby="title"
-                        aria-describedby="description"
-                        className="h-52 "
-                    >
+                    <div role="img" aria-labelledby="title" aria-describedby="description" className="h-52 ">
                         <Chart
                             ref={chartRef}
                             type="line"
@@ -143,11 +61,7 @@ export function GraphGeneral({
                             }}
                         />
                     </div>
-                    <div
-                        id="description"
-                        ref={ariaDivRef}
-                        className="uppercase text-normal font-medium sr-only"
-                    >
+                    <div id="description" ref={ariaDivRef} className="uppercase text-normal font-medium sr-only">
                         Text
                     </div>
                     <p className="mt-4 font-medium text-stone-500 text-[11px]">

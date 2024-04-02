@@ -242,10 +242,13 @@ canvas {
   inset -5px -5px 5px #161b1b;
 }
 
-.inner-shadow {
+.inner-shadow-north {
   box-shadow: inset -5px -5px 20px 1px rgba(0, 0, 0, 0.5);
 }
 
+.inner-shadow-south {
+  box-shadow: inset 5px 5px 20px 1px rgba(0, 0, 0, 0.5);
+}
 
 /* UTILITY CLASSES */
 

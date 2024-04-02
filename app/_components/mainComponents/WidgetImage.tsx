@@ -53,7 +53,7 @@ export default function WidgetImage() {
                         className={` rounded-tl-lg cursor-pointer  ${
                             hemisphere === "Northern"
                                 ? "bg-black bg-opacity-0 text-[gainsboro]"
-                                : "bg-black bg-opacity-40 text-stone-500 inner-shadow"
+                                : "bg-black bg-opacity-40 text-stone-500 inner-shadow-north"
                         }`}
                         onClick={handleClickNorth}
                     >
@@ -63,7 +63,7 @@ export default function WidgetImage() {
                         className={` rounded-tr-lg cursor-pointer  ${
                             hemisphere === "Southern"
                                 ? "bg-black bg-opacity-0 text-[gainsboro]"
-                                : "bg-black bg-opacity-40 text-stone-500 inner-shadow"
+                                : "bg-black bg-opacity-40 text-stone-500 inner-shadow-south"
                         }`}
                         onClick={handleClickSouth}
                     >

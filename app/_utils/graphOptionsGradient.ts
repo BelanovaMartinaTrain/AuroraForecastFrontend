@@ -1,3 +1,5 @@
+"use client";
+
 export const optionsBarVertical = {
     indexAxis: "y" as const,
     scales: {
