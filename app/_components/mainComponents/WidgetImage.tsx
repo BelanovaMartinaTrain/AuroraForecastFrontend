@@ -51,7 +51,7 @@ export default function WidgetImage() {
                 <div className="grid grid-flow-row hemisphere-gap hemisphere-grid justify-center  ">
                     <div
                         className={` rounded-tl-lg cursor-pointer ${
-                            hemisphere === "Northern" ? "bg-black bg-opacity-0 text-[gainsboro]" : "bg-black bg-opacity-70 text-stone-500"
+                            hemisphere === "Northern" ? "bg-black bg-opacity-0 text-[gainsboro]" : "bg-black bg-opacity-50 text-stone-500"
                         }`}
                         onClick={handleClickNorth}
                     >
@@ -59,7 +59,7 @@ export default function WidgetImage() {
                     </div>
                     <div
                         className={` rounded-tl-lg cursor-pointer ${
-                            hemisphere === "Southern" ? "bg-black bg-opacity-0 text-[gainsboro]" : "bg-black bg-opacity-70 text-stone-500"
+                            hemisphere === "Southern" ? "bg-black bg-opacity-0 text-[gainsboro]" : "bg-black bg-opacity-50 text-stone-500"
                         }`}
                         onClick={handleClickSouth}
                     >

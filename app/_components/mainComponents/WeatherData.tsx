@@ -7,15 +7,7 @@ import TemperatureUnitsSwitch from "@/app/_components/uiComponents/TemperatureUn
 import ButtonRequestLocationPerm from "../uiComponents/ButtonRequestLocationPerm";
 import ProgressBar from "../uiComponents/ProgressBar";
 
-export default function WeatherData({
-    children,
-    title,
-    url,
-}: {
-    children: React.ReactNode;
-    title: string;
-    url: string;
-}) {
+export default function WeatherData({ children, title, url }: { children: React.ReactNode; title: string; url: string }) {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const { location, weatherArray, setWeatherArray } = useLocationAndWeatherContext();
@@ -53,15 +45,9 @@ export default function WeatherData({
 
     return (
         <>
-            <TemperatureUnitsSwitch title={title} classes="mb-4 mt-1 md:mt-0" />
+            <TemperatureUnitsSwitch title={title} classes="mb-4 mt-1 md:mt-0 " />
             <ButtonRequestLocationPerm>
-                {!!weatherArray ? (
-                    <>{children}</>
-                ) : isLoading ? (
-                    <ProgressBar />
-                ) : (
-                    isError && <p className="mt-8">Source is not available</p>
-                )}
+                {!!weatherArray ? <>{children}</> : isLoading ? <ProgressBar /> : isError && <p className="mt-8">Source is not available</p>}
             </ButtonRequestLocationPerm>
         </>
     );
