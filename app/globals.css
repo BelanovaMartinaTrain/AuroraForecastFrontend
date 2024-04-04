@@ -354,17 +354,22 @@ canvas {
 
 /* MEDIA QUERIES */
 
-@media (min-width: 768px) {
+@media (min-width: 430px) {
   
   :root {
       --font-h2-size: 1.1rem;
       --font-h3-size: 1.2rem;
       --font-p-size: 0.8rem;
       --widget-max-height: 150px;
-      --font-bigger: 3.5rem;
+      --font-bigger: 4rem;
       --font-smaller: 1.1rem;
       --grid-gap: 0.5rem;
   }
+}
+
+@media (min-width: 768px) {
+  
+
   
   .nav-horizontal {
       max-width: 768px;
@@ -405,7 +410,7 @@ canvas {
       --font-h3-size: 1.3rem;
       --font-p-size: 0.8rem;
       --widget-max-height: 190px;
-      --font-bigger: 3.5rem;
+      --font-bigger: 4rem;
       --font-smaller: 1.2rem;
   }
 }
