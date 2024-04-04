@@ -9,7 +9,7 @@ import { useEffect, useRef } from "react";
 
 export default function WeatherTable() {
     const tableRef = useRef<HTMLDivElement>(null);
-    const PClassNames = "capitalize font-medium  text-nowrap border-none text-sm p-1";
+    const PClassNames = " capitalize font-medium  text-nowrap border-none text-sm py-1 px-2 ";
     const { weatherArray, units, location } = useLocationAndWeatherContext();
     const { lon, lat } = location;
 
@@ -25,20 +25,18 @@ export default function WeatherTable() {
 
     return (
         <>
-            <div ref={tableRef} className="overflow-x-auto scroll-p-5 scroll-smooth w-full">
+            <div ref={tableRef} className="overflow-x-auto scroll-p-5 scroll-smooth w-full ">
                 <table className="w-full h-full mb-6  md736:mb-14 ">
                     <tbody className=" border-none">
                         <tr key={-1} className="border-t-0 border-x-0 border-b-black border-b-[3px] border-opacity-50 h-full">
-                            <td className="capitalize font-medium !text-nowrap border-none text-sm">Date and time</td>
-                            <td className="capitalize font-medium border-none ">
-                                <p className={`${PClassNames}`}>Temperature </p>{" "}
-                            </td>
+                            <td className="capitalize font-medium !text-nowrap border-none text-sm 2xl:px-0">Date and time</td>
+                            <td className={`${PClassNames} px-0`}>Temperature</td>
                             <td className={PClassNames}>Wind speed</td>
-                            <td className={PClassNames}>Clouds</td>
-                            <td className={`${PClassNames}  `}>High clouds</td>
-                            <td className={`${PClassNames}  `}>Middle clouds</td>
-                            <td className={`${PClassNames}  `}>Low clouds</td>
-                            <td className={`${PClassNames}  `}>Fog</td>
+                            <td className={`${PClassNames} 2xl:px-2 `}>Clouds</td>
+                            <td className={`${PClassNames} 2xl:px-0 `}>High clouds</td>
+                            <td className={`${PClassNames} 2xl:px-0 `}>Middle clouds</td>
+                            <td className={`${PClassNames} 2xl:px-0 `}>Low clouds</td>
+                            <td className={`${PClassNames} 2xl:px-4 `}>Fog</td>
                         </tr>
                         {!!weatherArray ? (
                             weatherArray?.map((weather, index, weatherArray) => {
@@ -67,7 +65,7 @@ export default function WeatherTable() {
                                                 units === "C" ? toHoursAndMinutes24h : toHoursAndMinutes12h
                                             )}
                                         </td>
-                                        <td className="capitalize font-medium text-nowrap flex justify-evenly border-none text-sm">
+                                        <td className="capitalize font-medium text-nowrap flex justify-evenly border-none p-1 text-sm">
                                             <p className="text-nowrap">
                                                 {" "}
                                                 {units === "C"
