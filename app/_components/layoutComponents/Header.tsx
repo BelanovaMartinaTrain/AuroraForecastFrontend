@@ -18,7 +18,7 @@ export default function Header() {
         <header>
             <h1 className=" title" aria-label="Aurora Borealis Forecast">
                 <Link href="/dashboard" aria-label="Navigate to dashboard">
-                    <span className="cursor-pointer title">Aurora {title}</span>
+                    <span className="cursor-pointer title ">Aurora {title}</span>
                 </Link>
             </h1>
 

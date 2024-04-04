@@ -250,6 +250,12 @@ canvas {
   box-shadow: inset 5px 5px 20px 1px rgba(0, 0, 0, 0.5);
 }
 
+.grid-main-layout {
+  display: grid !important;
+  grid-template-rows: 1fr 0.001fr 0.01fr;
+}
+
+
 /* UTILITY CLASSES */
 
 
