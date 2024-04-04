@@ -74,8 +74,8 @@ export default function WidgetImage() {
                 {!!isLoading && <ProgressBar />}
                 <img
                     src={`${hemisphere === "Northern" ? imageUrl.north : imageUrl.south}`}
-                    alt="predicted aurora ovation, predicted aurora activity in the next hour depicted visually"
-                    className="img-latest mb-8 pb-4 px-3"
+                    alt="predicted aurora ovation, predicted aurora activity in the next hour"
+                    className="img-latest mb-8 pb-4 px-3 "
                     width={475}
                     height={475}
                     onClick={onOpen}

@@ -15,7 +15,8 @@ const config = {
         container: {},
         extend: {
             screens: {
-                "2sm": "576px",
+                sm576: "576px",
+                md736: "736px",
             },
         },
         darkMode: "class",

@@ -13,7 +13,7 @@ export default function WeatherTable() {
 
     return (
         <>
-            <table className="w-full h-full mb-14 ">
+            <table className="w-full h-full mb-6  md736:mb-14 ">
                 <tbody className=" border-none">
                     <tr key={-1} className="border-t-0 border-x-0 border-b-black border-b-[3px] border-opacity-50 h-full">
                         <td className="capitalize font-medium !text-nowrap border-none text-sm">Date and time</td>
@@ -84,7 +84,8 @@ export default function WeatherTable() {
                     )}
                 </tbody>
             </table>
-            <div className="flex justify-evenly mt-5">
+            <p className="animate-bounce flex justify-end md736:hidden">{"<<"}</p>
+            <div className="flex justify-evenly mt-4 mb-1">
                 <p className=" font-medium text-stone-500 text-[11px]  mr-2">
                     <Link
                         href={`https://www.google.com/maps/place/${lat},${lon}`}
