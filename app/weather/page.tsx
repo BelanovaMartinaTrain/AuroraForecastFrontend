@@ -9,7 +9,7 @@ export default function Page() {
     return (
         <BasicWidget className={"widget center p-6 backdrop-blur-sm min-h-[430px] "}>
             <WeatherData title="10-hour weather forecast" url="https://aurora-api.cloud/api/yr-met-weather-10hours">
-                <div className="overflow-x-auto scroll-p-5 w-full">
+                <div>
                     <WeatherTable />
                 </div>
             </WeatherData>

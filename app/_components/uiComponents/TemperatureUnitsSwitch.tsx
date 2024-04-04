@@ -16,7 +16,7 @@ export default function TemperatureUnitsSwitch({ title, classes }: { title: stri
     return (
         <>
             <div className={`relative ${classes}`}>
-                <h2 className="font-h2 uppercase mr-2 md:mr-0">{title}</h2>
+                <h2 className="font-h2 uppercase pr-6 sm:pr-0">{title}</h2>
                 <button
                     className={` absolute  -top-2 right-0 mr-9 p-1  `}
                     onClick={handleClickC}
