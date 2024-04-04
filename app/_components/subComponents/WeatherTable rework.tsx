@@ -106,7 +106,7 @@ export default function WeatherTable() {
                 </table>
             </div>
             <p
-                className="animate-bounce flex justify-end cursor-pointer text-base md736:hidden"
+                className="animate-pulse flex justify-end cursor-pointer text-base md736:hidden"
                 aria-label="click to scroll the table"
                 onClick={handleClick}
             >
