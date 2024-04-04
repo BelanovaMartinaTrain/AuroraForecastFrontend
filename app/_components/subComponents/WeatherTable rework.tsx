@@ -110,7 +110,8 @@ export default function WeatherTable() {
                 aria-label="click to scroll the table"
                 onClick={handleClick}
             >
-                {"<<"}
+                {"<< "}
+                <span className="text-xs lowercase pl-1 pt-1 md736:hidden"> scroll</span>
             </p>
             <div className="flex justify-evenly mt-4 mb-1">
                 <p className=" font-medium text-stone-500 text-[11px]  mr-2">
