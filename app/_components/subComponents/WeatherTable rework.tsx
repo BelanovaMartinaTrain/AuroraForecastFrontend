@@ -66,13 +66,13 @@ export default function WeatherTable() {
                                             )}
                                         </td>
                                         <td className="capitalize font-medium text-nowrap flex justify-evenly border-none p-1 text-sm">
-                                            <p className="text-nowrap">
+                                            <span className="text-nowrap">
                                                 {" "}
                                                 {units === "C"
                                                     ? Math.round(weather.air_temperature)
                                                     : Math.round(weather.air_temperature * (9 / 5) + 32)}{" "}
                                                 &#176;{units}
-                                            </p>{" "}
+                                            </span>{" "}
                                             <img
                                                 className=" text-nowrap"
                                                 src={`icons/weather/${weatherSymbolKeys[weather.icon_code as TWeatherSymbolKey]}.svg`}
