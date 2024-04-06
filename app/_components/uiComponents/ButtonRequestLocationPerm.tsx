@@ -11,6 +11,7 @@ export default function ButtonRequestLocationPerm({ children }: { children: Reac
     const { lon, lat } = location;
 
     async function checkPerm() {
+        setIsLoading(true);
         await navigator.permissions.query({ name: "geolocation" }).then((result) => {
             if (result.state === "granted") {
                 setIsLocation(true);
@@ -23,6 +24,7 @@ export default function ButtonRequestLocationPerm({ children }: { children: Reac
     }
 
     useEffect(() => {
+        setIsLoading(true);
         if (!lon || !lat) {
             checkPerm();
         } else {
@@ -57,7 +59,11 @@ export default function ButtonRequestLocationPerm({ children }: { children: Reac
             {!!isLoading ? (
                 <ProgressBar />
             ) : isLocation ? (
-                <>{children}</>
+                !!isLoading ? (
+                    <ProgressBar />
+                ) : (
+                    <>{children}</>
+                )
             ) : (
                 <button
                     className="mt-3 text-black  px-5 py-3 rounded-lg font-bold focus:ring ring-black ring-opacity-10 gradient element-to-rotate hover:-translate-y-0.5"

@@ -57,7 +57,7 @@ export default function WidgetImage() {
                         }`}
                         onClick={handleClickNorth}
                     >
-                        <h3 className="py-2  uppercase  ">Northern </h3>
+                        <h3 className="py-2  uppercase  select-none">Northern </h3>
                     </div>
                     <div
                         className={` rounded-tr-lg cursor-pointer transition ease-in-out delay-[50ms] ${
@@ -67,7 +67,7 @@ export default function WidgetImage() {
                         }`}
                         onClick={handleClickSouth}
                     >
-                        <h3 className="py-2   uppercase ">Southern </h3>
+                        <h3 className="py-2   uppercase select-none ">Southern </h3>
                     </div>
                 </div>
                 <h3 className="p-2 img-text uppercase margin-xs-btm ">Hemisphere </h3>

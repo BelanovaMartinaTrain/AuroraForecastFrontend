@@ -41,10 +41,10 @@ export default function WidgetAuroraActivity() {
                     disableAnimation={true}
                     scrollBehavior="inside"
                 >
-                    <ModalContent className="  p-2">
+                    <ModalContent className="  p-0  md:p-2">
                         {(onClose) => (
                             <>
-                                <ModalBody className="my-5 ">
+                                <ModalBody className="my-4 md:mt-5 md:mb-8">
                                     <ModalAuroraActivityInfo />
                                 </ModalBody>
                             </>

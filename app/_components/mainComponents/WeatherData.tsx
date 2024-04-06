@@ -8,7 +8,7 @@ import ButtonRequestLocationPerm from "../uiComponents/ButtonRequestLocationPerm
 import ProgressBar from "../uiComponents/ProgressBar";
 
 export default function WeatherData({ children, title, url }: { children: React.ReactNode; title: string; url: string }) {
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState(false);
     const { location, weatherArray, setWeatherArray } = useLocationAndWeatherContext();
     const { lon, lat } = location;
@@ -17,9 +17,8 @@ export default function WeatherData({ children, title, url }: { children: React.
         if (!!lat || !!lon) {
             if (!weatherArray || source === "timer") {
                 try {
-                    setIsLoading(true);
                     const weatherData = await fetchData(`${url}?lat=${lat}&lon=${lon}`);
-                    setIsLoading(false);
+
                     if (weatherData.cause || !("weather" in weatherData)) {
                         console.error("error", weatherData.cause);
                         throw new Error("Remote source is not available");
@@ -28,16 +27,19 @@ export default function WeatherData({ children, title, url }: { children: React.
                     }
                 } catch {
                     setWeatherArray(null);
-                    setIsLoading(false);
                     setIsError(true);
                 }
             }
         }
+        setIsLoading(false);
     }
 
     useEffect(() => {
+        setIsLoading(true);
         fetchWeather();
+
         const intervalID = setInterval(() => {
+            setIsLoading(true);
             fetchWeather("timer");
         }, 60 * 10 * 1000);
         return () => clearInterval(intervalID);
