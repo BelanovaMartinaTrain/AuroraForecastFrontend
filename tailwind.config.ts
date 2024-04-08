@@ -16,7 +16,9 @@ const config = {
         extend: {
             screens: {
                 sm576: "576px",
-                md736: "736px",
+                md776: "776px",
+                sm480: "480px",
+                xs: "400px",
             },
         },
         darkMode: "class",

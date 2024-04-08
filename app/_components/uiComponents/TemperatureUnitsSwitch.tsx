@@ -16,9 +16,9 @@ export default function TemperatureUnitsSwitch({ title, classes }: { title: stri
     return (
         <>
             <div className={`relative ${classes}`}>
-                <h2 className="font-h2 uppercase pr-6 sm:pr-0">{title}</h2>
+                <h2 className={`font-h2 uppercase ${title.length > 12 ? "pr-6 xs:pr-0 text-left pl-2 xs:text-center xs:pl-0" : ""} `}>{title}</h2>
                 <button
-                    className={` absolute  -top-2 right-0 mr-9 p-1  `}
+                    className={` absolute  -top-2 right-0 mr-9 p-1`}
                     onClick={handleClickC}
                     aria-description="change units to celsius"
                     aria-pressed={units === "C" ? "true" : "false"}

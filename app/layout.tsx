@@ -8,12 +8,13 @@ import Footer from "./_components/layoutComponents/Footer";
 import LocationAndWeatherContextProvider from "./_context/locationAndWeatherContext";
 import HemisphereContextProvider from "./_context/hemisphereContext";
 
-const quicksand = Quicksand({ subsets: ["latin"] });
+const quicksand = Quicksand({ subsets: ["latin"], preload: true });
 
 export const metadata: Metadata = {
     title: "Aurora Forecast",
     description: "Web-app to get accurate and easy to read aurora forecast data",
     icons: "/favicons/favicon.ico",
+    keywords: "aurora northern lights forecast activity solar wind hemisphere bz bt density speed kp geomagnetic storm graph",
 
     metadataBase: new URL("https://cdn.pixabay.com/"),
 };

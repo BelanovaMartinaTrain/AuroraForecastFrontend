@@ -25,8 +25,8 @@ export default function WeatherTable() {
 
     return (
         <>
-            <div ref={tableRef} className="overflow-x-auto scroll-p-5 scroll-smooth w-full ">
-                <table className="w-full h-full mb-6  md736:mb-14 ">
+            <div ref={tableRef} className="overflow-x-auto scroll-p-5 scroll-smooth w-full pb-2 mb-1  md776:mb-7 ">
+                <table className="w-full h-full  ">
                     <tbody className=" border-none">
                         <tr key={-1} className="border-t-0 border-x-0 border-b-black border-b-[3px] border-opacity-50 h-full">
                             <td className="capitalize font-medium !text-nowrap border-none text-sm 2xl:px-0">Date and time</td>
@@ -56,10 +56,10 @@ export default function WeatherTable() {
                                                 : "border-b-black border-b-[1px] border-opacity-50"
                                         }`}
                                     >
-                                        <td className=" font-medium text-nowrap border-none text-sm">
+                                        <td className=" font-medium text-nowrap border-none text-sm tabular-nums lining-nums">
                                             {new Date(weather.time).toLocaleDateString(`${units === "C" ? "uk" : "us"}`, toDayAndMonth)}
                                             {`${units === "C" ? "." : ""}`}
-                                            <span className="pl-2">{`    `}</span>
+                                            <span className="pl-2 ">{`    `}</span>
                                             {new Date(weather.time).toLocaleTimeString(
                                                 [],
                                                 units === "C" ? toHoursAndMinutes24h : toHoursAndMinutes12h
@@ -105,15 +105,17 @@ export default function WeatherTable() {
                     </tbody>
                 </table>
             </div>
-            <p
-                className="animate-pulse flex justify-end cursor-pointer text-base md736:hidden"
-                aria-label="click to scroll the table"
-                onClick={handleClick}
-            >
-                {"<< "}
-                <span className="text-xs lowercase pl-1 pt-1 md736:hidden"> scroll</span>
-            </p>
-            <div className="flex justify-evenly mt-4 mb-1">
+            <div className="pt-2">
+                <p
+                    className="animate-pulse flex justify-end cursor-pointer text-base md776:hidden "
+                    aria-label="click to scroll the table"
+                    onClick={handleClick}
+                >
+                    {"<< "}
+                    <span className="text-xs lowercase pl-1 pt-1 md776:hidden "> scroll</span>
+                </p>
+            </div>
+            <div className="flex justify-evenly p-1">
                 <p className=" font-medium text-stone-500 text-[11px]  mr-2">
                     <Link
                         href={`https://www.google.com/maps/place/${lat},${lon}`}
