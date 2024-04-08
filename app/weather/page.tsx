@@ -1,7 +1,7 @@
 //import WidgetWeatherSubpage from "../_components/subComponents/WidgetWeatherSubpage";
 import BasicWidget from "../_components/layoutComponents/BasicWidget";
 import WeatherData from "../_components/mainComponents/WeatherData";
-import WeatherTable from "../_components/subComponents/WeatherTable rework";
+import WeatherTable from "../_components/subComponents/WeatherTable";
 
 //<WidgetWeatherSubpage />
 

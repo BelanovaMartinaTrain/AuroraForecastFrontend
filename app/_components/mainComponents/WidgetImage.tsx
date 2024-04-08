@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import ProgressBar from "../uiComponents/ProgressBar";
 import Link from "next/link";
-//import { useModalOpenContext } from "@/app/_context/modalOpenContext";
 import { Modal, ModalContent, ModalBody, useDisclosure } from "@nextui-org/react";
 import { ModalOvationImageNoClass } from "@/app/_data/modalData";
 import { useHemisphereContext } from "@/app/_context/hemisphereContext";
