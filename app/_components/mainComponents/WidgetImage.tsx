@@ -74,7 +74,7 @@ export default function WidgetImage() {
                 <img
                     src={`${hemisphere === "Northern" ? imageUrl.north : imageUrl.south}`}
                     alt="predicted aurora ovation, predicted aurora activity in the next hour"
-                    className="img-latest mb-8 pb-4 px-3 "
+                    className={`img-latest mb-8 pb-4 px-3 ${isOpen ? "pointer-events-none" : ""}`}
                     width={475}
                     height={475}
                     onClick={onOpen}
