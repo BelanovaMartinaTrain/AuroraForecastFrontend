@@ -46,7 +46,7 @@ export default function WidgetImage() {
 
     return (
         <>
-            <div className="widget center  grid-item backdrop-blur-sm">
+            <div className="widget text-center justify-center  grid-item backdrop-blur-sm">
                 <div className="grid grid-flow-row hemisphere-gap hemisphere-grid justify-center  ">
                     <div
                         className={` rounded-tl-lg cursor-pointer transition-all ease-in-out delay-[50ms] ${
