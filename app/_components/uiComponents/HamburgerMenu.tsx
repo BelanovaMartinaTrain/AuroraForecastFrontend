@@ -60,8 +60,8 @@ export default function HamburgerMenu() {
             <div onClick={() => setIsOpen(false)}>
                 {" "}
                 <Navigation
-                    cssClass={`${classnames} ${!isOpen ? " h-0  " : "h-52 p-6"}`}
-                    linksClass={`${linkclass} ${!isOpen ? "hidden opacity-0 text-xs p-0" : " opacity-100 text-base p-2 "}`}
+                    cssClass={`${classnames} ${!isOpen ? " h-0  " : "h-80 p-6"}`}
+                    linksClass={`${linkclass} ${!isOpen ? "hidden opacity-0 text-xs p-0" : " opacity-100 text-lg p-5 "}`}
                 />
             </div>
         </div>

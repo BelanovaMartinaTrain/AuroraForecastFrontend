@@ -103,7 +103,7 @@ export default function WidgetImage() {
                 disableAnimation={true}
                 scrollBehavior="inside"
             >
-                <ModalContent className=" p-3 ">
+                <ModalContent className=" md:p-3 ">
                     {(onClose) => (
                         <>
                             <ModalBody className="my-5">
