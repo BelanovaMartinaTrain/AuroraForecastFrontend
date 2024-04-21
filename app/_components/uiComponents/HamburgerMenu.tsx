@@ -61,7 +61,7 @@ export default function HamburgerMenu() {
                 {" "}
                 <Navigation
                     cssClass={`${classnames} ${!isOpen ? " h-0  " : "h-80 p-6"}`}
-                    linksClass={`${linkclass} ${!isOpen ? "hidden opacity-0 text-xs p-0" : " opacity-100 text-lg p-5 "}`}
+                    linksClass={`${linkclass} ${!isOpen ? "hidden opacity-0 text-xs p-0" : " opacity-100 text-xl p-5 "}`}
                 />
             </div>
         </div>
