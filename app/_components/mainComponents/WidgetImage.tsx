@@ -79,6 +79,7 @@ export default function WidgetImage() {
                     width={475}
                     height={475}
                     onClick={onOpen}
+                    priority
                 />
 
                 <p className="mt-4 font-medium text-stone-500 text-[11px] absolute bottom-5 left-[42%] right-[50%]">
