@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Modal, ModalContent, ModalBody, useDisclosure } from "@nextui-org/react";
 import { ModalOvationImageNoClass } from "@/app/_data/modalData";
 import { useHemisphereContext } from "@/app/_context/hemisphereContext";
+import Image from "next/image";
 
 export default function WidgetImage() {
     const [imageUrl, setImageUrl] = useState({
@@ -71,7 +72,7 @@ export default function WidgetImage() {
                 </div>
                 <h3 className="p-2 img-text uppercase margin-xs-btm ">Hemisphere </h3>
                 {!!isLoading && <ProgressBar />}
-                <img
+                <Image
                     src={`${hemisphere === "Northern" ? imageUrl.north : imageUrl.south}`}
                     alt="predicted aurora ovation, predicted aurora activity in the next hour"
                     className={`img-latest mb-8 pb-4 px-3 ${isOpen ? "pointer-events-none" : ""}`}

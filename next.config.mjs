@@ -10,6 +10,16 @@ const nextConfig = {
           },
         ];
       },
+      images: {
+        remotePatterns: [
+          {
+            protocol: 'https',
+            hostname: 'services.swpc.noaa.gov',
+            port: '',
+            pathname: '/images/animations/ovation/**',
+          },
+        ],
+      },
     
 };
 
