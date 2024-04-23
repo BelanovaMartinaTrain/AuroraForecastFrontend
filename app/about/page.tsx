@@ -6,9 +6,9 @@ export default function Page() {
             <h2 className="pb-3 font-semibold text-sm sm:text-base lg:text-lg ">
                 This site displays data needed to forecast the probability of Aurora sightings.
             </h2>
-            <ul className="pt-1 font-normal list-disc">
-                <span className="uppercase">Main goals:</span>
-                <li className="mt-2 mx-3  font-bold  ">
+            <span className="uppercase mt-1 font-normal">Main goals:</span>
+            <ul className=" font-normal list-disc mt-1">
+                <li className=" mx-3  font-bold  ">
                     <span className="bg-gradient-to-r from-teal-400 to-yellow-200 bg-clip-text text-transparent">ACCESSIBILITY</span>
                 </li>
                 <li className="mx-3 ">Show data in a concise way</li>
