@@ -28,8 +28,12 @@ export default function WeatherWidget() {
 
     return (
         <>
-            <div className="quickview-div center z-0">
-                <div className={`center quickview-item width-100 padding-sm-btm ${!weather.air_pressure_at_sea_level && "text-neutral-800"}`}>
+            <div className="flex text-center justify-center justify-items-center items-center z-0">
+                <div
+                    className={`text-center justify-center justify-items-center content-center items-center grid w-full padding-sm-btm ${
+                        !weather.air_pressure_at_sea_level && "text-neutral-800"
+                    }`}
+                >
                     <p className="mb-1">Temperature</p>
                     <div className="flex">
                         <h3 className="mb-3">
@@ -45,7 +49,11 @@ export default function WeatherWidget() {
                     <p className="mb-1">Wind</p>
                     {units === "C" ? <h3>{Math.round(weather.wind_speed)} m/s </h3> : <h3>{Math.round(weather.wind_speed * 2.2369)} mph </h3>}
                 </div>
-                <div className={`center quickview-item width-100 margin-xs-btm ${!weather.air_pressure_at_sea_level && "text-neutral-800"}`}>
+                <div
+                    className={`text-center justify-center justify-items-center content-center items-center grid w-full margin-xs-btm ${
+                        !weather.air_pressure_at_sea_level && "text-neutral-800"
+                    }`}
+                >
                     <p className="mb-1">Clouds </p>
                     <h3 className="font-smaller">Low: {Math.round(weather.cloud_area_fraction_low)} %</h3>
                     <h3 className="font-smaller">Middle: {Math.round(weather.cloud_area_fraction_medium)} %</h3>

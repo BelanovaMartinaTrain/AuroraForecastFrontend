@@ -13,7 +13,6 @@ export default function WidgetSolarWind() {
                 Solar Wind{" "}
                 <button className="absolute ml-1 -top-0.5 w-5 h-5" onClick={onOpen} aria-label="click to get info about solar wind attributes">
                     <svg
-                        id="info-icon"
                         className="   fill-stone-400 hover:fill-stone-50 focus:fill-stone-50 mx-1"
                         xmlns="http://www.w3.org/2000/svg"
                         height="19"

@@ -11,8 +11,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* CUSTOM CSS TO BREAK THE APP FOR LEARNING PURPOSES */
-
 @font-face {
   font-family: 'white-angelica';
   src: url('/fonts/subset-WhiteAngelicaRegular.woff2') format('woff2');
@@ -47,14 +45,13 @@
 }
 
 /* RESET */
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   line-height: normal;
 }
-
-/* RESET */
 
 /* VARIABLES */
 
@@ -84,26 +81,6 @@ html, body {
   font-size: 16px !important;
 }
 
-
-
-menu {
-  display: flex;
-  justify-content: space-between;
-  margin: 0;
-  padding: 0.5rem 0;    
-  border-radius: 8px;
-}
-
-h1 {
-  font-family: white-angelica;
-  font-weight: 200;
-  font-size: var(--font-h1-size);
-  color: white;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
-
 h2 {
   font-weight: 350;
   font-size: var(--font-h2-size);
@@ -128,69 +105,14 @@ p {
   font-weight: 600;
 }
 
-main {	
-
-  margin-top: 0.2rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-
-table {
-  padding: 4px;
-}
-
-
-
 td, tr, th  {
   padding: 2px 8px;
   border: solid rgb(64, 64, 64) 1px;
   
 }
 
-
-canvas {
-  max-width: 100%;
-}
-
-.title {
-  padding: 1.5rem 0;
-}
-
-.nav-horizontal {
-  display: none;
-  cursor: pointer;
-}
-
-.quickview-div {
-  display: flex;
-}
-
-.quickview-item {
-  display: grid;
-}
-
-.time {
-  grid-area: time;
-}
-
-.time-nav {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0 0.5rem;
-  max-width: 20rem;
-  min-width: clamp(17rem, 48vw, 25rem);
-}
-
-.time-main {
-  display: none;
-}
-
 .img-latest {
   filter: brightness(80%) hue-rotate(18deg) grayscale(30%);
-  border-radius: 0.4rem;
   display: block;
   width: 100%;
 }
@@ -201,46 +123,16 @@ canvas {
   cursor: pointer;
 }
 
-.info-icon-kp {
-  position: absolute;
-  cursor: pointer;
-}
-
 .image-creds {
   position: absolute;
   left: 2;
   bottom: -150;
 }
 
-.menu-btn {
-  font-size: 2.2rem;
-  grid-area: menu;
-  width: 2.2rem;
-  height: 2.2rem;
-}
-
 .grouped-widget {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--grid-widget-width), 1fr));
   gap: var(--grid-gap);
-}
-
-.graph {
-  display: flex;
-  padding: 0.7rem;
-}
-
-.img-graph {
-  display: block;
-  width: 100%;
-  padding: 0.5rem;
-
-}
-
-.input-shadow {
-  border-radius: 3px;
-  box-shadow: inset 3px 3px 10px black,
-  inset -5px -5px 5px #161b1b;
 }
 
 .inner-shadow-north {
@@ -265,17 +157,6 @@ canvas {
   font-size: var(--font-bigger);
 }
 
-.center {
-  text-align: center;
-  justify-content: center;
-  align-content: center;
-  justify-items: center;
-  align-items: center;
-}
-
-.hidden {
-  display: none;
-}
 
 .display-grid {
   display: grid;
@@ -287,21 +168,11 @@ canvas {
   background: var(--widget-background);
   border-radius: 8px;
   box-sizing: border-box;    
-  /* border: rgba(52, 52, 52, 0.333) 1px solid; */
 }
 
 .widget-for-small {
   background: var(--widget-background);
   border-radius: 0.3rem;
-  /* border: rgba(52, 52, 52, 0.333)1px solid; */
-}
-
-.width-100 {
-  width: 100%;
-}
-
-.heigth-100 {
-  height: 100%;
 }
 
 .padding-small {
@@ -324,10 +195,6 @@ canvas {
   padding-bottom: 0.5%;
 }
 
-.uppercase {
-  text-transform: uppercase;
-}
-
 .font-h2 {
   font-size: smaller;
   font-weight: 600;
@@ -338,19 +205,9 @@ canvas {
   font-size: var(--font-smaller);
 }
 
-.padding-sm-r {
-  padding-right: 0.5rem;
-}
-
 .height-max-widget {
   max-height: var(--widget-max-height);
 }
-
-.visibility-hidden {
-  visibility: hidden;
-}
-
-
 
 /* MEDIA QUERIES */
 
@@ -367,43 +224,6 @@ canvas {
   }
 }
 
-@media (min-width: 768px) {
-  
-
-  
-  .nav-horizontal {
-      max-width: 768px;
-      display: flex;
-      justify-content: space-around;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0.5em 0;
-      margin-bottom: 0.7em;
-  }
-  
-  menu {
-      display: none;
-      
-  }
-
-  .menu {
-    display: none;
-  }
-  
-  main {
-      max-width: 768px;
-  }
-  
-  .time-main {
-      display: flex;
-      justify-content: space-around;
-      padding: 0.5rem;
-  }
-}
-
-
-
-
 @media (min-width: 1024px) { 
           :root {
       --font-h2-size: 1.2rem;
@@ -416,14 +236,7 @@ canvas {
 }
 
 @media (min-width: 1280px) {
-  
-  .nav-horizontal {
-      max-width: 769px;
-  }
-  main {
-      max-width: clamp(769px, 60vw, 1024px);
-  }
-  
+
       :root {
       --font-h2-size: 1.2rem;
       --font-h3-size: 1.34rem;

@@ -86,7 +86,7 @@ export default function WidgetImage() {
                     <span className={`capitalize mr-1 ${!!isLoading ? "hidden" : ""}`}>Source:</span>
                     <Link
                         href="https://www.swpc.noaa.gov/"
-                        className={`${!!isLoading ? "visibility-hidden" : ""}`}
+                        className={`${!!isLoading ? "invisible" : ""}`}
                         aria-label="Link to source of used data - NOAA"
                         target="_blank"
                     >

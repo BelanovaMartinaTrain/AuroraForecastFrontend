@@ -39,7 +39,7 @@ export default function HamburgerMenu() {
         <div className={` ${!!isOpen ? " rounded grid-flow-col" : ""} `} ref={refMenu}>
             <button
                 onClick={handleClick}
-                className="flex flex-col justify-center items-center menu-btn widget-for-small relative"
+                className="flex flex-col justify-center items-center text-[2.2rem] w-[2.2rem] h-[2.2rem] widget-for-small relative"
                 aria-label="menu button"
                 aria-haspopup="true"
                 aria-expanded={isOpen}

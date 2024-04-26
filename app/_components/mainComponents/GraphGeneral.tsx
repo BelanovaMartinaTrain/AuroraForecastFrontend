@@ -42,7 +42,7 @@ export function GraphGeneral<T>({
     const { isLoading } = useFetchGraphData(url, index, title, chartRef, createGradient, setChartData, ariaDivRef);
 
     return (
-        <div className="widget center padding-small grid-item width-100 backdrop-blur-sm min-h-[212px] xl:min-h-[300px]">
+        <div className="widget text-center content-center justify-items-center padding-small grid-item w-full backdrop-blur-sm min-h-[212px] xl:min-h-[300px]">
             <h2 id="title" className="uppercase font-h2 relative">
                 {title}
             </h2>
@@ -68,7 +68,7 @@ export function GraphGeneral<T>({
                         <span className="capitalize mr-1">Source:</span>
                         <Link
                             href="https://www.swpc.noaa.gov/"
-                            className={`${!!isLoading ? "visibility-hidden" : ""}`}
+                            className={`${!!isLoading ? "invisible" : ""}`}
                             aria-label="Link to source of used data - NOAA"
                             target="_blank"
                         >

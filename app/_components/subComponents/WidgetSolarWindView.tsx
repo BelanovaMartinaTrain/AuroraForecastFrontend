@@ -65,8 +65,8 @@ export default function WidgetViewSolarWind() {
         <>
             {!!isLoading && <ProgressBar />}
 
-            <div className={`quickview-div ${!!isLoading && "visibility-hidden"}`}>
-                <div className="center grid-item quickview-item width-100 ">
+            <div className={`flex ${!!isLoading && "invisible"}`}>
+                <div className="text-center justify-center content-center justify-items-center items-center grid-item grid w-full ">
                     <p className=" mt-4">Speed</p>
                     <h3 className="pb-3">{wind} km/sec</h3>
 
@@ -74,7 +74,7 @@ export default function WidgetViewSolarWind() {
 
                     <h3 className="pb-2">{density} cm⁻³</h3>
                 </div>
-                <div className=" center quickview-item width-100">
+                <div className=" text-center justify-center content-center justify-items-center items-center grid w-full">
                     <p className=" mb-1 mt-4">Magnetic field</p>
                     <h3>Bt: {magField.Bt} nT</h3>
                     <h3 className="pb-2">Bz: {magField.Bz} nT</h3>
@@ -85,7 +85,7 @@ export default function WidgetViewSolarWind() {
                     <span className={`capitalize mr-1 ${!!isLoading ? "hidden" : ""}`}>Source:</span>
                     <Link
                         href="https://www.swpc.noaa.gov/"
-                        className={`${!!isLoading ? "visibility-hidden" : ""}`}
+                        className={`${!!isLoading ? "invisible" : ""}`}
                         aria-label="Link to source of used data - NOAA"
                         target="_blank"
                     >

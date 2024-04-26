@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
-
 import "./globals.css";
 import Header from "./_components/layoutComponents/Header";
 import { Providers } from "./_context/providers";
 import Footer from "./_components/layoutComponents/Footer";
 import LocationAndWeatherContextProvider from "./_context/locationAndWeatherContext";
 import HemisphereContextProvider from "./_context/hemisphereContext";
-import Image from "next/image";
 
 const quicksand = Quicksand({ subsets: ["latin"], preload: true });
 
@@ -45,7 +43,7 @@ export default function RootLayout({
                     <Providers>
                         <HemisphereContextProvider>
                             <Header />
-                            <main>
+                            <main className="mt-1 mx-auto max-w-3xl xl:max-w-[clamp(769px,60vw,1024px)]">
                                 <div>{children}</div>
                             </main>
                         </HemisphereContextProvider>

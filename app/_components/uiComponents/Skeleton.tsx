@@ -24,7 +24,7 @@ export default function SkeletonComponent({ numberOfLines }: { numberOfLines: nu
                 </div>
                 {skeletonShape.map((shape) => (
                     <div className={`bg-black motion-safe:animate-pulse rounded-lg max-w-[900px] h-full  flex justify-evenly py-1 m-1 `}>
-                        <p className=" font-medium w-full visibility-hidden">Date and time</p>
+                        <p className=" font-medium w-full invisible">Date and time</p>
                     </div>
                 ))}
             </div>

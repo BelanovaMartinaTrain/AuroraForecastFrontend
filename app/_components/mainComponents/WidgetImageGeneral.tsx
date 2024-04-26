@@ -49,7 +49,7 @@ export default function WidgetImageGeneral({ title, url, timerDuration, source }
                 <span className="capitalize mr-1">Source:</span> {/*TODO add loading*/}
                 <Link
                     href={source.urlSource}
-                    className={`${!!isLoading && "visibility-hidden"}`}
+                    className={`${!!isLoading && "invisible"}`}
                     aria-label="Link to source of used data - NOAA"
                     target="_blank"
                 >

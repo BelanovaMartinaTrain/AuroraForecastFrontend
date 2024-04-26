@@ -66,12 +66,12 @@ export default function WidgetAuroraView() {
     return (
         <>
             {!!isLoading && <ProgressBar />}
-            <div className={`quickview-div grid-item padding-xs-btm ${!!isLoading && "visibility-hidden"}`}>
-                <div className="center quickview-item width-100 padding-sm-r">
+            <div className={`flex grid-item padding-xs-btm ${!!isLoading && "invisible"}`}>
+                <div className="text-center justify-center content-center justify-items-center items-center grid w-full pr-2">
                     <p className=" padding-xs-btm mt-4">Kp index</p>
                     <h3 className="bigger-font ">{kp}</h3>
                 </div>
-                <div className="center quickview-item width-100 padding-sm-r">
+                <div className="text-center justify-center content-center justify-items-center items-center grid w-full pr-2">
                     <p className=" padding-xs-btm mt-4">Activity</p>
                     <h3 className="pb-3 ">{activity}</h3>
                     <p className=" padding-xs-btm">Geomagnetic storm</p>
@@ -84,7 +84,7 @@ export default function WidgetAuroraView() {
                     <span className={`capitalize mr-1 ${!!isLoading ? "hidden" : ""}`}>Source:</span>
                     <Link
                         href="https://www.swpc.noaa.gov/"
-                        className={`${!!isLoading ? "visibility-hidden" : ""}`}
+                        className={`${!!isLoading ? "invisible" : ""}`}
                         aria-label="Link to source of used data - NOAA"
                         target="_blank"
                     >

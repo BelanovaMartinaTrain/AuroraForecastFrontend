@@ -20,6 +20,13 @@ const config = {
                 sm480: "480px",
                 xs: "400px",
             },
+            fontSize: {
+                "h1-clamp": "clamp(2.2rem, 8vw, 3.55rem)",
+            },
+            fontFamily: {
+                dmsans: "DM Sans, sans-serif",
+                angelica: "white-angelica, sans-serif",
+            },
         },
         darkMode: "class",
         plugins: [nextui()],

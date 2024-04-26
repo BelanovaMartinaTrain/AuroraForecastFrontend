@@ -107,7 +107,7 @@ export function Graph() {
     }, [labels, yValues]);
 
     return (
-        <div className="widget center padding-small grid-item  md:order-none width-100 backdrop-blur-sm min-h-[212px] xl:min-h-[300px]">
+        <div className="widget text-center content-center justify-items-center padding-small grid-item  md:order-none w-full backdrop-blur-sm min-h-[212px] xl:min-h-[300px]">
             <h2 className="uppercase font-h2 relative">KP index forecast</h2>
             {!!isLoading ? (
                 <ProgressBar />
@@ -127,7 +127,7 @@ export function Graph() {
                         <span className="capitalize mr-1">Source:</span>
                         <Link
                             href="https://www.swpc.noaa.gov/"
-                            className={`${!!isLoading ? "visibility-hidden" : ""}`}
+                            className={`${!!isLoading ? "invisible" : ""}`}
                             aria-label="Link to source of used data - NOAA"
                             target="_blank"
                         >

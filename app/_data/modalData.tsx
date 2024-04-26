@@ -1,14 +1,14 @@
 export function ModalSolarWindInfo() {
     return (
         <>
-            <p className="center  text-sm sm:text-base underline underline-offset-4">Solar Wind</p>
+            <p className="text-center  text-sm sm:text-base underline underline-offset-4">Solar Wind</p>
             <span className="text-sm sm:text-base">
                 Solar wind is a stream of charged particles that come from the corona, the outermost layer of the sun's atmosphere and produce the
                 aurora.
             </span>
             <p className="font-normal text-xs text-[SpringGreen]">Values 450km/sec and above are the most favorable for strong aurora</p>
-            <p className="center mt-8 text-sm sm:text-base underline underline-offset-4">Interplanetary Magnetic Field (IMF)</p>
-            <p className="center mt-2 text-sm">Bt</p>
+            <p className="text-center mt-8 text-sm sm:text-base underline underline-offset-4">Interplanetary Magnetic Field (IMF)</p>
+            <p className="text-center mt-2 text-sm">Bt</p>
             <span className="text-sm sm:text-base">
                 The Bt value of the interplanetary magnetic field indicates the total strength of the interplanetary magnetic field. The higher this
                 value, the better it is for enhanced geomagnetic conditions. We speak of a moderately strong total interplanetary magnetic field when
@@ -16,7 +16,7 @@ export function ModalSolarWindInfo() {
                 30nT.
             </span>
             <p className="font-normal text-xs text-[SpringGreen]">Values 10nT and above are the most favorable for strong aurora</p>
-            <p className="center mt-2 text-sm">Bz</p>
+            <p className="text-center mt-2 text-sm">Bz</p>
             <span className="text-sm sm:text-base">
                 The north-south direction of the interplanetary magnetic field (Bz) is the most important ingredient for auroral activity. Continues
                 values of -10nT and lower are good indicators that a geomagnetic storm could develop but the lower this value goes the better it is
@@ -25,7 +25,7 @@ export function ModalSolarWindInfo() {
             <p className="font-normal text-xs text-[SpringGreen] ">
                 Values lower than 0 are the most favorable for strong aurora. The lower the better
             </p>
-            <p className="center mt-8 text-sm sm:text-base underline underline-offset-4">Solar wind density</p>
+            <p className="text-center mt-8 text-sm sm:text-base underline underline-offset-4">Solar wind density</p>
             <span className="text-sm sm:text-base">
                 Density of particles in the solar wind reaching the atmoshere. Their interactions with particles in the atmosphere create the aurora.
             </span>
@@ -37,7 +37,7 @@ export function ModalSolarWindInfo() {
 export function ModalAuroraActivityInfo() {
     return (
         <>
-            <p className="center text-sm sm:text-base underline underline-offset-4 ">KP index</p>
+            <p className="text-center text-sm sm:text-base underline underline-offset-4 ">KP index</p>
             <span className="text-sm sm:text-base">
                 The Kp number is used to measure aurora strength. The range goes from 0 to 9 (0 being calm and 9 representing a major geomagnetic
                 storm with strong auroras visible). <br />

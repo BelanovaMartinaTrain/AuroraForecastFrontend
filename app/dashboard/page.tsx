@@ -13,20 +13,28 @@ export default function Dashboard() {
     return (
         <>
             <div className="display-grid ">
-                <BasicWidget className={"widget center padding-small  backdrop-blur-sm lg:min-h-40 "}>
+                <BasicWidget className={"widget text-center content-center justify-items-center padding-small  backdrop-blur-sm lg:min-h-40 "}>
                     <WidgetAuroraActivity />
                 </BasicWidget>
-                <BasicWidget className={"widget center padding-small  backdrop-blur-sm lg:min-h-40 "}>
+                <BasicWidget className={"widget text-center content-center justify-items-center padding-small  backdrop-blur-sm lg:min-h-40 "}>
                     <WidgetSolarWind />
                 </BasicWidget>
 
                 <WidgetImage />
                 <BasicWidget className={"grouped-widget"}>
-                    <BasicWidget className={"widget  time-main center backdrop-blur-sm max-h-10"}>
+                    <BasicWidget
+                        className={
+                            "widget hidden md:flex justify-around p-2 text-center content-center justify-items-center items-center backdrop-blur-sm max-h-10"
+                        }
+                    >
                         <Clock className="font-smaller" time={now.getTime()} tmzAbrr={tmzAbrr} />
                         <Clock className="font-smaller" time={now.getTime()} timezone="UTC" tmzAbrr={tmzAbrr} />
                     </BasicWidget>
-                    <BasicWidget className={"widget center padding-small backdrop-blur-sm min-h-[152px] lg:min-h-[202px]"}>
+                    <BasicWidget
+                        className={
+                            "widget text-center content-center justify-items-center padding-small backdrop-blur-sm min-h-[152px] lg:min-h-[202px]"
+                        }
+                    >
                         <WeatherData title="Weather" url="https://aurora-api.cloud/api/yr-met-weather-10hours">
                             <WeatherWidget />
                         </WeatherData>

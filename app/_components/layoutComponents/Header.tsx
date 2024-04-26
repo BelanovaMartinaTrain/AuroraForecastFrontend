@@ -16,14 +16,17 @@ export default function Header() {
 
     return (
         <header>
-            <h1 className=" title" aria-label="Aurora Borealis Forecast">
+            <h1
+                className="[font-size:var(--font-h1-size)] py-6  max-w- font-angelica text-white text-center whitespace-nowrap m-0 p-0 "
+                aria-label="Aurora Borealis Forecast"
+            >
                 <Link href="/dashboard" aria-label="Navigate to dashboard">
                     <span className="cursor-pointer title ">Aurora {title}</span>
                 </Link>
             </h1>
 
             <Menu />
-            <Navigation cssClass="nav-horizontal widget" />
+            <Navigation cssClass="cursor-pointer hidden md:flex xl:max-w-[769px] max-w-3xl mb-[0.7rem] justify-around mx-auto p-2 widget" />
         </header>
     );
 }

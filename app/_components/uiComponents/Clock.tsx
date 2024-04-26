@@ -35,10 +35,7 @@ export default function Clock(props: Props) {
             {!!isLoading ? (
                 <ProgressBar />
             ) : !!props.timezone ? (
-                <h2
-                    suppressHydrationWarning
-                    className={`${props.className} ${!!isLoading ? "visibility-hidden" : ""}`}
-                >
+                <h2 suppressHydrationWarning className={`${props.className} ${!!isLoading ? "invisible" : ""}`}>
                     {time.toLocaleTimeString([], {
                         timeZone: `${props.timezone}`,
                         ...toHoursAndMinutes24h,
@@ -46,10 +43,7 @@ export default function Clock(props: Props) {
                     {" UTC"}
                 </h2>
             ) : (
-                <h2
-                    suppressHydrationWarning
-                    className={`${props.className} ${!!isLoading ? "visibility-hidden" : ""}`}
-                >
+                <h2 suppressHydrationWarning className={`${props.className} ${!!isLoading ? "invisible" : ""}`}>
                     {time.toLocaleTimeString([], toHoursAndMinutes24h)}
                     {` ${timezoneAbbreviation}`}
                 </h2>
