@@ -66,7 +66,7 @@ export default function ButtonRequestLocationPerm({ children }: { children: Reac
                 )
             ) : (
                 <button
-                    className="mt-3 text-black  px-5 py-3 rounded-lg font-bold focus:ring ring-black ring-opacity-10 gradient element-to-rotate hover:-translate-y-0.5"
+                    className="mt-3 text-black mb-[20%] px-5 py-3 rounded-lg font-bold focus:ring ring-black ring-opacity-10 gradient element-to-rotate hover:-translate-y-0.5"
                     onClick={getLocation}
                 >
                     Enable location
