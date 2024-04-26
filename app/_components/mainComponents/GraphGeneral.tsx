@@ -42,8 +42,8 @@ export function GraphGeneral<T>({
     const { isLoading } = useFetchGraphData(url, index, title, chartRef, createGradient, setChartData, ariaDivRef);
 
     return (
-        <div className="widget text-center content-center justify-items-center padding-small grid-item w-full backdrop-blur-sm min-h-[212px] xl:min-h-[300px]">
-            <h2 id="title" className="uppercase font-h2 relative">
+        <div className="widget text-center content-center justify-items-center p-6 grid-item w-full backdrop-blur-sm min-h-[212px] xl:min-h-[300px]">
+            <h2 id="title" className="uppercase font-h2 pb-2 relative">
                 {title}
             </h2>
             {!!isLoading ? (
