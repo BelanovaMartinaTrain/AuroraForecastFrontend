@@ -9,9 +9,12 @@ import { useHemisphereContext } from "@/app/_context/hemisphereContext";
 import Image from "next/image";
 
 export default function WidgetImage() {
+    const baseImgUrl = "https://aurora-api.cloud/api/image-ovation?format=webp&";
     const [imageUrl, setImageUrl] = useState({
-        north: "https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg",
-        south: "https://services.swpc.noaa.gov/images/animations/ovation/south/latest.jpg",
+        north475: baseImgUrl + "hemisphere=north&width=475",
+        south475: baseImgUrl + "hemisphere=south&width=475",
+        north800: baseImgUrl + "hemisphere=north&width=800",
+        south800: baseImgUrl + "hemisphere=south&width=800",
     });
     const [isLoading, setIsLoading] = useState(false);
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -23,8 +26,10 @@ export default function WidgetImage() {
                 const timestamp = Math.floor(Date.now() / 1000);
 
                 setImageUrl({
-                    north: `https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg?${timestamp}`,
-                    south: `https://services.swpc.noaa.gov/images/animations/ovation/south/latest.jpg?${timestamp}`,
+                    north475: `${baseImgUrl}hemisphere=north&width=475&${timestamp}`,
+                    south475: `${baseImgUrl}hemisphere=south&width=475&${timestamp}`,
+                    north800: `${baseImgUrl}hemisphere=north&width=800&${timestamp}`,
+                    south800: `${baseImgUrl}hemisphere=south&width=800&${timestamp}`,
                 });
                 setIsLoading(true);
                 setTimeout(() => setIsLoading(false), 500);
@@ -72,14 +77,13 @@ export default function WidgetImage() {
                 </div>
                 <h3 className="p-2 img-text uppercase margin-xs-btm ">Hemisphere </h3>
                 {!!isLoading && <ProgressBar />}
-                <Image
-                    src={`${hemisphere === "Northern" ? imageUrl.north : imageUrl.south}`}
+                <img
+                    src={`${hemisphere === "Northern" ? imageUrl.north475 : imageUrl.south475}`}
                     alt="predicted aurora ovation, predicted aurora activity in the next hour"
                     className={`img-latest mb-8 pb-4 px-3  ${isOpen ? "pointer-events-none" : ""}`}
                     width={475}
                     height={475}
                     onClick={onOpen}
-                    priority
                 />
 
                 <p className="mt-4 font-medium text-stone-500 text-[11px] absolute bottom-5 left-[42%] right-[50%]">
@@ -109,7 +113,7 @@ export default function WidgetImage() {
                     {(onClose) => (
                         <>
                             <ModalBody className="my-5">
-                                <ModalOvationImageNoClass imageUrl={hemisphere === "Northern" ? imageUrl.north : imageUrl.south} />
+                                <ModalOvationImageNoClass imageUrl={hemisphere === "Northern" ? imageUrl.north800 : imageUrl.south800} />
                             </ModalBody>
                         </>
                     )}
