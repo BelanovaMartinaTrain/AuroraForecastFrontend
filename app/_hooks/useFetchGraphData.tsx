@@ -19,6 +19,7 @@ export default function useFetchGraphData(
         async function fetchData() {
             try {
                 const graphValues = await fetchGraphDataSolarWindAttr(url, index);
+                // TODO error handling
                 if (!graphValues.labels) {
                     throw new Error("Source is unreachable");
                 } else {
@@ -27,6 +28,7 @@ export default function useFetchGraphData(
                     setValues([...values]);
                     setIsLoading(false);
 
+                    // set aria label
                     ariaDivRef.current &&
                         (ariaDivRef.current.innerText = `graph is showing ${title.split("(")[0]} progression in time. The maximum value was ${
                             ariaTextSignificantValues.maximum + " " + title.split("(")[1].split(")")[0]
@@ -43,7 +45,7 @@ export default function useFetchGraphData(
         fetchData();
         const intervalID = setInterval(() => {
             fetchData();
-        }, 60 * 1000);
+        }, 60 * 1000); // fetch every minute
         return () => clearInterval(intervalID);
     }, [ariaDivRef.current]);
 

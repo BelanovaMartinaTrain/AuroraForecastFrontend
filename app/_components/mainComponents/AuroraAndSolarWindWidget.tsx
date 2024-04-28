@@ -1,21 +1,18 @@
 "use client";
 
 import { Modal, ModalContent, ModalBody, useDisclosure } from "@nextui-org/react";
-import WidgetAuroraView from "../subComponents/WidgetAuroraView";
-import { ModalAuroraActivityInfo } from "@/app/_data/modalData";
+import WidgetViewSolarWind from "../subComponents/SolarWindViewWidget";
+import WidgetAuroraView from "../subComponents/AuroraViewWidget";
+import { ModalSolarWindInfo, ModalAuroraActivityInfo } from "@/app/_data/modalData";
 
-export default function WidgetAuroraActivity() {
+export default function AuroraAndSolarWindWidget({ type }: { type: string }) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
     return (
         <>
-            <h2 className="text-center content-center justify-items-center mb-2 uppercase font-h2 relative">
-                Aurora activity{" "}
-                <button
-                    className="absolute ml-1 -top-0.5 w-5 h-5"
-                    onClick={onOpen}
-                    aria-label="click to get info about KP index and geomagnetic storms"
-                >
+            <h2 className="mb-2 uppercase font-h2 relative ">
+                {type === "activity" ? "Aurora Activity" : "Solar Wind"}{" "}
+                <button className="absolute ml-1 -top-0.5 w-5 h-5" onClick={onOpen} aria-label="click to get info about solar wind attributes">
                     <svg
                         className="   fill-stone-400 hover:fill-stone-50 focus:fill-stone-50 mx-1"
                         xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +24,7 @@ export default function WidgetAuroraActivity() {
                     </svg>
                 </button>
             </h2>
-            <WidgetAuroraView />
+            {type === "activity" ? <WidgetAuroraView /> : <WidgetViewSolarWind />}
             <div className="">
                 <Modal
                     size="2xl"
@@ -36,16 +33,14 @@ export default function WidgetAuroraActivity() {
                     isOpen={isOpen}
                     onOpenChange={onOpenChange}
                     isDismissable={true}
-                    className=" bg-black bg-opacity-75 backdrop-blur-sm rounded-xl "
+                    className=" bg-black bg-opacity-75 backdrop-blur-sm rounded-xl  "
                     disableAnimation={true}
                     scrollBehavior="inside"
                 >
-                    <ModalContent className="  p-0  md:p-2">
+                    <ModalContent className="p-0 md:p-3 ">
                         {(onClose) => (
                             <>
-                                <ModalBody className="my-4 md:mt-5 md:mb-8">
-                                    <ModalAuroraActivityInfo />
-                                </ModalBody>
+                                <ModalBody className="my-5 ">{type === "activity" ? <ModalAuroraActivityInfo /> : <ModalSolarWindInfo />}</ModalBody>
                             </>
                         )}
                     </ModalContent>

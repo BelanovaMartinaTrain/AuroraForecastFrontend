@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip, ChartData, BarController } from "chart.js";
 import { Chart } from "react-chartjs-2";
 import ProgressBar from "../uiComponents/ProgressBar";
-import fetchAndChangeGraphData from "../../_api/changeData";
+import fetchAndChangeGraphData from "../../_api/fetchAndChangeGraphData";
 import Link from "next/link";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, BarController);
@@ -19,13 +19,6 @@ export const options = {
                 stepSize: 1,
             },
         },
-        // y: {
-        //     min: 0,
-        //     max: 20,
-        //     ticks: {
-        //         stepSize: 5,
-        //     },
-        // },
     },
     elements: {
         bar: {
@@ -45,7 +38,6 @@ export const options = {
 
 function createGradient(ctx: CanvasRenderingContext2D) {
     const gradient = ctx.createLinearGradient(0, -50, 470, 0);
-    //const gradient = ctx.createLinearGradient(0, 200, 0, 0);
     gradient.addColorStop(0, "purple");
     gradient.addColorStop(0.5, "SpringGreen");
     gradient.addColorStop(0.7, "yellowGreen");
@@ -59,19 +51,21 @@ export function Graph() {
         datasets: [],
     });
     const [labels, setLabels] = useState<string[]>();
-    const [yValues, setYValues] = useState<number[]>();
+    const [values, setValues] = useState<number[]>();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         async function fetchData() {
             try {
                 const graphValues = await fetchAndChangeGraphData("https://aurora-api.cloud/api/planetary-k-3h");
+
+                // TODO this error handling needs some work
                 if (!graphValues.labels) {
                     throw new Error("Source is unreachable");
                 } else {
-                    const { labels, yValues } = graphValues;
+                    const { labels, values } = graphValues;
                     setLabels(["UTC", ...labels]);
-                    setYValues([0, ...yValues]);
+                    setValues([0, ...values]);
                     setIsLoading(false);
                 }
             } catch (error) {
@@ -92,19 +86,19 @@ export function Graph() {
         if (!chart) {
             return;
         }
-        if (!!labels && !!yValues) {
+        if (!!labels && !!values) {
             const chartData = {
                 labels: labels,
                 datasets: [
                     {
                         backgroundColor: createGradient(chart.ctx),
-                        data: yValues,
+                        data: values,
                     },
                 ],
             };
             setChartData(chartData);
         }
-    }, [labels, yValues]);
+    }, [labels, values]);
 
     return (
         <div className="widget text-center content-center justify-items-center padding-small grid-item  md:order-none w-full backdrop-blur-sm min-h-[212px] xl:min-h-[300px]">

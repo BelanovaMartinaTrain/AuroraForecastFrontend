@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "../old_code/WidgetImageGeneral.tsx", "../old_code/WidgetSolarWind.tsx", "../old_code/WidgetAuroraActivity.tsx"],
   "exclude": ["node_modules"]
 }

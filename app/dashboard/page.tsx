@@ -1,11 +1,9 @@
 import Clock from "../_components/uiComponents/Clock";
-import { Graph } from "../_components/mainComponents/WidgetGraph";
-import BasicWidget from "../_components/layoutComponents/BasicWidget";
-import WidgetAuroraActivity from "../_components/mainComponents/WidgetAuroraActivity";
-import WidgetSolarWind from "../_components/mainComponents/WidgetSolarWind";
-import WidgetImage from "../_components/mainComponents/WidgetImage";
-import WeatherData from "../_components/mainComponents/WeatherData";
+import { Graph } from "../_components/mainComponents/GraphWidget";
+import WidgetImage from "../_components/mainComponents/ImageWidget";
+import WeatherData from "../_components/mainComponents/WeatherWrapperData";
 import WeatherWidget from "../_components/subComponents/WeatherWidget";
+import AuroraAndSolarWindWidget from "../_components/mainComponents/AuroraAndSolarWindWidget";
 
 export default function Dashboard() {
     const now = new Date();
@@ -13,34 +11,26 @@ export default function Dashboard() {
     return (
         <>
             <div className="display-grid ">
-                <BasicWidget className={"widget text-center content-center justify-items-center padding-small  backdrop-blur-sm lg:min-h-40 "}>
-                    <WidgetAuroraActivity />
-                </BasicWidget>
-                <BasicWidget className={"widget text-center content-center justify-items-center padding-small  backdrop-blur-sm lg:min-h-40 "}>
-                    <WidgetSolarWind />
-                </BasicWidget>
+                <div className="widget text-center content-center justify-items-center padding-small  backdrop-blur-sm lg:min-h-40 ">
+                    <AuroraAndSolarWindWidget type="activity" />
+                </div>
+                <div className="widget text-center content-center justify-items-center padding-small  backdrop-blur-sm lg:min-h-40 ">
+                    <AuroraAndSolarWindWidget type="wind" />
+                </div>
 
                 <WidgetImage />
-                <BasicWidget className={"grouped-widget"}>
-                    <BasicWidget
-                        className={
-                            "widget hidden md:flex justify-around p-2 text-center content-center justify-items-center items-center backdrop-blur-sm max-h-10"
-                        }
-                    >
+                <div className="grouped-widget">
+                    <div className="widget hidden md:flex justify-around p-2 text-center content-center justify-items-center items-center backdrop-blur-sm max-h-10">
                         <Clock className="font-smaller" time={now.getTime()} tmzAbrr={tmzAbrr} />
                         <Clock className="font-smaller" time={now.getTime()} timezone="UTC" tmzAbrr={tmzAbrr} />
-                    </BasicWidget>
-                    <BasicWidget
-                        className={
-                            "widget text-center content-center justify-items-center padding-small backdrop-blur-sm min-h-[152px] lg:min-h-[202px]"
-                        }
-                    >
+                    </div>
+                    <div className="widget text-center content-center justify-items-center padding-small backdrop-blur-sm min-h-[152px] lg:min-h-[202px]">
                         <WeatherData title="Weather" url="https://aurora-api.cloud/api/yr-met-weather-10hours">
                             <WeatherWidget />
                         </WeatherData>
-                    </BasicWidget>
+                    </div>
                     <Graph />
-                </BasicWidget>
+                </div>
             </div>
         </>
     );

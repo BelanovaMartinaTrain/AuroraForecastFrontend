@@ -1,13 +1,14 @@
 import { toHoursAndMinutes24h } from "../_utils/timeFormatting";
 
+// function to fetch and create labels for graph subpage - solar wind data
 export default async function fetchGraphDataSolarWindAttr(url: string, index: number) {
     const res = await fetch(url);
     const data = await res.json();
-    // const values = data.map((chunk: string[]) => Number(chunk[1])).slice(1, -1);
-    // const labels = data.map((chunk: string[]) => new Date(chunk[0])).slice(1, -1);
 
     const labels: string[] = [];
     const values: number[] = [];
+
+    // this will be used to set aria label with significant values
     let ariaTextSignificantValues = {
         maximum: 0,
         timestamp: "",
@@ -21,6 +22,7 @@ export default async function fetchGraphDataSolarWindAttr(url: string, index: nu
             values.push(value);
             labels.push(label);
 
+            // find max value with timestamp for future aria label
             if (value > ariaTextSignificantValues.maximum) {
                 ariaTextSignificantValues.maximum = value;
                 ariaTextSignificantValues.timestamp = label;

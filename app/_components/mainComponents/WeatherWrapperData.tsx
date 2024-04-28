@@ -8,6 +8,7 @@ import ButtonRequestLocationPerm from "../uiComponents/ButtonRequestLocationPerm
 import ProgressBar from "../uiComponents/ProgressBar";
 
 export default function WeatherData({ children, title, url }: { children: React.ReactNode; title: string; url: string }) {
+    // TODO refactor to general fetch function with react-query
     const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState(false);
     const { location, weatherArray, setWeatherArray } = useLocationAndWeatherContext();
@@ -15,10 +16,12 @@ export default function WeatherData({ children, title, url }: { children: React.
 
     async function fetchWeather(source?: string) {
         if (!!lat || !!lon) {
+            // timer as a source is set by setTimer in the useEffect => meaning don't fetch data again unless the timer runs out
             if (!weatherArray || source === "timer") {
                 try {
                     const weatherData = await fetchData(`${url}?lat=${lat}&lon=${lon}`);
 
+                    //TODO this workaround for error handling, needs some more work (or will be solved by react-query)
                     if (weatherData.cause || !("weather" in weatherData)) {
                         console.error("error", weatherData.cause);
                         throw new Error("Remote source is not available");
@@ -41,7 +44,7 @@ export default function WeatherData({ children, title, url }: { children: React.
         const intervalID = setInterval(() => {
             setIsLoading(true);
             fetchWeather("timer");
-        }, 60 * 10 * 1000);
+        }, 10 * 60 * 1000); // fetch every 10 minutes
         return () => clearInterval(intervalID);
     }, [lon, lat]);
 

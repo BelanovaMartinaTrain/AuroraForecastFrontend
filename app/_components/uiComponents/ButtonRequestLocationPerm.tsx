@@ -10,6 +10,7 @@ export default function ButtonRequestLocationPerm({ children }: { children: Reac
     const { location, setLocation } = useLocationAndWeatherContext();
     const { lon, lat } = location;
 
+    // TODO needs to rethink this to maybe update the location if it changes without reloading the page
     async function checkPerm() {
         setIsLoading(true);
         await navigator.permissions.query({ name: "geolocation" }).then((result) => {

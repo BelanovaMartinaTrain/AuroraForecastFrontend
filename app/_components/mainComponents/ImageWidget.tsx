@@ -6,7 +6,6 @@ import Link from "next/link";
 import { Modal, ModalContent, ModalBody, useDisclosure } from "@nextui-org/react";
 import { ModalOvationImageNoClass } from "@/app/_data/modalData";
 import { useHemisphereContext } from "@/app/_context/hemisphereContext";
-import Image from "next/image";
 
 export default function WidgetImage() {
     const baseImgUrl = "https://aurora-api.cloud/api/image-ovation?format=webp&";
@@ -22,6 +21,8 @@ export default function WidgetImage() {
 
     useEffect(() => {
         function changeUrl(timer?: string) {
+            // we need to set timestamp as part of the url to prevent caching and the image
+            // staying the same all the time when it needs to be updated every 5 minutes to a new one
             if (timer) {
                 const timestamp = Math.floor(Date.now() / 1000);
 
@@ -38,42 +39,41 @@ export default function WidgetImage() {
         changeUrl();
         const timer = setInterval(() => {
             changeUrl("timer");
-        }, 5 * 60 * 1000);
+        }, 5 * 60 * 1000); // refetch the image every 5 mins
         return () => clearInterval(timer);
     }, [imageUrl, hemisphere]);
 
-    function handleClickNorth() {
-        setHemisphere("Northern");
-    }
-
-    function handleClickSouth() {
-        setHemisphere("Southern");
-    }
+    // switch between Southern and Northern hemisphere, also sets the context
+    const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        const textValue = `${(event.target as HTMLElement).innerText}`.toLowerCase();
+        const hemisphere = textValue === "northern" ? "Northern" : "Southern";
+        setHemisphere(hemisphere);
+    };
 
     return (
         <>
             <div className="widget text-center justify-center  grid-item backdrop-blur-sm">
                 <div className="grid grid-flow-row hemisphere-gap hemisphere-grid justify-center  ">
-                    <div
+                    <button
                         className={` rounded-tl-lg cursor-pointer transition-all ease-in-out delay-[50ms] ${
                             hemisphere === "Northern"
                                 ? "bg-black bg-opacity-0 text-[gainsboro]"
                                 : "bg-black bg-opacity-40 text-stone-500 inner-shadow-north"
                         }`}
-                        onClick={handleClickNorth}
+                        onClick={handleClick}
                     >
                         <h3 className="py-2  uppercase  select-none">Northern </h3>
-                    </div>
-                    <div
+                    </button>
+                    <button
                         className={` rounded-tr-lg cursor-pointer transition ease-in-out delay-[50ms] ${
                             hemisphere === "Southern"
                                 ? "bg-black bg-opacity-0 text-[gainsboro]"
                                 : "bg-black bg-opacity-40 text-stone-500 inner-shadow-south"
                         }`}
-                        onClick={handleClickSouth}
+                        onClick={handleClick}
                     >
                         <h3 className="py-2   uppercase select-none ">Southern </h3>
-                    </div>
+                    </button>
                 </div>
                 <h3 className="p-2 img-text uppercase margin-xs-btm ">Hemisphere </h3>
                 {!!isLoading && <ProgressBar />}
