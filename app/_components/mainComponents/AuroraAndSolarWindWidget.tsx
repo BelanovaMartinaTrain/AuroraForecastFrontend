@@ -12,7 +12,12 @@ export default function AuroraAndSolarWindWidget({ type }: { type: string }) {
         <>
             <h2 className="mb-2 uppercase font-h2 relative ">
                 {type === "activity" ? "Aurora Activity" : "Solar Wind"}{" "}
-                <button className="absolute ml-1 -top-0.5 w-5 h-5" onClick={onOpen} aria-label="click to get info about solar wind attributes">
+                <button
+                    className="absolute ml-1 -top-0.5 w-5 h-5"
+                    onClick={onOpen}
+                    aria-label="click to get info about solar wind attributes"
+                    tabIndex={2}
+                >
                     <svg
                         className="   fill-stone-400 hover:fill-stone-50 focus:fill-stone-50 mx-1"
                         xmlns="http://www.w3.org/2000/svg"

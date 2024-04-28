@@ -124,6 +124,7 @@ export function Graph() {
                             className={`${!!isLoading ? "invisible" : ""}`}
                             aria-label="Link to source of used data - NOAA"
                             target="_blank"
+                            tabIndex={7}
                         >
                             NOAA
                         </Link>

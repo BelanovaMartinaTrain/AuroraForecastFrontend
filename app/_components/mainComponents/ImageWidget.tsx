@@ -61,6 +61,7 @@ export default function WidgetImage() {
                                 : "bg-black bg-opacity-40 text-stone-500 inner-shadow-north"
                         }`}
                         onClick={handleClick}
+                        tabIndex={4}
                     >
                         <h3 className="py-2  uppercase  select-none">Northern </h3>
                     </button>
@@ -71,6 +72,7 @@ export default function WidgetImage() {
                                 : "bg-black bg-opacity-40 text-stone-500 inner-shadow-south"
                         }`}
                         onClick={handleClick}
+                        tabIndex={4}
                     >
                         <h3 className="py-2   uppercase select-none ">Southern </h3>
                     </button>
@@ -93,6 +95,7 @@ export default function WidgetImage() {
                         className={`${!!isLoading ? "invisible" : ""}`}
                         aria-label="Link to source of used data - NOAA"
                         target="_blank"
+                        tabIndex={7}
                     >
                         NOAA
                     </Link>

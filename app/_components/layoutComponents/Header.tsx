@@ -20,7 +20,7 @@ export default function Header() {
                 className="[font-size:var(--font-h1-size)] py-6  max-w- font-angelica text-white text-center whitespace-nowrap m-0 p-0 "
                 aria-label="Aurora Borealis Forecast"
             >
-                <Link href="/dashboard" aria-label="Navigate to dashboard">
+                <Link href="/dashboard" aria-label="Navigate to dashboard" tabIndex={1}>
                     <span className="cursor-pointer title ">Aurora {title}</span>
                 </Link>
             </h1>
