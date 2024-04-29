@@ -47,11 +47,8 @@ export default function WidgetImage() {
     const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         const textValue = `${(event.target as HTMLElement).innerText}`.toLowerCase();
         const hemisphere = textValue === "northern" ? "Northern" : "Southern";
-        console.log("click", hemisphere);
         setHemisphere(hemisphere);
     };
-
-    console.log(hemisphere);
 
     return (
         <>
