@@ -71,19 +71,13 @@ export default function WeatherWidget() {
                             href={`https://www.google.com/maps/place/${lat},${lon}`}
                             target="_blank"
                             aria-label="Navigate to google maps to see used location on a map"
-                            tabIndex={6}
                         >
                             Used location: {lat}, {lon}
                         </Link>
                     </p>
                     <p className=" font-medium text-stone-500 text-[11px]">
                         <span className="capitalize mr-1">Source:</span>
-                        <Link
-                            href="https://www.yr.no/en"
-                            target="_blank"
-                            aria-label="Link to source of used data - Norway meteo institute"
-                            tabIndex={6}
-                        >
+                        <Link href="https://www.yr.no/en" target="_blank" aria-label="Link to source of used data - Norway meteo institute">
                             MET Norway
                         </Link>
                     </p>

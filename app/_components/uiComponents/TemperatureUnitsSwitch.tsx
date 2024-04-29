@@ -21,7 +21,6 @@ export default function TemperatureUnitsSwitch({ title, classes }: { title: stri
                     onClick={handleClick}
                     aria-description="change units to celsius"
                     aria-pressed={units === "C" ? "true" : "false"}
-                    tabIndex={5}
                 >
                     <p className={`text-base ${units === "C" ? "text-[gainsboro]" : "text-stone-500"}`}>&#176;C</p>
                 </button>
@@ -30,7 +29,6 @@ export default function TemperatureUnitsSwitch({ title, classes }: { title: stri
                     onClick={handleClick}
                     aria-description="change units to fahrenheit"
                     aria-pressed={units === "F" ? "true" : "false"}
-                    tabIndex={5}
                 >
                     <p className={` text-base ${units === "F" ? "text-[gainsboro]" : "text-stone-500"}`}>&#176;F</p>
                 </button>

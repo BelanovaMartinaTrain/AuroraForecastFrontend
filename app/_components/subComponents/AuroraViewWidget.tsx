@@ -87,7 +87,6 @@ export default function WidgetAuroraView() {
                         className={`${!!isLoading ? "invisible" : ""}`}
                         aria-label="Link to source of used data - NOAA"
                         target="_blank"
-                        tabIndex={3}
                     >
                         NOAA
                     </Link>
