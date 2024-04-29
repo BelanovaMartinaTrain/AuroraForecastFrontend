@@ -47,8 +47,11 @@ export default function WidgetImage() {
     const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         const textValue = `${(event.target as HTMLElement).innerText}`.toLowerCase();
         const hemisphere = textValue === "northern" ? "Northern" : "Southern";
+        console.log("click", hemisphere);
         setHemisphere(hemisphere);
     };
+
+    console.log(hemisphere);
 
     return (
         <>
@@ -79,10 +82,21 @@ export default function WidgetImage() {
                 </div>
                 <h3 className="p-2 img-text uppercase margin-xs-btm ">Hemisphere </h3>
                 {!!isLoading && <ProgressBar />}
+
+                {/* I chose this way to show/hide the img for the img to be loaded in the background so both are synchronised in their clock when they update */}
                 <img
-                    src={`${hemisphere === "Northern" ? imageUrl.north475 : imageUrl.south475}`}
+                    src={imageUrl.north475}
                     alt="predicted aurora ovation, predicted aurora activity in the next hour"
-                    className={`img-latest mb-8 pb-4 px-3  ${isOpen ? "pointer-events-none" : ""}`}
+                    className={`img-latest mb-8 pb-4 px-3  ${isOpen ? "pointer-events-none" : ""} ${hemisphere === "Northern" ? "block" : "hidden"}`}
+                    width={475}
+                    height={475}
+                    onClick={onOpen}
+                />
+
+                <img
+                    src={imageUrl.south475}
+                    alt="predicted aurora ovation, predicted aurora activity in the next hour"
+                    className={`img-latest mb-8 pb-4 px-3  ${isOpen ? "pointer-events-none" : ""} ${hemisphere === "Southern" ? "block" : "hidden"}`}
                     width={475}
                     height={475}
                     onClick={onOpen}
