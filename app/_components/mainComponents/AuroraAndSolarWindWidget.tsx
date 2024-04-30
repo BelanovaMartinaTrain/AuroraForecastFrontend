@@ -33,7 +33,7 @@ export default function AuroraAndSolarWindWidget({ type }: { type: string }) {
                     isOpen={isOpen}
                     onOpenChange={onOpenChange}
                     isDismissable={true}
-                    className=" bg-black bg-opacity-75 backdrop-blur-sm rounded-xl  "
+                    className=" bg-black bg-opacity-85 backdrop-blur-sm rounded-xl  "
                     disableAnimation={true}
                     scrollBehavior="inside"
                 >
