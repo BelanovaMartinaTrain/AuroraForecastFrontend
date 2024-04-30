@@ -23,6 +23,7 @@ export default function WidgetImage() {
         function changeUrl(timer?: string) {
             // we need to set timestamp as part of the url to prevent caching and the image
             // staying the same all the time when it needs to be updated every 5 minutes to a new one
+
             if (timer) {
                 const timestamp = Math.floor(Date.now() / 1000);
 
@@ -61,6 +62,7 @@ export default function WidgetImage() {
                                 : "bg-black bg-opacity-40 text-stone-500 inner-shadow-north"
                         }`}
                         onClick={handleClick}
+                        aria-label=" Switch to the image of northern hemisphere"
                     >
                         <h3 className="py-2  uppercase  select-none">Northern </h3>
                     </button>
@@ -71,6 +73,7 @@ export default function WidgetImage() {
                                 : "bg-black bg-opacity-40 text-stone-500 inner-shadow-south"
                         }`}
                         onClick={handleClick}
+                        aria-label=" Switch to the image of southern hemisphere"
                     >
                         <h3 className="py-2   uppercase select-none ">Southern </h3>
                     </button>
