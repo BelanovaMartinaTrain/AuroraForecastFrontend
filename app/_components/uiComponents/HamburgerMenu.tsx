@@ -31,7 +31,7 @@ export default function HamburgerMenu() {
         document.body.addEventListener("keydown", handleEscapeDismiss);
         return () => {
             document.body.removeEventListener("click", handleDismiss);
-            document.body.addEventListener("keydown", handleEscapeDismiss);
+            document.body.removeEventListener("keydown", handleEscapeDismiss);
         };
     }, []);
 

@@ -5,7 +5,7 @@ import { useLocationAndWeatherContext } from "@/app/_context/locationAndWeatherC
 export default function TemperatureUnitsSwitch({ title, classes }: { title: string; classes: string }) {
     const { units, setUnits } = useLocationAndWeatherContext();
 
-    // Consider using local storage
+    //TODO Consider using local storage
     const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         const textValue = `${(event.target as HTMLElement).innerText}`.split("°")[1];
         const units = textValue === "C" ? "C" : "F";
