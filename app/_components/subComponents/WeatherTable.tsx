@@ -1,16 +1,38 @@
 "use client";
-import { useLocationAndWeatherContext } from "@/app/_context/locationAndWeatherContext";
+import { useLocationAndWeatherContext, TWeatherObject } from "@/app/_context/locationAndWeatherContext";
 import { TWeatherSymbolKey, weatherSymbolKeys } from "@/app/_utils/weatherSymbolKeys";
 import { weatherAlt, TWeatherAltKey } from "@/app/_utils/weatherAltText";
 import Link from "next/link";
 import { toDayAndMonth, toHoursAndMinutes12h, toHoursAndMinutes24h, toSingleDay } from "@/app/_utils/timeFormatting";
 import { useRef } from "react";
+import fetchData from "@/app/_api/fetchData";
+import { useQuery } from "@tanstack/react-query";
+import { useCurrentLocation } from "@/app/_hooks/useLocation";
 
-export default function WeatherTable() {
+type TWeatherArray = { weather: TWeatherObject[] };
+
+export default function WeatherTable({ initialWeatherData }: { initialWeatherData: TWeatherArray }) {
     const tableRef = useRef<HTMLDivElement>(null);
     const PClassNames = " capitalize font-medium  text-nowrap border-none text-sm py-1 px-2 ";
-    const { weatherArray, units, location } = useLocationAndWeatherContext();
-    const { lon, lat } = location;
+
+    const { units } = useLocationAndWeatherContext();
+    const { data: location } = useCurrentLocation();
+
+    let lon: number | null;
+    let lat: number | null;
+
+    if (location) {
+        lon = Math.round(location?.coords.longitude * 100) / 100;
+        lat = Math.round(location?.coords.latitude * 100) / 100;
+    } else {
+        lon = null;
+        lat = null;
+    }
+
+    const { data: weatherArray } = useQuery<TWeatherArray>({
+        queryKey: ["weather"],
+        queryFn: () => fetchData(`https://aurora-api.cloud/api/yr-met-weather-10hours?lon=${lon}&lat=${lat}`),
+    });
 
     // this is for better user experience on mobile, the element alerts the user they can scroll and the click also scrolls the table
     // it depends on the browser some scroll back, some don't, but it's not the main function anyway just added bonus
@@ -40,7 +62,7 @@ export default function WeatherTable() {
                             <td className={`${PClassNames} 2xl:px-0 `}>Low clouds</td>
                             <td className={`${PClassNames} 2xl:px-4 `}>Fog</td>
                         </tr>
-                        {weatherArray?.map((weather, index, weatherArray) => {
+                        {weatherArray?.weather.map((weather, index, weatherArray) => {
                             let isNewDay = false;
                             if (index < 9) {
                                 const timestamp1 = new Date(weatherArray[index].time).toLocaleTimeString([], toSingleDay).split(",")[0];

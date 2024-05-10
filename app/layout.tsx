@@ -6,6 +6,7 @@ import { Providers } from "./_context/providers";
 import Footer from "./_components/layoutComponents/Footer";
 import LocationAndWeatherContextProvider from "./_context/locationAndWeatherContext";
 import HemisphereContextProvider from "./_context/hemisphereContext";
+import ReactQueryWrapper from "./_context/queryClientProvider";
 
 const quicksand = Quicksand({ subsets: ["latin"], preload: true });
 
@@ -39,16 +40,18 @@ export default function RootLayout({
             <meta name="twitter:image" content="https://cdn.pixabay.com/photo/2023/11/01/18/32/mountains-8358708_1280.jpg" />
 
             <body className={`${quicksand.className} grid-main-layout grid-cols-1  h-[98vh] `}>
-                <LocationAndWeatherContextProvider>
-                    <Providers>
-                        <HemisphereContextProvider>
-                            <Header />
-                            <main className="mt-1 mx-auto max-w-3xl xl:max-w-[clamp(769px,60vw,1024px)]">
-                                <div>{children}</div>
-                            </main>
-                        </HemisphereContextProvider>
-                    </Providers>
-                </LocationAndWeatherContextProvider>
+                <ReactQueryWrapper>
+                    <LocationAndWeatherContextProvider>
+                        <Providers>
+                            <HemisphereContextProvider>
+                                <Header />
+                                <main className="mt-1 mx-auto max-w-3xl xl:max-w-[clamp(769px,60vw,1024px)]">
+                                    <div>{children}</div>
+                                </main>
+                            </HemisphereContextProvider>
+                        </Providers>
+                    </LocationAndWeatherContextProvider>
+                </ReactQueryWrapper>
                 <Footer />
             </body>
         </html>

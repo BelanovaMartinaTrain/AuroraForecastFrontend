@@ -1,15 +1,37 @@
 "use client";
 
-import { useLocationAndWeatherContext } from "@/app/_context/locationAndWeatherContext";
+import { useLocationAndWeatherContext, TWeatherObject } from "@/app/_context/locationAndWeatherContext";
 import Link from "next/link";
 import { TWeatherSymbolKey, weatherSymbolKeys } from "@/app/_utils/weatherSymbolKeys";
 import { TWeatherAltKey, weatherAlt } from "@/app/_utils/weatherAltText";
+import { useQuery } from "@tanstack/react-query";
+import { useCurrentLocation } from "@/app/_hooks/useLocation";
+import fetchData from "@/app/_api/fetchData";
 
-export default function WeatherWidget() {
-    const { location, weatherArray, units } = useLocationAndWeatherContext();
-    const { lon, lat } = location;
+type TWeatherArray = { weather: TWeatherObject[] };
 
-    const weather = weatherArray![0] || {
+export default function WeatherWidget({ initialWeatherData }: { initialWeatherData: TWeatherArray }) {
+    const { units } = useLocationAndWeatherContext();
+    const { data: location } = useCurrentLocation();
+
+    let lon: number | null;
+    let lat: number | null;
+
+    if (location) {
+        lon = Math.round(location?.coords.longitude * 100) / 100;
+        lat = Math.round(location?.coords.latitude * 100) / 100;
+    } else {
+        lon = null;
+        lat = null;
+    }
+
+    const { data: weatherArray } = useQuery<TWeatherArray>({
+        queryKey: ["weather"],
+        queryFn: () => fetchData(`https://aurora-api.cloud/api/yr-met-weather-10hours?lon=${lon}&lat=${lat}`),
+        initialData: initialWeatherData,
+    });
+
+    const weather = weatherArray!.weather[0] || {
         air_pressure_at_sea_level: 0,
         air_temperature: 0,
         cloud_area_fraction: 0,
