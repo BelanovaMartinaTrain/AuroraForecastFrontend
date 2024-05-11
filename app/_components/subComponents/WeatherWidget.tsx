@@ -7,6 +7,7 @@ import { TWeatherAltKey, weatherAlt } from "@/app/_utils/weatherAltText";
 import { useQuery } from "@tanstack/react-query";
 import { useCurrentLocation } from "@/app/_hooks/useLocation";
 import fetchData from "@/app/_api/fetchData";
+import ProgressBar from "../uiComponents/ProgressBar";
 
 type TWeatherArray = { weather: TWeatherObject[] };
 
@@ -25,7 +26,9 @@ export default function WeatherWidget({ initialWeatherData }: { initialWeatherDa
         lat = null;
     }
 
-    const { data: weatherArray } = useQuery<TWeatherArray>({
+    console.log(lon, lat);
+
+    const { data: weatherArray, isLoading } = useQuery<TWeatherArray>({
         queryKey: ["weather"],
         queryFn: () => fetchData(`https://aurora-api.cloud/api/yr-met-weather-10hours?lon=${lon}&lat=${lat}`),
         initialData: initialWeatherData,
@@ -50,6 +53,7 @@ export default function WeatherWidget({ initialWeatherData }: { initialWeatherDa
 
     return (
         <>
+            {isLoading && <ProgressBar />}
             <div className="flex text-center justify-center justify-items-center items-center z-0">
                 <div
                     className={`text-center justify-center justify-items-center content-center items-center grid w-full padding-sm-btm ${

@@ -118,7 +118,7 @@ export function ModalOvationImageNoClass({ imageUrl }: { imageUrl: string }) {
             <img
                 src={`${imageUrl}`}
                 alt="predicted aurora ovation, predicted aurora activity in the next hour depicted visually"
-                className="filter brightness-[80%] hue-rotate-[18deg] grayscale-[50%]  rounded  shadow-black shadow-lg "
+                className="filter brightness-[85%] hue-rotate-[10deg] grayscale-[40%]  rounded  shadow-black shadow-lg "
             />
         </>
     );
