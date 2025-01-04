@@ -8,7 +8,7 @@ import { ModalOvationImageNoClass } from "@/app/_data/modalData";
 import { useHemisphereContext } from "@/app/_context/hemisphereContext";
 
 export default function WidgetImage() {
-    const baseImgUrl = "https://aurora-api.cloud/api/image-ovation?format=webp&";
+    const baseImgUrl = "http://aurora-api.cloud:8080/api/image-ovation?format=webp&";
     const [imageUrl, setImageUrl] = useState({
         north475: baseImgUrl + "hemisphere=north&width=475",
         south475: baseImgUrl + "hemisphere=south&width=475",

@@ -21,9 +21,9 @@ export default function WidgetViewSolarWind() {
             setIsLoading(true);
             setError("");
             try {
-                const windData = await fetchData("https://aurora-api.cloud/api/solar-wind");
-                const densityData = await fetchData("https://aurora-api.cloud/api/solar-wind-density-5min");
-                const magData = await fetchData("https://aurora-api.cloud/api/magnetic-field");
+                const windData = await fetchData("http://aurora-api.cloud:8080/api/solar-wind");
+                const densityData = await fetchData("http://aurora-api.cloud:8080/api/solar-wind-density-5min");
+                const magData = await fetchData("http://aurora-api.cloud:8080/api/magnetic-field");
 
                 if (!windData || !densityData || !magData || !!windData.cause || !!densityData.cause || magData.cause) {
                     throw new Error("Source is unreachable");

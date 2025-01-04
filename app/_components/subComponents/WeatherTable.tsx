@@ -31,7 +31,7 @@ export default function WeatherTable({ initialWeatherData }: { initialWeatherDat
 
     const { data: weatherArray } = useQuery<TWeatherArray>({
         queryKey: ["weather"],
-        queryFn: () => fetchData(`https://aurora-api.cloud/api/yr-met-weather-10hours?lon=${lon}&lat=${lat}`),
+        queryFn: () => fetchData(`http://aurora-api.cloud:8080/api/yr-met-weather-10hours?lon=${lon}&lat=${lat}`),
     });
 
     // this is for better user experience on mobile, the element alerts the user they can scroll and the click also scrolls the table

@@ -30,7 +30,7 @@ export default function WeatherWidget({ initialWeatherData }: { initialWeatherDa
 
     const { data: weatherArray, isLoading } = useQuery<TWeatherArray>({
         queryKey: ["weather"],
-        queryFn: () => fetchData(`https://aurora-api.cloud/api/yr-met-weather-10hours?lon=${lon}&lat=${lat}`),
+        queryFn: () => fetchData(`http://aurora-api.cloud:8080/api/yr-met-weather-10hours?lon=${lon}&lat=${lat}`),
         initialData: initialWeatherData,
     });
 

@@ -9,7 +9,7 @@ import fetchData from "../_api/fetchData";
 export default async function Dashboard() {
     const now = new Date();
     const tmzAbrr = "Europe/Bratislava";
-    const initialWeatherData = await fetchData("https://aurora-api.cloud/api/yr-met-weather-10hours?lon=17&lat=40");
+    const initialWeatherData = await fetchData("http://aurora-api.cloud:8080/api/yr-met-weather-10hours?lon=17&lat=40");
 
     return (
         <>

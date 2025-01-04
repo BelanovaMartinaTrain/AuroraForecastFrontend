@@ -9,7 +9,7 @@ export default function Page() {
                     options={graph.optionsLine}
                     createGradient={graph.createGradientHorizontal}
                     title="Solar Wind Speed (km/s)"
-                    url="https://aurora-api.cloud/api/solar-wind-density-3day"
+                    url="http://aurora-api.cloud:8080/api/solar-wind-density-3day"
                     index={2}
                 />
             </div>
@@ -18,7 +18,7 @@ export default function Page() {
                 options={graph.optionsLine}
                 createGradient={graph.createGradientVertical}
                 title="Solar Wind Density (cm⁻³)"
-                url="https://aurora-api.cloud/api/solar-wind-density-3day"
+                url="http://aurora-api.cloud:8080/api/solar-wind-density-3day"
                 index={1}
             />
         </>

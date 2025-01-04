@@ -57,7 +57,7 @@ export function Graph() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const graphValues = await fetchAndChangeGraphData("https://aurora-api.cloud/api/planetary-k-3h");
+                const graphValues = await fetchAndChangeGraphData("http://aurora-api.cloud:8080/api/planetary-k-3h");
 
                 // TODO this error handling needs some work
                 if (!graphValues.labels) {
